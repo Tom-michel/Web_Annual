@@ -5,11 +5,50 @@
 
 
 {% block content %} 
-    <section class="mt-5 pt-5">
+    <!-- ============== baniere ================ -->
+    <section class="mt-5 pt-3">
         <div class="container">
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui placeat porro quidem in labore, optio a asperiores repudiandae modi voluptatem magnam aliquid odio perspiciatis corrupti eos sint fuga. Nemo, esse?
-            </p>
+            <div class="row baniere">
+                <div class="col-md-5 mx-auto my-auto d-flex">
+                    <img src="{% static 'img/baniere.svg' %}" alt="" class="img-fluid">
+                </div>
+                <div class="col-md-6 baniere-text mx-auto my-auto">
+                    <h1 class="mb-2">
+                        Aidez votre équipe à travailler mieux !
+                    </h1>
+                    <p>
+                        Collaborez, gérez des projets et atteignez de nouveaux sommets de productivité.
+                        Managez et Suivez l'avancement de votre travail où que vous soyez.
+                    </p>
+                    <p class="">
+                        <a href="" class="btn-bleu mt-2">Inscription</a>
+                        &emsp;
+                        <a href="" class="btn-rouge mt-2">Connexion</a>
+                    </p>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </section>
+
+    <!-- =============== comment utiliser ============= -->
+    <section class="mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="title text-center text-uppercase my-4">Comment l'utiliser ?</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mx-auto my-auto">
+                    <p>
+                        Commencez par créer un projet, les listes de tâches à effectuer et choissisez les membres devant participer au projet. Gérez des projets, organisez des tâches et renforcez l'esprit d'équipe de votre entreprise.
+                    </p>
+                </div>
+                <div class="col-md-6 mx-auto my-auto">
+
+                </div>
+            </div>
         </div>
     </section>
 {% endblock %}

@@ -31,84 +31,84 @@
     </head>
     <body>
         {% block header %} 
-        <nav class="navbar navbar-expand-lg bg-white main-nav fixed-top shadow">
-            <div class="container-fluid">
-                <!--Horizontal Nav-->
-                <span class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-expanded="true" aria-label="Toggle navigation">
-                    <!-- <span class="navbar-toggler-icon pt-2"><i class="bi-list"></i></span> -->
-                    <span id="menuO" class="navbar-toggler-icon pt-1">
-                        <i class="fa-solid fa-bars"></i>
+            <nav class="navbar navbar-expand-md bg-white main-nav fixed-top shadow">
+                <div class="container-fluid">
+                    <!--Horizontal Nav-->
+                    <span class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-expanded="true" aria-label="Toggle navigation">
+                        <!-- <span class="navbar-toggler-icon pt-2"><i class="bi-list"></i></span> -->
+                        <span id="menuO" class="navbar-toggler-icon pt-1">
+                            <i class="fa-solid fa-bars"></i>
+                        </span>
+                        <span id="menuC" class="navbar-toggler-icon pt-1">
+                            <i class="fa-solid fa-xmark"></i>
+                        </span>
                     </span>
-                    <span id="menuC" class="navbar-toggler-icon pt-1">
-                        <i class="fa-solid fa-xmark"></i>
-                    </span>
-                </span>
-                <a class="navbar-brand text-dark" href="/#hero">
-                    UBORA DIR
-                </a>
-                <div class="navbar-collapse collapse" id="mainMenu">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a href="" class="nav-link active mx-1 text-secondary">Acceuil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="" class="nav-link active mx-1 text-secondary">Fontionnalités</a>
-                        </li>
-                        {% if user.is_authenticated %}
+                    <a class="navbar-brand text-dark" href="/#hero">
+                        UBORA DIR
+                    </a>
+                    <div class="navbar-collapse collapse" id="mainMenu">
+                        <ul class="navbar-nav ms-auto">
                             <li class="nav-item">
-                                <a href="/" class="nav-link mx-1 text-secondary">Projets</a>
+                                <a href="" class="nav-link active mx-1 text-secondary">Acceuil</a>
                             </li>
                             <li class="nav-item">
-                                <a href="/" class="nav-link mx-1 text-secondary">Mes tâches</a>
+                                <a href="" class="nav-link active mx-1 text-secondary">Fontionnalités</a>
                             </li>
+                            {% if user.is_authenticated %}
+                                <li class="nav-item">
+                                    <a href="/" class="nav-link mx-1 text-secondary">Projets</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/" class="nav-link mx-1 text-secondary">Mes tâches</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                        {% if not user.is_authenticated %}
+                            <div class="linkBtn me-5 my-2">   
+                                <a href="" class="mx-1 text-dark text-decoration-none border border-primary border-2 py-1 px-4 rounded-pill shadow">S'inscrire</a>
+                                <a href="" class="ms-1 mt-3 text-dark text-decoration-none border border-danger border-2 py-1 px-3 rounded-pill shadow">Se connecter</a>
+                            </div>
                         {% endif %}
-                    </ul>
-                    {% if not user.is_authenticated %}
-                        <div class="linkBtn me-5 my-2">   
-                            <a href="" class="mx-1 text-dark text-decoration-none border border-primary border-2 bg-light  py-1 px-4 rounded-pill shadow bout">S'inscrire</a>
-                            <a href="" class="ms-1 mt-3 text-dark text-decoration-none border border-danger border-2 bg-light py-1 px-3 rounded-pill shadow bout">Se connecter</a>
+                    </div>
+                    <!-- avatar -->
+                    {% if user.is_authenticated %}
+                        <div class="d-flex align-items-center">
+                            <!-- Avatar -->
+                            <div class="dropstart" id="drop-compte">
+                                <a class="dropdown-toggle hidden-arrow" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img
+                                        src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                                        class="rounded-circle border border-primary"
+                                        height="40"
+                                        alt=""
+                                    />
+                                </a>
+                                <ul class="dropdown-menu profile-drop" aria-labelledby="dropdownMenuLink">
+                                    <li class="text-center">Compte</li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li class="user">
+                                        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                                        class="rounded-circle border border-primary"
+                                        height="35"
+                                        alt=""/>
+                                        <span>
+                                            <p>Michel Rufin BTOMPE TCHEUFFA</p>
+                                            <p class="text-muted">rufin.btompe@facsciences-uy1.cm</p>
+                                        </span>
+                                    </li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item text-success" href="#">Ajouter un compte</a></li>
+                                    <li><a class="dropdown-item text-danger" href="#">Supprimer compte</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user-tie"></i> Profil</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i> Se déconnecter</a></li>
+                                </ul>
+                            </div>
                         </div>
                     {% endif %}
+                    
                 </div>
-                <!-- avatar -->
-                {% if user.is_authenticated %}
-                    <div class="d-flex align-items-center">
-                        <!-- Avatar -->
-                        <div class="dropstart" id="drop-compte">
-                            <a class="dropdown-toggle hidden-arrow" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img
-                                    src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-                                    class="rounded-circle border border-primary"
-                                    height="40"
-                                    alt=""
-                                />
-                            </a>
-                            <ul class="dropdown-menu profile-drop" aria-labelledby="dropdownMenuLink">
-                                <li class="text-center">Compte</li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li class="user">
-                                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-                                    class="rounded-circle border border-primary"
-                                    height="35"
-                                    alt=""/>
-                                    <span>
-                                        <p>Michel Rufin BTOMPE TCHEUFFA</p>
-                                        <p class="text-muted">rufin.btompe@facsciences-uy1.cm</p>
-                                    </span>
-                                </li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item text-success" href="#">Ajouter un compte</a></li>
-                                <li><a class="dropdown-item text-danger" href="#">Supprimer compte</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user-tie"></i> Profil</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i> Se déconnecter</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                {% endif %}
-                
-            </div>
-        </nav>
+            </nav>
         {% endblock %}
 
         {% block content %} 

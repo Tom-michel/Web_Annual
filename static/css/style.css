@@ -56,8 +56,8 @@ h4, h5, h6, a, p{
 
 :root {
     --color-bleu: #0b5ed7;
-    --color-rouge: hsl(347,100%,50%);
-    --color-dark: hsl(252, 30%, 17%);
+    --color-rouge: #ff0037;
+    --color-dark: #241e38;
 }
 
 .text-secondary {
@@ -70,6 +70,60 @@ body {
     color: var(--color-dark);
 }
 
+
+
+/* ================== BOUTONS ======================== */
+
+.btn-bleu,
+.btn-rouge,
+.btn-blanc{
+    border-radius: 50rem !important;
+    padding: .5rem 1.5rem !important;
+    border-width: 2px !important;
+    display: inline-block;
+    font-weight: 500;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+    font-size: 1rem;
+}
+.btn-bleu:hover,
+.btn-rouge:hover,
+.btn-blanc:hover{
+    transition: .2s;
+	transform: scale(1.05);
+}
+
+.btn-bleu{
+    border-color: var(--color-bleu) !important;
+    background: var(--color-bleu) !important;
+    color: #fff !important;
+}
+.btn-rouge{
+    border-color: var(--color-rouge) !important;
+    background: var(--color-rouge) !important;
+    color: #fff !important;
+}
+.btn-blanc{
+    border-color: #fff !important;
+    background: #fff !important;
+    color: #333 !important;
+}
+
+.border-primary:hover{
+    background: var(--color-bleu);
+    color: #fff !important;
+    font-weight: 450;
+    transition: 0.3s;
+}
+.border-danger:hover{
+    background: var(--color-rouge);
+    color: #fff !important;
+    font-weight: 450;
+    transition: 0.3s;
+}
 
 
 
@@ -117,5 +171,73 @@ body {
 .profile-drop .user p:last-child{
     font-size: 0.8rem;
 }
+
+
+/* ================== page accueil 1 =================== */
+
+/* ---------- baniere ----------- */
+
+.baniere .baniere-text p a{
+    padding: .5rem 2rem !important;
+}
+
+@media screen and (max-width: 991px) and (min-width: 768px) {
+    .baniere .baniere-text h1{
+        font-size: 2rem;
+    }
+    .baniere .baniere-text p{
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .baniere {
+        padding: 0 1rem;
+    }
+    .baniere img{
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .baniere .baniere-text{
+        padding: 0 1rem;
+        text-align: center;
+    }
+    .baniere .baniere-text h1{
+        font-size: 1.8rem;
+    }
+    .baniere .baniere-text p{
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+    .baniere .baniere-text p a{
+        margin: 1.5rem 0 !important;
+    }
+}
+
+/* ------------ comment utiliser -------------- */
+
+.title{
+    font-size: 1.5rem;
+    color: var(--color-rouge);
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+    text-transform: uppercase;
+}
+.title::before{
+    content: '';
+    background: linear-gradient(var(--color-rouge), #fff);
+    height: 40px;
+    width: 60px;
+    position: absolute;
+    top: -20px;
+    z-index: -1;
+    transform: rotate(-10deg);
+    border-bottom-right-radius: 40px;
+    border-top-left-radius: 40px;
+}
+
 
 
