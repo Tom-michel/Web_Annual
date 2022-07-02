@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Cookie&family=Poppins:wght@400;500;600;700&display=swap');
+
+@font-face {
+    font-family: Poppins;
+    src: url(../fonts/Poppins-Regular.ttf);
+}
+
+/* :root {
+    --color-hue_1: 216;
+    --color-hue_2: 90%;
+    --color-hue_3: 44%;
+
+    --color-light-lightness: 95%;
+    --color-dark-lightness: 17%;
+    --color-white-lightness: 100%;
+
+
+    --color-white: hsl(252, 30%, var(--color-white-lightness));
+    --color-light: hsl(252, 30%, var(--color-light-lightness));
+    --color-gray: hsl(252, 15%, 65%);
+    --color-primary: hsl(var(--color-hue_1), var(--color-hue_2),var(--color-hue_3));
+    --color-orange: hsl(27,100%,59%);
+    --color-rouge: hsl(347,100%,50%);
+    --color-vert: hsl(120, 95%, 40%);
+    --color-bleu: #0b5ed7;
+    --color-secondary: hsl(252, 100%, 90%);
+    --color-danger: hsl(0, 95%, 65%);
+    --color-dark: hsl(252, 30%, var(--color-dark-lightness));
+    --color-black: hsl(252, 30%, var(--color-black-lightness));
+
+    --border-radius: 2rem;
+    --card-border-radius: 1rem;
+    --btn-padding: 0.6rem 2rem;
+    --search-padding: 0.6rem 1rem;
+    --card-padding: 1rem;
+
+    --sticky-top-left: 5.4rem;
+    --sticky-top-right: -18rem;
+} */
+
+/* body{
+    font-family: 'Poppins', sans-serif !important;
+    color: var(--color-dark) !important;
+    background: var(--color-light);
+    overflow-x: hidden;
+} */
+
+h1, h2, h3,
+h4, h5, h6, a, p{
+    /* color: var(--color-dark); */
+    margin-bottom: 0;
+}
+
+
+/* =============== COULEURS ================== */
+
+:root {
+    --color-bleu: #0b5ed7;
+    --color-rouge: hsl(347,100%,50%);
+    --color-dark: hsl(252, 30%, 17%);
+}
+
+.text-secondary {
+    color: var(--color-dark) !important;
+}
+
+
+body {
+    font-family: 'Poppins', sans-serif !important;
+    color: var(--color-dark);
+}
+
+
+
+
+/* ==================   navbar ===================== */
+
+.navbar-brand {
+    font-weight: 700;
+}
+.nav-link{
+    font-weight: 450;
+}
+
+.main-nav .navbar-toggler {
+    border: none !important;
+}
+
+@media screen and (max-width: 991px) {
+    .main-nav .navbar-toggler i{
+        font-size: 1.3rem !important;
+        color: var(--color-bleu) !important;
+        padding: 0rem .5rem;
+        border-radius: 10px;
+    }
+}
+
+.profile-drop{
+    width: max-content !important;
+    padding: 1rem;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.295);
+}
+
+.profile-drop li:first-child{
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+.profile-drop .user{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+.profile-drop .user p:first-child{
+    font-weight: 500;
+}
+.profile-drop .user p:last-child{
+    font-size: 0.8rem;
+}
+
+
