@@ -347,3 +347,46 @@ label{
 }
 
 
+
+/* ==================== page inscrition ================ */
+
+#registerModal {
+    transition: opacity .15s linear;
+    background: rgba(0, 0, 0, 0.6) !important;
+}
+
+.pwd{
+    position: relative;
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.pwd .form-group{
+    width: 95%;
+}
+.pwd .dropdown{
+    position: relative;
+    top: 0.3rem;
+}
+.pwd .dropdown i{
+    color: var(--color-bleu);
+    font-size: 1.5rem;
+    top: 2rem;
+}
+.pwd .dropdown .dropdown-menu{
+    width: 300px;
+    padding: 1rem;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.397);
+}
+
+.pwd .dropdown .dropdown-menu li{
+    font-weight: 400;
+    font-size: 0.9rem;
+}
+.pwd .dropdown .dropdown-menu li:first-child{
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+

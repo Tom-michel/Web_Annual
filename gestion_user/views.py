@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Membre
+from .forms import UserForm, MembreForm, UserUpadateForm
 
 # Create your views here.
 
@@ -40,7 +41,13 @@ def connexion(request):
 # s'incrire
 
 def inscription(request):
-    return render(request, 'gestion_user/inscription.html')
+    if request.method == 'POST':
+        pass
+    else:
+        user_form = UserForm()
+        member_form = MembreForm()
+        context = {'user_form':user_form, 'member_form':member_form}
+        return render(request, 'gestion_user/inscription.html', context)
 
 
 # se déconnecter

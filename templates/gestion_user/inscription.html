@@ -1,17 +1,10 @@
-{% extends 'base.html' %}
+{% comment %} {% extends 'base.html' %} {% endcomment %}
 {% load static %}
 
 {% block title %} Annuaire Web {% endblock %}
 
 
 {% block content %} 
-
-<style>
-    #registerModal {
-        transition: opacity .15s linear;
-        background: rgba(0, 0, 0, 0.6) !important;
-    }
-</style>
 
 {% include "gestion_user/index.html" %}
 
@@ -22,7 +15,6 @@
                 {% csrf_token %}
                 <div class="modal-header">
                     <h5 class="modal-title" id="registerModalLabel">Inscription</h5>
-                    <!-- <button type="button"  data-mdb-dismiss="modal" aria-label="Close"></button> -->
                     <span class="btn-close" data-mdb-dismiss="modal" aria-label="Close" onclick="history.back()"><i class="fa-solid fa-xmark"></i></span>
                 </div>
                 <div class="modal-body">
@@ -31,58 +23,79 @@
 
                         <!-- noms et prénoms -->
                         <div class="form-outline mb-4">
-                            <input type="text" id="nom-prenom" name="nom-prenom" class="form-control">
-                            <label class="form-label" for="nom-prenom" style="margin-left: 0px;">Noms et prénoms</label>
+                            <!-- <input type="text" id="id_last_name" name="last_name" class="form-control" required> -->
+                            {{user_form.last_name}}
+                            <label class="form-label" for="id_last_name" style="margin-left: 0px;">Noms et prénoms</label>
                         <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 122.4px;"></div><div class="form-notch-trailing"></div></div></div>
 
                         <!-- 2 column grid layout with text inputs for the first and last names -->
                         <div class="row mb-4">
                             <div class="col">
                                 <div class="form-outline">
-                                    <input type="text" id="ville" name="ville" class="form-control">
+                                    <!-- <input type="text" id="ville" name="ville" class="form-control"> -->
+                                    {{member_form.ville}}
                                     <label class="form-label" for="ville" style="margin-left: 0px;">Ville</label>
                                 <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 34.4px;"></div><div class="form-notch-trailing"></div></div></div>
                             </div>
                             <div class="col">
                                 <div class="form-outline">
-                                    <input type="text" id="quartier" name="quartier" class="form-control">
+                                    <!-- <input type="text" id="quartier" name="quartier" class="form-control"> -->
+                                    {{member_form.quartier}}
                                     <label class="form-label" for="quartier" style="margin-left: 0px;">Quartier</label>
                                 <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 60px;"></div><div class="form-notch-trailing"></div></div></div>
                             </div>
                         </div>
                         <!-- tealephone -->
                         <div class="form-outline mb-4">
-                            <input type="text" id="tealephone" name="tealephone" class="form-control">
+                            <!-- <input type="text" id="tealephone" name="tealephone" class="form-control"> -->
+                            {{member_form.telephone}}
                             <label class="form-label" for="tealephone" style="margin-left: 0px;">Numéro de téléphone</label>
                         <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 147.2px;"></div><div class="form-notch-trailing"></div></div></div>
 
                         <!-- Email input -->
                         <div class="form-outline mb-4">
-                            <input type="email" id="email-login" name="email-login" class="form-control">
-                            <label class="form-label" for="email-login" style="margin-left: 0px;">Email address</label>
+                            <input type="email" id="id_username" name="username" class="form-control" required>
+                            <label class="form-label" for="id_username" style="margin-left: 0px;">Email address</label>
                         <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 98.4px;"></div><div class="form-notch-trailing"></div></div></div>
                         <!-- Password input -->
-                        <div class="form-group">
-                            <div class="fom"> 
-                                <div class="form-outline mb-4">
-                                    <input type="password" id="password-login" name="password-login" class="form-control password">
-                                    <label class="form-label" for="password-login" style="margin-left: 0px;">Mot de passe</label>
-                                <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 93.6px;"></div><div class="form-notch-trailing"></div></div></div>
-                                <i class="fa-solid fa-eye" onclick="affiMdp()"></i>
-                                <i class="fa-solid fa-eye-slash" onclick="affiMdp()" style="display: none;"></i>
+                        <div class="pwd">
+                            <div class="form-group">
+                                <div class="fom"> 
+                                    <div class="form-outline mb-4">
+                                        <!-- <input type="password" id="password-login" name="password-login" class="form-control password"> -->
+                                        {{user_form.password1}}
+                                        <label class="form-label" for="password-login" style="margin-left: 0px;">Mot de passe</label>
+                                    <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 93.6px;"></div><div class="form-notch-trailing"></div></div></div>
+                                    <i class="fa-solid fa-eye" onclick="affiMdp()"></i>
+                                    <i class="fa-solid fa-eye-slash" onclick="affiMdp()" style="display: none;"></i>
+                                </div>
+                                <p>{{user_form.password1.errors}}</p>
+                            </div>
+                            <div class="dropdown">
+                                <i class="fa-solid fa-circle-question" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li class="text-center">Mot de passe</li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>Ne doit pas trop ressembler à vos autres informations personnelles.</li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>Doit contenir au minimum 8 caractères.</li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>Ne doit pas être entièrement numérique.</li>
+                                </ul>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="fom"> 
                                 <div class="form-outline mb-4">
-                                    <input type="password" id="password-login" name="password-login" class="form-control password">
-                                    <label class="form-label" for="password-login" style="margin-left: 0px;">Retaper de passe</label>
+                                    <!-- <input type="password" id="password-login" name="password-login" class="form-control password"> -->
+                                    {{user_form.password2}}
+                                    <label class="form-label" for="password-login" style="margin-left: 0px;">Retaper le mot de passe</label>
                                 <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 120.8px;"></div><div class="form-notch-trailing"></div></div></div>
                                 <i class="fa-solid fa-eye" onclick="affiMdp()"></i>
                                 <i class="fa-solid fa-eye-slash" onclick="affiMdp()" style="display: none;"></i>
                             </div>
+                            <p>{{user_form.password2.errors}}</p>
                         </div>
-                        <input type="text" name="type_form" id="type_form" value="registerForm" hidden="">
 
                         <!-- Submit button -->
                         <input type="submit" class="btn-bleu mb-4" value="S'inscrire" style="width: 100%;">
@@ -113,5 +126,50 @@
         </div>
     </div>
 </div>
+
+<script>
+    inputs = document.getElementsByTagName('input');
+    for (let i = 0; i < inputs.length; i++) {
+        inputs[i].classList.add("form-control");
+    }
+
+    document.getElementById('id_last_name').required = true;
+
+
+
+    // affichage/masquage du mdp
+
+    document.getElementById('id_password1').classList.add('password');
+    document.getElementById('id_password2').classList.add('password');
+
+    var password1 = document.querySelectorAll('.password');
+
+    var eyeVisible = document.querySelectorAll('.fa-eye');
+    var eyeHidden = document.querySelectorAll('.fa-eye-slash');
+
+    for (let i = 0; i < eyeVisible.length; i++) {
+        eyeVisible[i].addEventListener('click', () =>{
+            affiMdp(i)
+        });
+    }
+    for (let i = 0; i < eyeHidden.length; i++) {
+        eyeHidden[i].style.display = "none";
+        eyeHidden[i].addEventListener('click', () =>{
+            affiMdp(i)
+        });
+    }
+
+    function affiMdp(i) {
+        if (password1[i].type === "password") {
+            eyeHidden[i].style.display = "";
+            eyeVisible[i].style.display = "none";
+            password1[i].type = 'text';
+        } else {
+            eyeHidden[i].style.display = "none";
+            eyeVisible[i].style.display = "";
+            password1[i].type = 'password';
+        }
+    }
+</script>
 
 {% endblock %}

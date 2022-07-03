@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% comment %} {% extends 'base.html' %} {% endcomment %}
 {% load static %}
 
 {% block title %} Annuaire Web {% endblock %}
@@ -106,5 +106,41 @@
             </div>
         </div>
     </div>
+
+<script>
+    // affichage/masquage du mdp
+
+    document.getElementById('id_password1').classList.add('password');
+    document.getElementById('id_password2').classList.add('password');
+
+    var password1 = document.querySelectorAll('.password');
+
+    var eyeVisible = document.querySelectorAll('.fa-eye');
+    var eyeHidden = document.querySelectorAll('.fa-eye-slash');
+
+    for (let i = 0; i < eyeVisible.length; i++) {
+        eyeVisible[i].addEventListener('click', () =>{
+            affiMdp(i)
+        });
+    }
+    for (let i = 0; i < eyeHidden.length; i++) {
+        eyeHidden[i].style.display = "none";
+        eyeHidden[i].addEventListener('click', () =>{
+            affiMdp(i)
+        });
+    }
+
+    function affiMdp(i) {
+        if (password1[i].type === "password") {
+            eyeHidden[i].style.display = "";
+            eyeVisible[i].style.display = "none";
+            password1[i].type = 'text';
+        } else {
+            eyeHidden[i].style.display = "none";
+            eyeVisible[i].style.display = "";
+            password1[i].type = 'password';
+        }
+    }
+</script>
 
 {% endblock %}
