@@ -20,13 +20,22 @@
                 <div class="modal-body">
                     <div class="container registerForm">
                         <p></p><p></p>
+                        <div class="mb-4">
+                            {% for err in user_form.password2.errors %}
+                            <p id="pwd-err" class="errornotes">{{err}}</p>
+                            {% endfor %}
+                            {% for err in err2 %}
+                            <p class="errornotes">{{err}}</p>
+                            {% endfor %}
+                        </div>
 
                         <!-- noms et prénoms -->
                         <div class="form-outline mb-4">
                             <!-- <input type="text" id="id_last_name" name="last_name" class="form-control" required> -->
                             {{user_form.last_name}}
                             <label class="form-label" for="id_last_name" style="margin-left: 0px;">Noms et prénoms</label>
-                        <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 122.4px;"></div><div class="form-notch-trailing"></div></div></div>
+                        <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 122.4px;"></div><div class="form-notch-trailing"></div></div>
+                        </div>
 
                         <!-- 2 column grid layout with text inputs for the first and last names -->
                         <div class="row mb-4">
@@ -65,11 +74,11 @@
                                         <!-- <input type="password" id="password-login" name="password-login" class="form-control password"> -->
                                         {{user_form.password1}}
                                         <label class="form-label" for="password-login" style="margin-left: 0px;">Mot de passe</label>
-                                    <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 93.6px;"></div><div class="form-notch-trailing"></div></div></div>
+                                        <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 93.6px;"></div><div class="form-notch-trailing"></div></div>
+                                    </div>
                                     <i class="fa-solid fa-eye" onclick="affiMdp()"></i>
                                     <i class="fa-solid fa-eye-slash" onclick="affiMdp()" style="display: none;"></i>
                                 </div>
-                                <p>{{user_form.password1.errors}}</p>
                             </div>
                             <div class="dropdown">
                                 <i class="fa-solid fa-circle-question" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"></i>
@@ -94,7 +103,6 @@
                                 <i class="fa-solid fa-eye" onclick="affiMdp()"></i>
                                 <i class="fa-solid fa-eye-slash" onclick="affiMdp()" style="display: none;"></i>
                             </div>
-                            <p>{{user_form.password2.errors}}</p>
                         </div>
 
                         <!-- Submit button -->
@@ -141,6 +149,12 @@
 
     document.getElementById('id_password1').classList.add('password');
     document.getElementById('id_password2').classList.add('password');
+    
+    if (document.getElementById('pwd-err').innerHTML != ""){
+        document.getElementById('id_password1').classList.add('err');
+        document.getElementById('id_password2').classList.add('err');
+    }
+
 
     var password1 = document.querySelectorAll('.password');
 

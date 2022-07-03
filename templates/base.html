@@ -31,8 +31,17 @@
 
     </head>
     <body>
-        {% block header %} 
-            <nav class="navbar navbar-expand-md bg-white main-nav fixed-top shadow">
+        <style>
+            /* nav a, .text-secondary, .text-dark, nav .navbar-toggler i {
+                color: #fff !important;
+            } */
+        </style>
+        {% block header %}
+            {% if user.is_authenticated %}
+            <nav class="navbar navbar-expand-md bg-primary main-nav fixed-top shadow">
+            {% else %}
+            <nav class="navbar navbar-expand-md bg-light main-nav fixed-top shadow">
+            {% endif %}
                 <div class="container-fluid">
                     <!--Horizontal Nav-->
                     <span class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-expanded="true" aria-label="Toggle navigation">
@@ -50,17 +59,21 @@
                     <div class="navbar-collapse collapse" id="mainMenu">
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item">
-                                <a href="" class="nav-link active mx-1 text-secondary">Acceuil</a>
+                                <a href="" class="nav-link active mx-1 text-secondary">Contacts</a>
                             </li>
+                            {% if not user.is_authenticated %}
                             <li class="nav-item">
                                 <a href="" class="nav-link active mx-1 text-secondary">Fontionnalités</a>
                             </li>
-                            {% if user.is_authenticated %}
+                            {% else %}
                                 <li class="nav-item">
                                     <a href="/" class="nav-link mx-1 text-secondary">Projets</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="/" class="nav-link mx-1 text-secondary">Mes tâches</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/" class="nav-link mx-1 text-secondary">Les membres</a>
                                 </li>
                             {% endif %}
                         </ul>
@@ -345,7 +358,7 @@
                 menuO.style.display = "none";
                 menuC.style.display = "";
                 document.getElementById("drop-compte").classList = "dropend";
-                document.getElementById("drop-compte").style.margin = "1rem";
+                document.getElementById("drop-compte").style.margin = "1rem 0";
             });
             menuC.addEventListener('click', function(){
                 menuO.style.display = "";

@@ -152,7 +152,7 @@ body {
 @media screen and (max-width: 991px) {
     .main-nav .navbar-toggler i{
         font-size: 1.3rem !important;
-        color: var(--color-bleu) !important;
+        color: var(--color-bleu);
         padding: 0rem .5rem;
         border-radius: 10px;
     }
@@ -182,6 +182,20 @@ body {
 }
 .profile-drop .user p:last-child{
     font-size: 0.8rem;
+}
+
+.main-nav.bg-primary .text-secondary,
+.main-nav.bg-primary .text-dark,
+.main-nav.bg-primary .navbar-toggler i
+{
+    color: #fff !important;
+}
+
+.main-nav.bg-primary .navbar-brand {
+    font-weight: 600;
+}
+.main-nav.bg-primary .text-secondary{
+    font-weight: 400;
 }
 
 
@@ -290,9 +304,12 @@ label{
 /* ----------- erros --------------- */
 
 .err {
-    border: red solid 2px !important;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out !important;
-    box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.301) !important;
+    box-shadow: 0 0 0 1px #F93154 !important;
+    /* border-left: #F93154 solid 2px !important;
+    border-right: #F93154 solid 2px !important;
+    border-bottom: #F93154 solid 2px !important; */
+    border-top: none;
 }
 .errorform{
     padding-top: 5px;
@@ -311,7 +328,8 @@ label{
 }
 .errorlist >li {
     display: block;
-    color: #e35f5f !important;
+    /* color: #e35f5f !important; */
+    color: #F93154 !important;
     font-weight: 700;
     font-size: 13px !important;
 }
@@ -321,8 +339,8 @@ label{
     font-weight: 700;
     display: block;
     padding: 10px 12px;
-    color: #e35f5f;
-    border: 1px solid #e35f5f;;
+    color: #F93154;
+    border: 1px solid #F93154;;
     border-radius: 4px;
     background-color: rgb(255, 210, 210);
     background-position: 5px 12px;
@@ -331,7 +349,7 @@ label{
     margin: auto;
 }
   
-  .infonotes{
+.infonotes{
     font-size: 14px;
     font-weight: 700;
     display: block;
