@@ -78,7 +78,7 @@
                             <div class="dropstart" id="drop-compte">
                                 <a class="dropdown-toggle hidden-arrow" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                     <img
-                                        src="{% static 'img/pp.jpeg' %}"
+                                        src="{{request.user.membre.photo.url}}"
                                         class="rounded-circle border border-primary"
                                         height="40"
                                         alt=""
@@ -88,7 +88,7 @@
                                     <li class="text-center">Compte</li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li class="user">
-                                        <img src="{% static 'img/pp.jpeg' %}"
+                                        <img src="{{request.user.membre.photo.url}}"
                                         class="rounded-circle border border-primary"
                                         height="35"
                                         alt=""/>
@@ -134,6 +134,7 @@
                             <div class="modal-header">
                                 <h5 class="modal-title" id="loginModalLabel">Connexion</h5>
                                 <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                                <span class="btn-close" data-mdb-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></span>
                             </div>
                             <div class="modal-body">
                                 <div class="container loginForm">
@@ -225,7 +226,8 @@
                             {% csrf_token %}
                             <div class="modal-header">
                                 <h5 class="modal-title" id="registerModalLabel">Inscription</h5>
-                                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                                <!-- <button type="button"  data-mdb-dismiss="modal" aria-label="Close"></button> -->
+                                <span class="btn-close" data-mdb-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></span>
                             </div>
                             <div class="modal-body">
                                 <div class="container registerForm">
@@ -252,6 +254,12 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- tealephone -->
+                                    <div class="form-outline mb-4">
+                                        <input type="text" id="tealephone" name="tealephone" class="form-control" />
+                                        <label class="form-label" for="tealephone">Numéro de téléphone</label>
+                                    </div>
+
                                     <!-- Email input -->
                                     <div class="form-outline mb-4">
                                         <input type="email" id="email-login" name="email-login" class="form-control" />

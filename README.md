@@ -7,6 +7,7 @@ Application web de gestion d'annuaire, pour l'entreprise UBORA.
 
 
 # GESTION DES UTILSATEURS :
+---------------------------
 
 Il s'agit d'une plateforme conviviale où les participants d'un projet pouraient 
 - inscrire leurs coordonnées, 
@@ -14,7 +15,8 @@ Il s'agit d'une plateforme conviviale où les participants d'un projet pouraient
 - mettre à jour leur contact
 - supprimer leur contact.
 
-# GESTION DES PROJETS
+# GESTION DES PROJETS :
+-----------------------
 
 Il s'agit ici de permettre à un membre (chef ou admin) de l'entreprise 
 - créer un projet, 

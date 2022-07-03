@@ -186,6 +186,9 @@ body {
 
 /* ---------- baniere ----------- */
 
+.baniere .baniere-text p{
+    font-weight: 500;
+}
 .baniere .baniere-text p a{
     padding: .5rem 2rem !important;
 }
@@ -251,21 +254,33 @@ body {
 
 /* ================= FORMS =================== */
 
-.loginForm {
-    padding: 0 3rem;
+
+.modal-header{
+    background: var(--color-bleu);
+    color: #fff;
+}
+.modal-header .btn-close {
+    color: #fff !important;
+    padding: 0.5rem;
+    margin: -0.5rem -0.5rem -0.5rem auto;
+    width: 1em;
+    height: 1em;
+    cursor: pointer;
+    font-size: 1.5rem;
+    background: none;
 }
 
-.loginForm input {
-    /* height: 2.5rem; */
+label{
+    font-weight: 400;
+}
+
+.loginForm {
+    padding: 0 3rem;
 }
 
 @media screen and (max-width: 767px) {
     .loginForm {
         padding: 0 1rem;
-    }
-
-    .loginForm label{
-        font-weight: 400;
     }
 }
 
