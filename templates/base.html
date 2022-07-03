@@ -66,7 +66,7 @@
                         </ul>
                         {% if not user.is_authenticated %}
                             <div class="linkBtn me-5 my-2">   
-                                <a href="" class="mx-1 text-dark text-decoration-none border border-primary border-2 py-1 px-4 rounded-pill shadow" data-mdb-toggle="modal" data-mdb-target="#registerModal">S'inscrire</a>
+                                <a href="{% url 'inscription' %}" class="mx-1 text-dark text-decoration-none border border-primary border-2 py-1 px-4 rounded-pill shadow">S'inscrire</a>
                                 <a href="{% url 'connexion' %}" class="ms-1 mt-3 text-dark text-decoration-none border border-danger border-2 py-1 px-3 rounded-pill shadow">Se connecter</a>
                             </div>
                         {% endif %}
@@ -126,8 +126,8 @@
                 }
             </style>
             
-            <!-- Modal For Login -->
-            {% comment %} <div class="modal top fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
+            {% comment %} <!-- Modal For Login -->
+            <div class="modal top fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <form action="" method="post">
@@ -221,7 +221,7 @@
                 </div>
             </div> {% endcomment %}
 
-            <!-- Modal For Registration -->
+            {% comment %} <!-- Modal For Registration -->
             <div class="modal top fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
@@ -319,7 +319,7 @@
                         </form>
                     </div>
                 </div>
-            </div>
+            </div> {% endcomment %}
 
         {% endblock %}
 

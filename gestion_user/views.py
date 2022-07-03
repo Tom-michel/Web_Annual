@@ -37,6 +37,11 @@ def connexion(request):
 
 
 
+# s'incrire
+
+def inscription(request):
+    return render(request, 'gestion_user/inscription.html')
+
 
 # se déconnecter
 @login_required(login_url='connexion')

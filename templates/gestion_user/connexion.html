@@ -3,21 +3,19 @@
 
 {% block title %} Annuaire Web {% endblock %}
 
-<style>
-    #myloginModal {
-        transition: opacity .15s linear;
-        background: rgba(0, 0, 0, 0.5) !important;
-    }
-    .loginModal{
-        display: none !important;
-    }
-</style>
 
 {% block content %} 
 
+<style>
+    #loginModal {
+        transition: opacity .15s linear;
+        background: rgba(0, 0, 0, 0.6) !important;
+    }
+</style>
+
     {% include "gestion_user/index.html" %}
 
-    <div class="modal top fade show loginModal" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" data-mdb-backdrop="true" data-mdb-keyboard="true" aria-modal="true" role="dialog" style="display: block; padding-left: 0px;">
+    <div class="modal top fade show" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" data-mdb-backdrop="true" data-mdb-keyboard="true" aria-modal="true" role="dialog" style="display: block; padding-left: 0px;">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <form action="" method="post">
@@ -25,7 +23,7 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="loginModalLabel">Connexion</h5>
                         <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-                        <span class="btn-close" data-mdb-dismiss="modal" aria-label="Close"  onclick="history.back()""><i class="fa-solid fa-xmark"></i></span>
+                        <span class="btn-close" data-mdb-dismiss="modal" aria-label="Close" onclick="history.back()"><i class="fa-solid fa-xmark"></i></span>
                     </div>
                     <div class="modal-body">
                         <div class="container loginForm">
