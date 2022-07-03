@@ -67,7 +67,7 @@
                         {% if not user.is_authenticated %}
                             <div class="linkBtn me-5 my-2">   
                                 <a href="" class="mx-1 text-dark text-decoration-none border border-primary border-2 py-1 px-4 rounded-pill shadow" data-mdb-toggle="modal" data-mdb-target="#registerModal">S'inscrire</a>
-                                <a href="" class="ms-1 mt-3 text-dark text-decoration-none border border-danger border-2 py-1 px-3 rounded-pill shadow" data-mdb-toggle="modal" data-mdb-target="#loginModal">Se connecter</a>
+                                <a href="{% url 'connexion' %}" class="ms-1 mt-3 text-dark text-decoration-none border border-danger border-2 py-1 px-3 rounded-pill shadow">Se connecter</a>
                             </div>
                         {% endif %}
                     </div>
@@ -93,8 +93,8 @@
                                         height="35"
                                         alt=""/>
                                         <span>
-                                            <p>Michel Rufin BTOMPE TCHEUFFA</p>
-                                            <p class="text-muted">rufin.btompe@facsciences-uy1.cm</p>
+                                            <p>{{request.user.last_name}}</p>
+                                            <p class="text-muted">{{request.user.username}}</p>
                                         </span>
                                     </li>
                                     <li><hr class="dropdown-divider"></li>
@@ -102,7 +102,7 @@
                                     <li><a class="dropdown-item text-danger" href="#">Supprimer compte</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user-tie"></i> Profil</a></li>
-                                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i> Se déconnecter</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'user_logout' %}"><i class="fa-solid fa-arrow-right-from-bracket"></i> Se déconnecter</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -125,8 +125,9 @@
                   font-size: 20px;
                 }
             </style>
+            
             <!-- Modal For Login -->
-            <div class="modal top fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
+            {% comment %} <div class="modal top fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <form action="" method="post">
@@ -153,7 +154,7 @@
 
                                     <!-- Email input -->
                                     <div class="form-outline mb-4">
-                                        <input type="email" id="email-login" name="email-login" class="form-control" />
+                                        <input type="text" id="email-login" name="email-login" class="form-control" />
                                         <label class="form-label" for="email-login">Addresse email</label>
                                     </div>
                                     <!-- Password input -->
@@ -169,7 +170,7 @@
                                     </div>
                                     <!-- Submit button -->
                                     {% if user.is_authenticated %}
-                                        <a class="btn-bleu mb-4" href="">Déconnexion</a>
+                                        <a class="btn-bleu mb-4" href="{% url 'user_logout' %}" style="width: 100%;">Déconnexion</a>
                                     {% else %}
 
                                     <!-- 2 column grid layout for inline styling -->
@@ -187,6 +188,8 @@
                                             <a href="#!">Forgot password?</a>
                                         </div>
                                     </div>
+
+                                    <input type="text" name="type_form" id="type_form" value="loginForm" hidden>
 
                                     <input type="submit" class="btn-bleu mb-4" value="Se connecter" style="width: 100%;">
 
@@ -216,7 +219,7 @@
                         </form>
                     </div>
                 </div>
-            </div>
+            </div> {% endcomment %}
 
             <!-- Modal For Registration -->
             <div class="modal top fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
@@ -286,6 +289,7 @@
                                             <i class="fa-solid fa-eye-slash" onclick="affiMdp()"></i>
                                         </div>
                                     </div>
+                                    <input type="text" name="type_form" id="type_form" value="registerForm" hidden>
 
                                     <!-- Submit button -->
                                     <input type="submit" class="btn-bleu mb-4" value="S'inscrire" style="width: 100%;">

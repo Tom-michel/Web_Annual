@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} Annuaire Web {% endblock %}
+{% block title %} Annuaire | Bienvenue {% endblock %}
 
 
 {% block content %} 
@@ -23,7 +23,7 @@
                     <p class="">
                         <a href="" class="btn-bleu mt-2" data-mdb-toggle="modal" data-mdb-target="#registerModal">Inscription</a>
                         &emsp;
-                        <a href="" class="btn-rouge mt-2" data-mdb-toggle="modal" data-mdb-target="#loginModal">Connexion</a>
+                        <a href="{% url 'connexion' %}" class="btn-rouge mt-2">Connexion</a>
                     </p>
                 </div>
             </div>

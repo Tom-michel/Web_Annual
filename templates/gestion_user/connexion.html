@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Annuaire Web {% endblock %}
+
+<style>
+    #myloginModal {
+        transition: opacity .15s linear;
+        background: rgba(0, 0, 0, 0.5) !important;
+    }
+    .loginModal{
+        display: none !important;
+    }
+</style>
+
+{% block content %} 
+
+    {% include "gestion_user/index.html" %}
+
+    <div class="modal top fade show loginModal" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" data-mdb-backdrop="true" data-mdb-keyboard="true" aria-modal="true" role="dialog" style="display: block; padding-left: 0px;">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="loginModalLabel">Connexion</h5>
+                        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                        <span class="btn-close" data-mdb-dismiss="modal" aria-label="Close"  onclick="history.back()""><i class="fa-solid fa-xmark"></i></span>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container loginForm">
+                            <p></p><p></p>
+                            <div class="mb-4">
+                                {% for message in messages %}
+                                <p class="errornotes">{{message}}</p>
+                                {% endfor %}
+                
+                                {% if user.is_authenticated %}
+                                <p class="infonotes text-center pt-2">
+                                Vous êtes déja connecté en tant que <b>{{request.user.username}} 
+                                </p>
+                                {% endif %}
+                            </div>
+
+                            <!-- Email input -->
+                            <div class="form-outline mb-4">
+                                <input type="text" id="email-login" name="email-login" class="form-control" required>
+                                <label class="form-label" for="email-login" style="margin-left: 0px;">Addresse email</label>
+                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 107.2px;"></div><div class="form-notch-trailing"></div></div></div>
+                            <!-- Password input -->
+                            <div class="form-group">
+                                <div class="fom"> 
+                                    <div class="form-outline mb-4">
+                                        <input type="password" id="password-login" name="password-login" class="form-control password" required>
+                                        <label class="form-label" for="password-login" style="margin-left: 0px;">Mot de passe</label>
+                                    <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 93.6px;"></div><div class="form-notch-trailing"></div></div></div>
+                                    <i class="fa-solid fa-eye" onclick="affiMdp()"></i>
+                                    <i class="fa-solid fa-eye-slash" onclick="affiMdp()" style="display: none;"></i>
+                                </div>
+                            </div>
+                            <!-- Submit button -->
+                            
+
+                            <!-- 2 column grid layout for inline styling -->
+                            <div class="row mb-4">
+                                <div class="col d-flex justify-content-center">
+                                    <!-- Checkbox -->
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="form2Example34" checked="">
+                                        <label class="form-check-label" for="form2Example34"> Remember me </label>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <!-- Simple link -->
+                                    <a href="#!">Forgot password?</a>
+                                </div>
+                            </div>
+
+                            <input type="text" name="type_form" id="type_form" value="loginForm" hidden="">
+
+                            <input type="submit" class="btn-bleu mb-4" value="Se connecter" style="width: 100%;">
+
+                            <!-- Register buttons -->
+                            <div class="text-center mb-4">
+                                <p>Pas encore membre ? <a href="#!">S'inscrire</a></p>
+                                <p class="mb-2">ou via:</p>
+                                <button type="button" class="btn btn-primary btn-floating mx-1">
+                                    <i class="fab fa-facebook-f"></i>
+                                </button>
+
+                                <button type="button" class="btn btn-primary btn-floating mx-1">
+                                    <i class="fab fa-google"></i>
+                                </button>
+
+                                <button type="button" class="btn btn-primary btn-floating mx-1">
+                                    <i class="fab fa-twitter"></i>
+                                </button>
+
+                                <button type="button" class="btn btn-primary btn-floating mx-1">
+                                    <i class="fab fa-github"></i>
+                                </button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
