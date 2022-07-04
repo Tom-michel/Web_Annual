@@ -38,7 +38,6 @@ def connexion(request):
         return render(request, 'gestion_user/connexion.html')
 
 
-
 # s'incrire
 
 def inscription(request):
@@ -80,7 +79,28 @@ def inscription(request):
         return render(request, 'gestion_user/inscription.html', context)
 
 
+
+# consulter le profil d'un membre
+@login_required(login_url='connexion')
+def profil_membre(request, id_u):
+    context = {
+
+    }
+    return render(request, 'gestion_user/profil_membre.html', context)
+
+
+
+# supprimer un compte
+
+def supprimer_compte(request, id_u):
+    user = User.objects.get(id=id_u)
+    user.delete()
+    return HttpResponseRedirect('/')
+
+
+
 # se déconnecter
+
 @login_required(login_url='connexion')
 def user_logout(request):
     logout(request)

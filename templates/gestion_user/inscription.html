@@ -27,6 +27,9 @@
                             {% for err in err2 %}
                             <p class="errornotes">{{err}}</p>
                             {% endfor %}
+                            {% if user_form.username.errors %}
+                            <p class="errornotes">Un utilisateur avec cette addresse email existe déjà.</p>
+                            {% endif %}
                         </div>
 
                         <!-- noms et prénoms -->

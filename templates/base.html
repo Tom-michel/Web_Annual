@@ -53,7 +53,7 @@
                             <i class="fa-solid fa-xmark"></i>
                         </span>
                     </span>
-                    <a class="navbar-brand text-dark" href="/#hero">
+                    <a class="navbar-brand text-dark" href="#">
                         UBORA DIR
                     </a>
                     <div class="navbar-collapse collapse" id="mainMenu">
@@ -112,10 +112,13 @@
                                     </li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="{% url 'inscription' %}"><i class="fa-solid fa-user-plus"></i>&emsp;Ajouter un compte</a></li>
-                                    <li><a class="dropdown-item text-success" href="{% url 'connexion' %}"><i class="fa-solid fa-arrows-rotate"></i>&emsp;Changer de compte</a></li>
-                                    <li><a class="dropdown-item text-danger" href="#"><i class="fa-solid fa-user-xmark"></i>&emsp;Supprimer ce compte</a></li>
+                                    <li><a class="dropdown-item text-success" href="{% url 'connexion' %}"
+                                        onclick="confirm('Vouler-vous vraiment suppimer ce compte ?');">
+                                        <i class="fa-solid fa-arrows-rotate"></i>&emsp;Changer de compte
+                                    </a></li>
+                                    <li><a class="dropdown-item text-danger" href="{% url 'supprimer_compte' request.user.id %}"><i class="fa-solid fa-user-xmark"></i>&emsp;Supprimer ce compte</a></li>
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user-tie"></i>&emsp;Profil</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'profil_membre' request.user.id %}"><i class="fa-solid fa-user-tie"></i>&emsp;Profil</a></li>
                                     <li><a class="dropdown-item" href="{% url 'user_logout' %}"><i class="fa-solid fa-arrow-right-from-bracket"></i>&emsp;Se déconnecter</a></li>
                                 </ul>
                             </div>
@@ -152,7 +155,6 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-12 mb-4 ">
                         <h5 class="text-uppercase">UBORA</h5>
-                
                         <p>
                             UBORA est une entreprise qui propose plusieurs services numériques entre autres 
                             la prestation des services de developpement web. <u><b>UBORA DIR</b></u> a pour rôle de 
@@ -179,7 +181,7 @@
                             margin: 0.5rem;
                         }
 
-                        ul > li{
+                        footer ul > li{
                             margin: 0.5rem 0;
                         }
                     </style>
@@ -232,13 +234,11 @@
                 </div>
             </div>
           
-            <!-- Copyright -->
             <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
                 &copy; 2022 Copyright:
-                <!-- <a class="text-white" href="https://g.dev/btompe-michel">Tom-michel</a> -->
                 <a style="font-weight: 600;" class="text-white" href="https://www.codeur.com/-tom-michel">Tom-michel</a>
             </div>
-          </footer>
+        </footer>
         {% endblock %}
         
         <!-- MDB -->

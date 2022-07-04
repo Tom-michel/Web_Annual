@@ -413,7 +413,7 @@ label{
 .errorform{
     padding-top: 5px;
     font-size: 14px;
-    display: block;
+    display: 500;
     margin: 0 0 0px 0;
     color: #e35f5f;
     overflow-wrap: break-word;
@@ -435,7 +435,7 @@ label{
 
 .errornotes{
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 500;
     display: block;
     padding: 10px 12px;
     color: #F93154;
@@ -506,5 +506,94 @@ label{
 .pwd .dropdown .dropdown-menu li:first-child{
     font-size: 1.1rem;
     font-weight: 500;
+}
+
+
+
+
+
+/* =================== PAGE PROFIL MEMBRE ============= */
+
+#profil .header{
+    background: #F4F5F7;
+    /* border-bottom: #C1C7D0 solid 1px; */
+    /* display: flex; */
+    /* flex-direction: column; */
+}
+
+#profil .header .nav-tabs {
+    /* margin: 20px; */
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 0.3rem;
+    border-bottom: #C1C7D0 solid 1px;
+}
+
+.header .nav-tabs > li{
+    width: 150px;
+}
+.header .nav-tabs li .nav-link{
+    background: #C1C7D0;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border: #C1C7D0 solid 1px;
+    text-transform: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.8rem 0;
+    text-align: center;
+}
+
+.header .nav-tabs li .nav-link:hover{
+    background: #9ba5c9;
+    border: #9ba5c9 solid 1px;
+}
+.header .nav-tabs .nav-link.active,
+.header .nav-tabs .nav-link.active:hover{
+    background: #fff;
+    border-bottom: #fff solid 1.5px;
+}
+
+#profil .header .user-profile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 3rem 0 2rem;
+}
+#profil .header .user-profile img{
+    width: 5rem;
+    height: 5rem;
+}
+#profil .header .user-profile p:first-child{
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+#profil .header .user-profile p:last-child{
+    font-size: 0.9rem;
+}
+
+
+@media screen and (max-width: 767px) {
+    .header .nav-tabs > li{
+        width: 105px;
+    }
+    .header .nav-tabs li .nav-link{
+        font-size: 0.9rem;
+        padding: 0.7rem 0;
+    }
+
+    #profil .header .user-profile img{
+        width: 4rem;
+        height: 4rem;
+    }
+    #profil .header .user-profile p:first-child{
+        font-size: 1.3rem;
+        font-weight: 500;
+    }
+    #profil .header .user-profile p:last-child{
+        font-size: 0.8rem;
+    }
 }
 
