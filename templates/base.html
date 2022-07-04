@@ -59,11 +59,11 @@
                     <div class="navbar-collapse collapse" id="mainMenu">
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item">
-                                <a href="" class="nav-link active mx-1 text-secondary">Contacts</a>
+                                <a href="#footer" class="nav-link active mx-1 text-secondary">A propos</a>
                             </li>
                             {% if not user.is_authenticated %}
                             <li class="nav-item">
-                                <a href="" class="nav-link active mx-1 text-secondary">Fontionnalités</a>
+                                <a href="#use" class="nav-link active mx-1 text-secondary">Fontionnalités</a>
                             </li>
                             {% else %}
                                 <li class="nav-item">
@@ -111,11 +111,12 @@
                                         </span>
                                     </li>
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item text-success" href="#">Ajouter un compte</a></li>
-                                    <li><a class="dropdown-item text-danger" href="#">Supprimer compte</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'inscription' %}"><i class="fa-solid fa-user-plus"></i>&emsp;Ajouter un compte</a></li>
+                                    <li><a class="dropdown-item text-success" href="{% url 'connexion' %}"><i class="fa-solid fa-arrows-rotate"></i>&emsp;Changer de compte</a></li>
+                                    <li><a class="dropdown-item text-danger" href="#"><i class="fa-solid fa-user-xmark"></i>&emsp;Supprimer ce compte</a></li>
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user-tie"></i> Profil</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'user_logout' %}"><i class="fa-solid fa-arrow-right-from-bracket"></i> Se déconnecter</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user-tie"></i>&emsp;Profil</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'user_logout' %}"><i class="fa-solid fa-arrow-right-from-bracket"></i>&emsp;Se déconnecter</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -146,75 +147,97 @@
         {% endblock %}
 
         {% block footer %}
-        <footer class="bg-primary text-white text-center text-lg-start">
-            <!-- Grid container -->
+        <footer id="footer" class="bg-dark text-white text-center text-lg-start">
             <div class="container p-4">
-              <!--Grid row-->
-              <div class="row">
-                <!--Grid column-->
-                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                  <h5 class="text-uppercase">Footer Content</h5>
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 mb-4 ">
+                        <h5 class="text-uppercase">UBORA</h5>
+                
+                        <p>
+                            UBORA est une entreprise qui propose plusieurs services numériques entre autres 
+                            la prestation des services de developpement web. <u><b>UBORA DIR</b></u> a pour rôle de 
+                            proposer un annuaire web destiné à faciliter le management du travail de l'équipe 
+                            de cette entreprise.
+                        </p>
+                    </div>
           
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-                    molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae aliquam
-                    voluptatem veniam, est atque cumque eum delectus sint!
-                  </p>
+                    <style>
+                        button i{
+                            font-size: 1rem;
+                        }
+                        .contacts-box{
+                            display: flex;
+                            justify-content: center;
+                        }
+                        .contacts{
+                            display: flex;
+                            flex-wrap: wrap;
+                            align-items: center;
+                            width: 8rem;
+                        }
+                        .contacts a{
+                            margin: 0.5rem;
+                        }
+
+                        ul > li{
+                            margin: 0.5rem 0;
+                        }
+                    </style>
+
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Liens utiles</h5>
+                        <ul class="list-unstyled mb-0 mt-3">
+                            <li>
+                                <a href="{% url 'inscription' %}" class="text-white">S'inscrire</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'connexion' %}" class="text-white">Se connecter</a>
+                            </li>
+                            <li>
+                                <a href="#!" class="text-white">Mes tâches</a>
+                            </li>
+                            <li>
+                                <a href="#!" class="text-white">Les membres</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6 mb-2 mb-md-0 contacts-box">
+                        <span>
+                        <h5 class="text-uppercase mb-0">Contacts</h5>
+                        <div class="contacts mt-3">
+                            <a href="#!" class="text-white">
+                                <button type="button" class="btn btn-dark border border-white btn-floating mx-1">
+                                    <i class="fab fa-facebook-f"></i>
+                                </button>
+                            </a>
+                            <a href="#!" class="text-white">
+                                <button type="button" class="btn btn-dark border border-white btn-floating mx-1">
+                                    <i class="fab fa-twitter"></i>
+                                </button>
+                            </a>
+                            <a href="#!" class="text-white">
+                                <button type="button" class="btn btn-dark border border-white btn-floating mx-1">
+                                    <i class="fas fa-phone"></i>
+                                </button>
+                            </a>
+                            <a href="#!" class="text-white">
+                                <button type="button" class="btn btn-dark border border-white btn-floating mx-1">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </button>
+                            </a>
+                        </div>
+                        </span>
+                    </div>
                 </div>
-                <!--Grid column-->
-          
-                <!--Grid column-->
-                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                  <h5 class="text-uppercase">Links</h5>
-          
-                  <ul class="list-unstyled mb-0">
-                    <li>
-                      <a href="#!" class="text-white">Link 1</a>
-                    </li>
-                    <li>
-                      <a href="#!" class="text-white">Link 2</a>
-                    </li>
-                    <li>
-                      <a href="#!" class="text-white">Link 3</a>
-                    </li>
-                    <li>
-                      <a href="#!" class="text-white">Link 4</a>
-                    </li>
-                  </ul>
-                </div>
-                <!--Grid column-->
-          
-                <!--Grid column-->
-                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                  <h5 class="text-uppercase mb-0">Links</h5>
-          
-                  <ul class="list-unstyled">
-                    <li>
-                      <a href="#!" class="text-white">Link 1</a>
-                    </li>
-                    <li>
-                      <a href="#!" class="text-white">Link 2</a>
-                    </li>
-                    <li>
-                      <a href="#!" class="text-white">Link 3</a>
-                    </li>
-                    <li>
-                      <a href="#!" class="text-white">Link 4</a>
-                    </li>
-                  </ul>
-                </div>
-                <!--Grid column-->
-              </div>
-              <!--Grid row-->
             </div>
-            <!-- Grid container -->
           
             <!-- Copyright -->
             <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-              © 2020 Copyright:
-              <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+                &copy; 2022 Copyright:
+                <!-- <a class="text-white" href="https://g.dev/btompe-michel">Tom-michel</a> -->
+                <a style="font-weight: 600;" class="text-white" href="https://www.codeur.com/-tom-michel">Tom-michel</a>
             </div>
-            <!-- Copyright -->
           </footer>
         {% endblock %}
         

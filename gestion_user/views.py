@@ -16,7 +16,8 @@ def index(request):
     return render(request, 'gestion_user/index.html')
 
 
- # se connecter à son compte
+# se connecter à son compte
+
 def connexion(request):
     if request.method == 'POST':
         username = request.POST.get('email-login')

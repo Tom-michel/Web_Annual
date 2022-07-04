@@ -35,7 +35,7 @@
                 
                                 {% if user.is_authenticated %}
                                 <p class="infonotes text-center pt-2">
-                                Vous êtes déja connecté en tant que <b>{{request.user.username}} 
+                                    Vous êtes connecté en tant que <u>{{request.user.username}}</u> 
                                 </p>
                                 {% endif %}
                             </div>
@@ -57,52 +57,47 @@
                                 </div>
                             </div>
                             <!-- Submit button -->
-                            <!-- Submit button -->
-                            {% if user.is_authenticated %}
-                            <a class="btn-bleu mb-4" href="{% url 'user_logout' %}" style="width: 100%;">Déconnexion</a>
-                        {% else %}
 
-                        <!-- 2 column grid layout for inline styling -->
-                        <div class="row mb-4">
-                            <div class="col d-flex justify-content-center">
-                                <!-- Checkbox -->
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="form2Example34" checked />
-                                    <label class="form-check-label" for="form2Example34"> Remember me </label>
+                            <!-- 2 column grid layout for inline styling -->
+                            <div class="row mb-4">
+                                <div class="col d-flex justify-content-center">
+                                    <!-- Checkbox -->
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="form2Example34" checked />
+                                        <label class="form-check-label" for="form2Example34"> Remember me </label>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <!-- Simple link -->
+                                    <a href="#!">Forgot password?</a>
                                 </div>
                             </div>
 
-                            <div class="col">
-                                <!-- Simple link -->
-                                <a href="#!">Forgot password?</a>
+                            <input type="text" name="type_form" id="type_form" value="loginForm" hidden>
+
+                            <input type="submit" class="btn-bleu mb-4" value="Se connecter" style="width: 100%;">
+
+                            <!-- Register buttons -->
+                            <div class="text-center mb-4">
+                                <p>Pas encore membre ? <a href="{% url 'inscription' %}">S'inscrire</a></p>
+                                <p class="mb-2">ou via:</p>
+                                <button type="button" class="btn btn-primary btn-floating mx-1">
+                                    <i class="fab fa-facebook-f"></i>
+                                </button>
+
+                                <button type="button" class="btn btn-primary btn-floating mx-1">
+                                    <i class="fab fa-google"></i>
+                                </button>
+
+                                <button type="button" class="btn btn-primary btn-floating mx-1">
+                                    <i class="fab fa-twitter"></i>
+                                </button>
+
+                                <button type="button" class="btn btn-primary btn-floating mx-1">
+                                    <i class="fab fa-github"></i>
+                                </button>
                             </div>
-                        </div>
-
-                        <input type="text" name="type_form" id="type_form" value="loginForm" hidden>
-
-                        <input type="submit" class="btn-bleu mb-4" value="Se connecter" style="width: 100%;">
-
-                        <!-- Register buttons -->
-                        <div class="text-center mb-4">
-                            <p>Pas encore membre ? <a href="{% url 'inscription' %}">S'inscrire</a></p>
-                            <p class="mb-2">ou via:</p>
-                            <button type="button" class="btn btn-primary btn-floating mx-1">
-                                <i class="fab fa-facebook-f"></i>
-                            </button>
-
-                            <button type="button" class="btn btn-primary btn-floating mx-1">
-                                <i class="fab fa-google"></i>
-                            </button>
-
-                            <button type="button" class="btn btn-primary btn-floating mx-1">
-                                <i class="fab fa-twitter"></i>
-                            </button>
-
-                            <button type="button" class="btn btn-primary btn-floating mx-1">
-                                <i class="fab fa-github"></i>
-                            </button>
-                        </div>
-                        {% endif %}
                         </div>
                     </div>
                 </form>
