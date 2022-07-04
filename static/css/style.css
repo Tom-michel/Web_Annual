@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Cookie&family=Poppins:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Handlee&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 @font-face {
     font-family: Poppins;
     src: url(../fonts/Poppins-Regular.ttf);
@@ -10,45 +10,11 @@
     src: url(../fonts/Handlee-Regular.ttf);
 }
 
-/* :root {
-    --color-hue_1: 216;
-    --color-hue_2: 90%;
-    --color-hue_3: 44%;
-
-    --color-light-lightness: 95%;
-    --color-dark-lightness: 17%;
-    --color-white-lightness: 100%;
-
-
-    --color-white: hsl(252, 30%, var(--color-white-lightness));
-    --color-light: hsl(252, 30%, var(--color-light-lightness));
-    --color-gray: hsl(252, 15%, 65%);
-    --color-primary: hsl(var(--color-hue_1), var(--color-hue_2),var(--color-hue_3));
-    --color-orange: hsl(27,100%,59%);
-    --color-rouge: hsl(347,100%,50%);
-    --color-vert: hsl(120, 95%, 40%);
-    --color-bleu: #0b5ed7;
-    --color-secondary: hsl(252, 100%, 90%);
-    --color-danger: hsl(0, 95%, 65%);
-    --color-dark: hsl(252, 30%, var(--color-dark-lightness));
-    --color-black: hsl(252, 30%, var(--color-black-lightness));
-
-    --border-radius: 2rem;
-    --card-border-radius: 1rem;
-    --btn-padding: 0.6rem 2rem;
-    --search-padding: 0.6rem 1rem;
-    --card-padding: 1rem;
-
-    --sticky-top-left: 5.4rem;
-    --sticky-top-right: -18rem;
-} */
-
-/* body{
-    font-family: 'Poppins', sans-serif !important;
+body{
     color: var(--color-dark) !important;
     background: var(--color-light);
     overflow-x: hidden;
-} */
+}
 
 h1, h2, h3,
 h4, h5, h6, a, p{
@@ -144,8 +110,17 @@ body {
 /* ==================   navbar ===================== */
 
 .navbar-brand {
-    font-weight: 700;
+    position: relative;
+    width: 70px;
 }
+.navbar-brand span{
+    position: absolute;
+    /* font-weight: 700; */
+    font-family: 'Pacifico' !important;
+    font-size: 1.7rem !important;
+    margin-top: -7px;
+}
+
 .nav-link{
     font-weight: 450;
 }

@@ -37,7 +37,7 @@
 		border-radius: 50%;
 		overflow: hidden;
 		margin: auto;
-		box-shadow: 0 0 0.3rem #ff0037;
+		border: 1px solid #ff0037;
 	}
 	.profile_pp img{
 		width: 100%;
@@ -85,27 +85,42 @@
 
     /* modifier profil */
 
+    /* @media screen and (min-width: 768px) { */
+    #edit-profil input {
+        padding-top: 0.6rem;
+        padding-bottom: 0.3rem;
+    }
+    #edit-profil textarea {
+        width: 100%;
+        height: 200px !important;
+        padding-top: 1rem;
+    }
+    /* } */
+
 	#up_pp{
 		position: absolute;
 		top: 0rem;
-		right: 0rem;
+		right: 2rem;
 		z-index: 12;
 	}
-	.fa-pencil{
+	.fa-pen{
 		color: #0b5ed7;
 		cursor: pointer;
-		font-size: 25px;
+		font-size: 20px;
 		transition: 0.3s;
 	}
-	#up_pp:hover .fa-pencil{
+	#up_pp:hover .fa-pen{
 		color: #fff;
 		background: #0b5ed7;
 		border-radius: 50%;
-		font-size: 20px;
-		padding: 6px;
+		font-size: 15px;
+		padding: 8px;
 		transition: 0.3s;
 	}
+
+
 </style>
+
     <section id="profil" class="my-5">
         <div class="header">
             <div class="user-profile">
@@ -159,10 +174,11 @@
             <div class="row ">
                 <div class="tab-content" id="ex1-content">
                     <div class="tab-pane fade show active" id="ex1-tabs-1" role="tabpanel" aria-labelledby="ex1-tab-1">
-                        <div class="mon-profil row">
+                        <!-- ------------ profil --------- -->
+                        <div id="affiche-profil" class="mon-profil row">
                             {% if request.user.id == use.id or request.user.membre.role == "admin" %}
                             <div class="my-5 text-center">
-                                <a href="" class="btn-bleu">Modifier profil</a>
+                                <a id="btn-edit-profil" href="#" class="btn-bleu">Modifier profil</a>
                                 &emsp;
                                 <a href="{% url 'supprimer_compte' use.id %}" class="btn-rouge" onclick="return confirmSupp();">Supprimer profil</a>
                             </div>
@@ -211,6 +227,85 @@
                             </div>
                         </div>
 
+                        <!-- -------- editer profil ---------- -->
+                        <form name="formUpdateEtu" onsubmit="return validateFormUpdateEtu()" action="" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div id="edit-profil" class="mon-profil mt-5 row">
+                                <div class="col-lg-5">
+                                    <div class="card mb-4 mb-xl-0">
+                                        <div class="card-header">Informations perso</div>
+                                        <div class="card-body text-center">
+                                            <div class="pp">
+                                                <label id="up_pp" for="id_photo"><i class="fa-solid fa-pen"></i></label>
+                                                <div class="profile_pp">
+                                                    <img id="choosen-image" class="" src="{{use.membre.photo.url}}" alt="">
+                                                </div>
+                                            </div>
+                                            <!-- noms et prénoms -->
+                                            <div class="form-outline mb-4">
+                                                {{user_form.last_name}}
+                                                <label class="form-label" for="id_last_name" style="margin-left: 0px;">Noms et prénoms</label>
+                                                <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 122.4px;"></div><div class="form-notch-trailing"></div></div>
+                                            </div>
+
+                                            <!-- Email input -->
+                                            <div class="form-outline mb-4">
+                                                {{user_form.username}}
+                                                <label class="form-label" for="id_username" style="margin-left: 0px;">Email address</label>
+                                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 98.4px;"></div><div class="form-notch-trailing"></div></div></div>
+                                            
+                                            <div>
+                                                <input type="file" name="photo" accept="image/*" id="id_photo" class="form-control" hidden>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-7">
+                                    <div class="card mb-4">
+                                        <div class="card-header">Profil développeur</div>
+                                        <div class="card-body">
+                                            <div class="row gx-3">
+                                                <!-- Fonction input -->
+                                                <div class="form-outline mb-4">
+                                                    {{member_form.fonction}}
+                                                    <label class="form-label" for="id_fonction" style="margin-left: 0px;">Votre préférence</label>
+                                                <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 98.4px;"></div><div class="form-notch-trailing"></div></div></div>
+                                                
+                                                <!-- Description input -->
+                                                <div class="form-outline mb-4">
+                                                    {{member_form.description}}
+                                                    <label class="form-label" for="id_description" style="margin-left: 0px;">Biographie</label>
+                                                <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 98.4px;"></div><div class="form-notch-trailing"></div></div></div>
+                                                
+                                                <!-- Ville input -->
+                                                <div class="form-outline mb-4">
+                                                    {{member_form.ville}}
+                                                    <label class="form-label" for="id_ville" style="margin-left: 0px;">Ville</label>
+                                                <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 98.4px;"></div><div class="form-notch-trailing"></div></div></div>
+                                                
+                                                <!-- Quartier input -->
+                                                <div class="form-outline mb-4">
+                                                    {{member_form.quartier}}
+                                                    <label class="form-label" for="id_quartier" style="margin-left: 0px;">Quartier</label>
+                                                <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 98.4px;"></div><div class="form-notch-trailing"></div></div></div>
+                                                
+                                                <!-- Telaphone input -->
+                                                <div class="form-outline mb-4">
+                                                    {{member_form.telephone}}
+                                                    <label class="form-label" for="id_telephone" style="margin-left: 0px;">Téléphone</label>
+                                                <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 98.4px;"></div><div class="form-notch-trailing"></div></div></div>
+                                                
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="my-5 text-center">
+                                        <input class="btn-bleu" type="submit" value="Enregistrer">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                     <div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
                         Tab 2 content
@@ -224,4 +319,50 @@
         
         <!-- Tabs content -->
     </section>
+
+<script>
+    affProfil = document.getElementById('affiche-profil');
+    editProfil = document.getElementById('edit-profil');
+    btnProfil = document.getElementById('btn-edit-profil');
+
+    editProfil.style.display = "none";
+    btnProfil.addEventListener("click", () => {
+        editProfil.style.display = "";
+        affProfil.style.display = "none";
+    });
+
+    // charger l'image
+
+	let choosenImage = document.getElementById('choosen-image');
+	let uploardButton = document.getElementById('id_photo');
+
+	let ListExt = ["jpeg", "jpg", "png", "tif", "gif",
+				   "JPEG", "JPG", "PNG", "TIF", "GIF"];
+
+	uploardButton.onchange = () =>{
+		let fileName = uploardButton.files[0].name.split(".");
+		let ext = fileName[fileName.length-1];
+		// alert(ext);
+		if(ListExt.indexOf(ext) === -1){
+			alert("Veuillez sélectionner une image png, jpeg, jpg, tif ou gif");
+		}else{
+			let reader = new FileReader();
+			reader.readAsDataURL(uploardButton.files[0]);
+			let file = uploardButton.files[0];
+			reader.onload = () => {
+				choosenImage.setAttribute("src", reader.result);
+
+			}
+		}
+	}
+
+    inputs = document.getElementsByTagName('input');
+    for (let i = 0; i < inputs.length; i++) {
+        inputs[i].classList.add("form-control");
+    }
+    document.getElementById('id_description').classList.add("form-control");
+
+    document.getElementById('id_last_name').required = true;
+</script>
+
 {% endblock %}

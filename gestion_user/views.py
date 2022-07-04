@@ -84,10 +84,47 @@ def inscription(request):
 @login_required(login_url='connexion')
 def profil_membre(request, id_u):
     use = User.objects.get(id=id_u)
-    context = {
-        'use':use,
-    }
-    return render(request, 'gestion_user/profil_membre.html', context)
+
+    user_form = UserUpadateForm(instance=use)
+    member_form = MembreForm(instance=use.membre)
+    err1 = ""
+    err2 = ""
+
+    if request.method == 'POST':
+        user_form = UserUpadateForm(data=request.POST, instance=use)
+        member_form = MembreForm(request.POST, request.FILES, instance=use.membre)
+        # username = request.POST.get('username')
+        # password = request.POST.get('password1')
+        if user_form.is_valid() and member_form.is_valid():
+            user = user_form.save()
+            user.save()
+            membre = member_form.save(commit=False)
+            membre.user = user
+            membre.save()
+
+            # connecter le user
+            # user_log = authenticate(username=username, password=password)
+            # if user_log:
+            #     if user.is_authenticated:
+            #         logout(request)
+            #     login(request, user_log)
+            # le renvoyer vers la page d'accueil 2
+            return HttpResponseRedirect('profil_membre/'+id_u)
+        else:
+            err1 = user_form.errors
+            err2 = member_form.errors
+            context = {
+                'err1':err1, 'err2':err2,
+                'user_form':user_form, 'member_form':member_form
+            }
+            return render(request, 'gestion_user/inscription.html', context)
+    else:
+        context = {
+            'use':use,
+            'err1':err1, 'err2':err2,
+            'user_form':user_form, 'member_form':member_form
+        }
+        return render(request, 'gestion_user/profil_membre.html', context)
 
 
 
