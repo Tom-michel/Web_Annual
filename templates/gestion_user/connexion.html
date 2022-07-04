@@ -1,7 +1,7 @@
 {% comment %} {% extends 'base.html' %} {% endcomment %}
 {% load static %}
 
-{% block title %} Annuaire Web {% endblock %}
+{% block title %} <title>Annuaire | Connexion</title>{% endblock %}
 
 
 {% block content %} 
@@ -52,8 +52,8 @@
                                         <input type="password" id="password-login" name="password-login" class="form-control password" required>
                                         <label class="form-label" for="password-login" style="margin-left: 0px;">Mot de passe</label>
                                     <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 93.6px;"></div><div class="form-notch-trailing"></div></div></div>
-                                    <i class="fa-solid fa-eye" onclick="affiMdp()"></i>
-                                    <i class="fa-solid fa-eye-slash" onclick="affiMdp()" style="display: none;"></i>
+                                    <i class="fa-solid fa-eye"></i>
+                                    <i class="fa-solid fa-eye-slash" style="display: none;"></i>
                                 </div>
                             </div>
                             <!-- Submit button -->
@@ -84,7 +84,7 @@
 
                         <!-- Register buttons -->
                         <div class="text-center mb-4">
-                            <p>Pas encore membre ? <a href="#!">S'inscrire</a></p>
+                            <p>Pas encore membre ? <a href="{% url 'inscription' %}">S'inscrire</a></p>
                             <p class="mb-2">ou via:</p>
                             <button type="button" class="btn btn-primary btn-floating mx-1">
                                 <i class="fab fa-facebook-f"></i>
@@ -113,35 +113,29 @@
 <script>
     // affichage/masquage du mdp
 
-    document.getElementById('id_password1').classList.add('password');
-    document.getElementById('id_password2').classList.add('password');
+    var password1 = document.getElementById('password-login');
 
-    var password1 = document.querySelectorAll('.password');
+    var eyeVisible = document.querySelector('.fa-eye');
+    var eyeHidden = document.querySelector('.fa-eye-slash');
 
-    var eyeVisible = document.querySelectorAll('.fa-eye');
-    var eyeHidden = document.querySelectorAll('.fa-eye-slash');
-
-    for (let i = 0; i < eyeVisible.length; i++) {
-        eyeVisible[i].addEventListener('click', () =>{
-            affiMdp(i)
-        });
-    }
-    for (let i = 0; i < eyeHidden.length; i++) {
-        eyeHidden[i].style.display = "none";
-        eyeHidden[i].addEventListener('click', () =>{
-            affiMdp(i)
-        });
-    }
-
-    function affiMdp(i) {
-        if (password1[i].type === "password") {
-            eyeHidden[i].style.display = "";
-            eyeVisible[i].style.display = "none";
-            password1[i].type = 'text';
+    eyeVisible.addEventListener('click', () =>{
+        affiMdp();
+    });
+    eyeHidden.addEventListener('click', () =>{
+        affiMdp();
+    });
+    
+    function affiMdp() {
+        if (password1.type === "password") {
+            eyeHidden.style.display = "";
+            eyeVisible.style.display = "none";
+            password1.type = 'text';
+            // alert("pas");
         } else {
-            eyeHidden[i].style.display = "none";
-            eyeVisible[i].style.display = "";
-            password1[i].type = 'password';
+            eyeHidden.style.display = "none";
+            eyeVisible.style.display = "";
+            password1.type = 'password';
+            // alert("tex");
         }
     }
 </script>

@@ -138,201 +138,6 @@
                   font-size: 20px;
                 }
             </style>
-            
-            {% comment %} <!-- Modal For Login -->
-            <div class="modal top fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <form action="" method="post">
-                            {% csrf_token %}
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="loginModalLabel">Connexion</h5>
-                                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-                                <span class="btn-close" data-mdb-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></span>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container loginForm">
-                                    <p></p><p></p>
-                                    <div class="mb-4">
-                                        {% for message in messages %}
-                                        <p class="errornotes">{{message}}</p>
-                                        {% endfor %}
-                        
-                                        {% if user.is_authenticated %}
-                                        <p class="infonotes text-center pt-2">
-                                        Vous êtes déja connecté en tant que <b>{{request.user.username}} 
-                                        </p>
-                                        {% endif %}
-                                    </div>
-
-                                    <!-- Email input -->
-                                    <div class="form-outline mb-4">
-                                        <input type="text" id="email-login" name="email-login" class="form-control" />
-                                        <label class="form-label" for="email-login">Addresse email</label>
-                                    </div>
-                                    <!-- Password input -->
-                                    <div class="form-group">
-                                        <div class="fom"> 
-                                            <div class="form-outline mb-4">
-                                                <input  type="password" id="password-login" name="password-login" class="form-control password" />
-                                                <label class="form-label" for="password-login">Mot de passe</label>
-                                            </div>
-                                            <i class="fa-solid fa-eye" onclick="affiMdp()"></i>
-                                            <i class="fa-solid fa-eye-slash" onclick="affiMdp()"></i>
-                                        </div>
-                                    </div>
-                                    <!-- Submit button -->
-                                    {% if user.is_authenticated %}
-                                        <a class="btn-bleu mb-4" href="{% url 'user_logout' %}" style="width: 100%;">Déconnexion</a>
-                                    {% else %}
-
-                                    <!-- 2 column grid layout for inline styling -->
-                                    <div class="row mb-4">
-                                        <div class="col d-flex justify-content-center">
-                                            <!-- Checkbox -->
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="form2Example34" checked />
-                                                <label class="form-check-label" for="form2Example34"> Remember me </label>
-                                            </div>
-                                        </div>
-
-                                        <div class="col">
-                                            <!-- Simple link -->
-                                            <a href="#!">Forgot password?</a>
-                                        </div>
-                                    </div>
-
-                                    <input type="text" name="type_form" id="type_form" value="loginForm" hidden>
-
-                                    <input type="submit" class="btn-bleu mb-4" value="Se connecter" style="width: 100%;">
-
-                                    <!-- Register buttons -->
-                                    <div class="text-center mb-4">
-                                        <p>Pas encore membre ? <a href="#!">S'inscrire</a></p>
-                                        <p class="mb-2">ou via:</p>
-                                        <button type="button" class="btn btn-primary btn-floating mx-1">
-                                            <i class="fab fa-facebook-f"></i>
-                                        </button>
-
-                                        <button type="button" class="btn btn-primary btn-floating mx-1">
-                                            <i class="fab fa-google"></i>
-                                        </button>
-
-                                        <button type="button" class="btn btn-primary btn-floating mx-1">
-                                            <i class="fab fa-twitter"></i>
-                                        </button>
-
-                                        <button type="button" class="btn btn-primary btn-floating mx-1">
-                                            <i class="fab fa-github"></i>
-                                        </button>
-                                    </div>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div> {% endcomment %}
-
-            {% comment %} <!-- Modal For Registration -->
-            <div class="modal top fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <form action="" method="post">
-                            {% csrf_token %}
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="registerModalLabel">Inscription</h5>
-                                <!-- <button type="button"  data-mdb-dismiss="modal" aria-label="Close"></button> -->
-                                <span class="btn-close" data-mdb-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></span>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container registerForm">
-                                    <p></p><p></p>
-
-                                    <!-- noms et prénoms -->
-                                    <div class="form-outline mb-4">
-                                        <input type="text" id="nom-prenom" name="nom-prenom" class="form-control" />
-                                        <label class="form-label" for="nom-prenom">Noms et prénoms</label>
-                                    </div>
-
-                                    <!-- 2 column grid layout with text inputs for the first and last names -->
-                                    <div class="row mb-4">
-                                        <div class="col">
-                                            <div class="form-outline">
-                                                <input type="text" id="ville" name="ville" class="form-control" />
-                                                <label class="form-label" for="ville">Ville</label>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-outline">
-                                                <input type="text" id="quartier" name="quartier" class="form-control" />
-                                                <label class="form-label" for="quartier">Quartier</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- tealephone -->
-                                    <div class="form-outline mb-4">
-                                        <input type="text" id="tealephone" name="tealephone" class="form-control" />
-                                        <label class="form-label" for="tealephone">Numéro de téléphone</label>
-                                    </div>
-
-                                    <!-- Email input -->
-                                    <div class="form-outline mb-4">
-                                        <input type="email" id="email-login" name="email-login" class="form-control" />
-                                        <label class="form-label" for="email-login">Email address</label>
-                                    </div>
-                                    <!-- Password input -->
-                                    <div class="form-group">
-                                        <div class="fom"> 
-                                            <div class="form-outline mb-4">
-                                                <input type="password" id="password-login" name="password-login" class="form-control password" />
-                                                <label class="form-label" for="password-login">Mot de passe</label>
-                                            </div>
-                                            <i class="fa-solid fa-eye" onclick="affiMdp()"></i>
-                                            <i class="fa-solid fa-eye-slash" onclick="affiMdp()"></i>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="fom"> 
-                                            <div class="form-outline mb-4">
-                                                <input type="password" id="password-login" name="password-login" class="form-control password" />
-                                                <label class="form-label" for="password-login">Retaper de passe</label>
-                                            </div>
-                                            <i class="fa-solid fa-eye" onclick="affiMdp()"></i>
-                                            <i class="fa-solid fa-eye-slash" onclick="affiMdp()"></i>
-                                        </div>
-                                    </div>
-                                    <input type="text" name="type_form" id="type_form" value="registerForm" hidden>
-
-                                    <!-- Submit button -->
-                                    <input type="submit" class="btn-bleu mb-4" value="S'inscrire" style="width: 100%;">
-
-                                    <!-- Register buttons -->
-                                    <div class="text-center mb-4">
-                                        <p>Déja membre ? <a href="#!">Se connecter</a></p>
-                                        <p class="mb-2">ou via:</p>
-                                        <button type="button" class="btn btn-primary btn-floating mx-1">
-                                            <i class="fab fa-facebook-f"></i>
-                                        </button>
-
-                                        <button type="button" class="btn btn-primary btn-floating mx-1">
-                                            <i class="fab fa-google"></i>
-                                        </button>
-
-                                        <button type="button" class="btn btn-primary btn-floating mx-1">
-                                            <i class="fab fa-twitter"></i>
-                                        </button>
-
-                                        <button type="button" class="btn btn-primary btn-floating mx-1">
-                                            <i class="fab fa-github"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div> {% endcomment %}
 
         {% endblock %}
 
@@ -341,7 +146,76 @@
         {% endblock %}
 
         {% block footer %}
-            <!-- <h3>footer</h3> -->
+        <footer class="bg-primary text-white text-center text-lg-start">
+            <!-- Grid container -->
+            <div class="container p-4">
+              <!--Grid row-->
+              <div class="row">
+                <!--Grid column-->
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                  <h5 class="text-uppercase">Footer Content</h5>
+          
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
+                    molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae aliquam
+                    voluptatem veniam, est atque cumque eum delectus sint!
+                  </p>
+                </div>
+                <!--Grid column-->
+          
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                  <h5 class="text-uppercase">Links</h5>
+          
+                  <ul class="list-unstyled mb-0">
+                    <li>
+                      <a href="#!" class="text-white">Link 1</a>
+                    </li>
+                    <li>
+                      <a href="#!" class="text-white">Link 2</a>
+                    </li>
+                    <li>
+                      <a href="#!" class="text-white">Link 3</a>
+                    </li>
+                    <li>
+                      <a href="#!" class="text-white">Link 4</a>
+                    </li>
+                  </ul>
+                </div>
+                <!--Grid column-->
+          
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                  <h5 class="text-uppercase mb-0">Links</h5>
+          
+                  <ul class="list-unstyled">
+                    <li>
+                      <a href="#!" class="text-white">Link 1</a>
+                    </li>
+                    <li>
+                      <a href="#!" class="text-white">Link 2</a>
+                    </li>
+                    <li>
+                      <a href="#!" class="text-white">Link 3</a>
+                    </li>
+                    <li>
+                      <a href="#!" class="text-white">Link 4</a>
+                    </li>
+                  </ul>
+                </div>
+                <!--Grid column-->
+              </div>
+              <!--Grid row-->
+            </div>
+            <!-- Grid container -->
+          
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+              © 2020 Copyright:
+              <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+            </div>
+            <!-- Copyright -->
+          </footer>
         {% endblock %}
         
         <!-- MDB -->

@@ -1,7 +1,7 @@
 {% comment %} {% extends 'base.html' %} {% endcomment %}
 {% load static %}
 
-{% block title %} Annuaire Web {% endblock %}
+{% block title %} <title>Annuaire | Inscription</title> {% endblock %}
 
 
 {% block content %} 
@@ -76,8 +76,8 @@
                                         <label class="form-label" for="password-login" style="margin-left: 0px;">Mot de passe</label>
                                         <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 93.6px;"></div><div class="form-notch-trailing"></div></div>
                                     </div>
-                                    <i class="fa-solid fa-eye" onclick="affiMdp()"></i>
-                                    <i class="fa-solid fa-eye-slash" onclick="affiMdp()" style="display: none;"></i>
+                                    <i class="fa-solid fa-eye e_open" onclick="afficheMdp()"></i>
+                                    <i class="fa-solid fa-eye-slash e_close" onclick="afficheMdp()" style="display: none;"></i>
                                 </div>
                             </div>
                             <div class="dropdown">
@@ -100,8 +100,8 @@
                                     {{user_form.password2}}
                                     <label class="form-label" for="password-login" style="margin-left: 0px;">Retaper le mot de passe</label>
                                 <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 120.8px;"></div><div class="form-notch-trailing"></div></div></div>
-                                <i class="fa-solid fa-eye" onclick="affiMdp()"></i>
-                                <i class="fa-solid fa-eye-slash" onclick="affiMdp()" style="display: none;"></i>
+                                <i class="fa-solid fa-eye e_open"></i>
+                                <i class="fa-solid fa-eye-slash e_close" style="display: none;"></i>
                             </div>
                         </div>
 
@@ -136,6 +136,7 @@
 </div>
 
 <script>
+    
     inputs = document.getElementsByTagName('input');
     for (let i = 0; i < inputs.length; i++) {
         inputs[i].classList.add("form-control");
@@ -147,33 +148,26 @@
 
     // affichage/masquage du mdp
 
-    document.getElementById('id_password1').classList.add('password');
-    document.getElementById('id_password2').classList.add('password');
+    document.getElementById('id_password1').classList.add('passwordReg');
+    document.getElementById('id_password2').classList.add('passwordReg');
     
-    if (document.getElementById('pwd-err').innerHTML != ""){
-        document.getElementById('id_password1').classList.add('err');
-        document.getElementById('id_password2').classList.add('err');
-    }
+    var password1 = document.querySelectorAll('.passwordReg');
 
-
-    var password1 = document.querySelectorAll('.password');
-
-    var eyeVisible = document.querySelectorAll('.fa-eye');
-    var eyeHidden = document.querySelectorAll('.fa-eye-slash');
-
+    var eyeVisible = document.querySelectorAll('.e_open');
+    var eyeHidden = document.querySelectorAll('.e_close');
+    
     for (let i = 0; i < eyeVisible.length; i++) {
         eyeVisible[i].addEventListener('click', () =>{
-            affiMdp(i)
+            afficheMdp(i)
         });
     }
     for (let i = 0; i < eyeHidden.length; i++) {
-        eyeHidden[i].style.display = "none";
         eyeHidden[i].addEventListener('click', () =>{
-            affiMdp(i)
+            afficheMdp(i)
         });
     }
 
-    function affiMdp(i) {
+    function afficheMdp(i) {
         if (password1[i].type === "password") {
             eyeHidden[i].style.display = "";
             eyeVisible[i].style.display = "none";
@@ -184,6 +178,19 @@
             password1[i].type = 'password';
         }
     }
+
+    // bordure rouge sur les mdp en cas d'eerueur
+
+    if (document.getElementById('pwd-err').innerHTML != ""){
+        document.getElementById('id_password1').classList.add('err');
+        document.getElementById('id_password2').classList.add('err');
+    }
+
+
+    
+    
+
+    
 </script>
 
 {% endblock %}

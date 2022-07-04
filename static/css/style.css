@@ -1,8 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Cookie&family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Handlee&display=swap');
 
 @font-face {
     font-family: Poppins;
     src: url(../fonts/Poppins-Regular.ttf);
+}
+@font-face {
+    font-family: Handlee;
+    src: url(../fonts/Handlee-Regular.ttf);
 }
 
 /* :root {
@@ -254,6 +259,7 @@ body {
     position: relative;
     z-index: 1;
     text-transform: uppercase;
+    font-family: 'Handlee';
 }
 .title::before{
     content: '';
@@ -267,6 +273,99 @@ body {
     border-bottom-right-radius: 40px;
     border-top-left-radius: 40px;
 }
+
+
+
+/* --------------- fonctionnalités ------------------- */
+
+.containerTM {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 10px 20px;
+}
+
+.action {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.box h4 {
+    font-weight: 500;
+}
+.box {
+    font-size: 14px;
+    position: relative;
+    transition: 0.2s ease-in-out;
+    margin: 10px 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    border-radius: 10px;
+}
+.box .content p {
+    font-size: 14px;
+    margin-top: 3px;
+}
+
+.box .content a {
+    position: relative;
+    margin: 5px 0;
+    color: #fff !important;
+    font-size: 12px;
+}
+.box .number{
+    position: absolute;
+}
+.box .number i{
+    color: var(--color-rouge);
+    font-size: 1.3rem;
+    border-radius: 50%;
+    font-weight: 600;
+    padding: 5px 8px;
+}
+
+.action, #footer {
+    position: relative;
+    z-index: 10;
+}
+
+.header img{ 
+    height: 200px;
+    width: auto;
+}
+
+@media screen and (max-width: 991px) {
+    #situation {
+        border-top: var(--color-rouge) solid 2px;
+        border-radius: 20px;
+        background: #fff;
+        box-shadow: 0 .2rem 1rem rgba(0,0,0,.2) !important;
+        margin: 10px 5% 50px;
+        padding: 40px 20px 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header img{ 
+        height: 150px;
+        width: auto;
+    }
+}
+
+
+
+
+
+
 
 
 /* ================= FORMS =================== */
@@ -392,6 +491,7 @@ label{
     color: var(--color-bleu);
     font-size: 1.5rem;
     top: 2rem;
+    cursor: pointer;
 }
 .pwd .dropdown .dropdown-menu{
     width: 300px;
