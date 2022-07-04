@@ -1,10 +1,111 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} Annuaire | Profil membre {% endblock %}
+{% block title %} Profil membre | Jerry  {% endblock %}
 
 
-{% block content %} 
+{% block content %}
+
+<style>
+    .card {
+	    box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
+        border-top: #ff0037 solid 2px;
+	}
+	.card .card-header {
+	    font-weight: 500;
+	}
+	.card-header:first-child {
+	    border-radius: 0.35rem 0.35rem 0 0;
+	}
+	.card-header {
+	    padding: 1rem 1.35rem;
+	    margin-bottom: 0;
+	    background-color: rgba(33, 40, 50, 0.03);
+	    border-bottom: 1px solid #ff003763;
+	}
+
+    .pp{
+		position: relative;
+		width: 100%;
+		margin-bottom: 15px;
+	}
+
+	.pp .profile_pp{
+		position: relative;
+		width: 10rem;
+		height: 10rem;
+		border-radius: 50%;
+		overflow: hidden;
+		margin: auto;
+		box-shadow: 0 0 0.3rem #ff0037;
+	}
+	.profile_pp img{
+		width: 100%;
+	}
+
+    .mon-profil .last_name,
+    .mon-profil .fonction{
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-align: center;
+    }
+    .mon-profil .username{
+        font-size: 0.85rem;
+    }
+    .mon-profil .description{
+        border: 1px solid #ff003763;
+        border-radius: 0.35rem;
+        padding: 0.5rem 0.3rem;
+    }
+    .mon-profil .description span{
+        font-weight: 600;
+    }
+    .mon-profil .coordonees{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5rem;
+    }
+    .mon-profil .coordonees a,
+    .border-danger:hover{
+        text-decoration: none !important;
+        color: #241e38 !important;
+    }
+    .mon-profil .coordonees p span{
+        background: #ff003721;
+        /* box-shadow: 0 0 0.5rem #000; */
+    }
+    .mon-profil .coordonees p i{
+        color: #ff0037;
+        font-size: 1.1rem;
+    }
+
+
+    /* modifier profil */
+
+	#up_pp{
+		position: absolute;
+		top: 0rem;
+		right: 0rem;
+		z-index: 12;
+	}
+	.fa-pencil{
+		color: #0b5ed7;
+		cursor: pointer;
+		font-size: 25px;
+		transition: 0.3s;
+	}
+	#up_pp:hover .fa-pencil{
+		color: #fff;
+		background: #0b5ed7;
+		border-radius: 50%;
+		font-size: 20px;
+		padding: 6px;
+		transition: 0.3s;
+	}
+</style>
     <section id="profil" class="my-5">
         <div class="header">
             <div class="user-profile">
@@ -54,11 +155,62 @@
             <!-- Tabs navs -->
         </div>
         <!-- Tabs content -->
-        <div class="containe">
-            <div class="row text-center">
+        <div class="container">
+            <div class="row ">
                 <div class="tab-content" id="ex1-content">
                     <div class="tab-pane fade show active" id="ex1-tabs-1" role="tabpanel" aria-labelledby="ex1-tab-1">
-                        Tab 1 content
+                        <div class="mon-profil row">
+                            {% if request.user.id == use.id or request.user.membre.role == "admin" %}
+                            <div class="my-5 text-center">
+                                <a href="" class="btn-bleu">Modifier profil</a>
+                                &emsp;
+                                <a href="{% url 'supprimer_compte' use.id %}" class="btn-rouge" onclick="return confirmSupp();">Supprimer profil</a>
+                            </div>
+                            {% endif %}
+                            <div class="col-lg-5">
+                                <div class="card mb-4 mb-xl-0">
+                                    <div class="card-header">Informations perso</div>
+                                    <div class="card-body text-center">
+                                        <div class="pp">
+                                            <div class="profile_pp">
+                                                <img src="{{use.membre.photo.url}}" alt="">
+                                            </div>
+                                        </div>
+                                        <p class="last_name">{{use.last_name}}</p>
+                                        <p class="username small text-muted mb-4">@{{use.username}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="card mb-4">
+                                    <div class="card-header">Profil développeur</div>
+                                    <div class="card-body">
+                                        <div class="row gx-3">
+                                            <p class="fonction">{{use.membre.fonction}}</p>
+                                            <p class="description my-4">
+                                                <span>Bio :</span><br>
+                                                {{use.membre.description}}
+                                            </p>
+                                            <div class="coordonees">
+                                                <p>
+                                                    <i class="fa-solid fa-location-dot"></i> 
+                                                    <a href=""><span class="border border-danger px-2 py-1 rounded-pill">{{use.membre.quartier}}, {{use.membre.ville}}</span></a>
+                                                </p>
+                                                <p>
+                                                    <i class="fa-solid fa-mobile-screen-button"></i>
+                                                    <a href="tel:{{use.membre.telephone}}"><span class="border border-danger px-2 py-1 rounded-pill">{{use.membre.telephone}}</span></a>
+                                                </p>
+                                                <p>
+                                                    <i class="fa-solid fa-envelope"></i> 
+                                                    <a href="mailto:{{use.username}}"><span class="border border-danger px-2 py-1 rounded-pill">{{use.username}}</span></a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
                         Tab 2 content

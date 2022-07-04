@@ -83,8 +83,9 @@ def inscription(request):
 # consulter le profil d'un membre
 @login_required(login_url='connexion')
 def profil_membre(request, id_u):
+    use = User.objects.get(id=id_u)
     context = {
-
+        'use':use,
     }
     return render(request, 'gestion_user/profil_membre.html', context)
 

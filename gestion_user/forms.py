@@ -34,5 +34,6 @@ class MembreForm(forms.ModelForm):
             'quartier',
             'telephone',
             'fonction',
-            'description'
+            'description',
+            'role'
         ]

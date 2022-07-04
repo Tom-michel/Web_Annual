@@ -54,7 +54,7 @@
                         </span>
                     </span>
                     <a class="navbar-brand text-dark" href="#">
-                        UBORA DIR
+                        Jerry
                     </a>
                     <div class="navbar-collapse collapse" id="mainMenu">
                         <ul class="navbar-nav ms-auto">
@@ -116,7 +116,7 @@
                                         onclick="confirm('Vouler-vous vraiment suppimer ce compte ?');">
                                         <i class="fa-solid fa-arrows-rotate"></i>&emsp;Changer de compte
                                     </a></li>
-                                    <li><a class="dropdown-item text-danger" href="{% url 'supprimer_compte' request.user.id %}"><i class="fa-solid fa-user-xmark"></i>&emsp;Supprimer ce compte</a></li>
+                                    <li><a class="dropdown-item text-danger" href="{% url 'supprimer_compte' request.user.id %}" onclick="return confirmSupp();"><i class="fa-solid fa-user-xmark"></i>&emsp;Supprimer ce compte</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="{% url 'profil_membre' request.user.id %}"><i class="fa-solid fa-user-tie"></i>&emsp;Profil</a></li>
                                     <li><a class="dropdown-item" href="{% url 'user_logout' %}"><i class="fa-solid fa-arrow-right-from-bracket"></i>&emsp;Se déconnecter</a></li>
@@ -157,7 +157,7 @@
                         <h5 class="text-uppercase">UBORA</h5>
                         <p>
                             UBORA est une entreprise qui propose plusieurs services numériques entre autres 
-                            la prestation des services de developpement web. <u><b>UBORA DIR</b></u> a pour rôle de 
+                            la prestation des services de developpement web. <u><b>Jerry</b></u> a pour rôle de 
                             proposer un annuaire web destiné à faciliter le management du travail de l'équipe 
                             de cette entreprise.
                         </p>
@@ -298,6 +298,17 @@
                     password1[i].type = 'password';
                 }
             }
+
+            // confirmer la suppression d'un compte
+            function confirmSupp(){
+                resp = confirm("Voulez-vous vraimement supprimer ce profil ?");
+                if (resp) {
+                    return true;
+                } else{
+                    return false;
+                }
+            }
+
         </script>
     </body>
 </html>
