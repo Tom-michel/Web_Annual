@@ -1,0 +1,56 @@
+				# CHANGE DB TYPE OF A DJANGO PROJECT
+				------------------------------------
+				
+						# SQLite to MYSQL
+				
+				
+# Activate your Django Virtual Environnement
+	example: source .env/bin/activate 
+	
+
+
+# Save data of actual SQLite db in a JSON file named datadump.json
+
+	python3 manage.py dumpdata > datadump.json
+
+# Create a new db in your DMBS (ex: phpMyAdmin)
+
+	example: 	'NAME': 'uboara_jerry',
+        		'USER': 'root',
+				'PASSWORD': '',
+				'HOST': 'localhost',
+				'PORT': '3307'
+	
+# Connect your project with the new db in your settings.py django file
+	
+	example : 
+	
+	DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'uboara_jerry',
+            'HOST': '127.0.0.1',
+            'USER': 'root',
+            'PASSWORD': '',
+            'PORT': '3307'
+        }
+    }
+
+# Sync new db
+
+	python3 manage.py migrate --run-syncdb
+    
+# Exclude content type data
+
+	python3 manage.py shell
+	>>> from django.contrib.contenttypes.models import ContentType
+	>>> ContentType.objects.all().delete() 
+	>>> quit()
+
+# load data of our JSON file into the new MYSQL db
+
+	python3 manage.py loaddata datadump.json
+	
+	
+			 # Enjoy :) -- COPYRIGHT 2022: Tom-michel
+  

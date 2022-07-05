@@ -79,12 +79,37 @@ WSGI_APPLICATION = 'Web_Annual.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+DATABASE = 2
+
+if DEBUG and (DATABASE == 1):
+    # use Local SQLite Database
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+elif DEBUG and (DATABASE == 2):
+    # use Local MYSQL Database
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'ubora_jerry',
+            'HOST': '127.0.0.1',
+            'USER': 'root',
+            'PASSWORD': '',
+            'PORT': 3307
+        }
+    }
+else:
+    # use Production Database
+    # It's my local SQLite Database for the moment
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
