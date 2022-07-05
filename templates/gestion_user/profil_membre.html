@@ -55,7 +55,7 @@
     .mon-profil .description{
         border: 1px solid #ff003763;
         border-radius: 0.35rem;
-        padding: 0.5rem 0.3rem;
+        padding: 1rem;
     }
     .mon-profil .description span{
         font-weight: 600;
@@ -65,7 +65,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
+        align-items: start;
         gap: 1.5rem;
     }
     .mon-profil .coordonees a,
@@ -124,7 +124,9 @@
     <section id="profil" class="my-5">
         <div class="header">
             <div class="user-profile">
-                <img src="{{request.user.membre.photo.url}}" class="rounded-circle border border-primary" alt=""/>
+                <div class="user-pic">
+                    <img src="{{request.user.membre.photo.url}}" class="border border-danger" alt=""/>
+                </div>
                 <span>
                     <p>{{request.user.last_name}}</p>
                     <p class="text-muted">@{{request.user.username}}</p>
@@ -178,7 +180,7 @@
                         <div id="affiche-profil" class="mon-profil row">
                             {% if request.user.id == use.id or request.user.membre.role == "admin" %}
                             <div class="my-5 text-center">
-                                <a id="btn-edit-profil" href="#" class="btn-bleu">Modifier profil</a>
+                                <a id="btn-edit-profil" href="#" class="btn-bleu">Mettre à jour le profil</a>
                                 &emsp;
                                 <a href="{% url 'supprimer_compte' use.id %}" class="btn-rouge" onclick="return confirmSupp();">Supprimer profil</a>
                             </div>
@@ -301,7 +303,9 @@
                                     </div>
 
                                     <div class="my-5 text-center">
-                                        <input class="btn-bleu" type="submit" value="Enregistrer">
+                                        <a id="btn-annuler-edit" href="#" class="btn-rouge"">Annuler</a>
+                                        &emsp;
+                                        <button type="submit" class="btn-bleu ">Enregistrer</button>
                                     </div>
                                 </div>
                             </div>
@@ -324,12 +328,20 @@
     affProfil = document.getElementById('affiche-profil');
     editProfil = document.getElementById('edit-profil');
     btnProfil = document.getElementById('btn-edit-profil');
+    btnAnnuler = document.getElementById('btn-annuler-edit');
 
     editProfil.style.display = "none";
     btnProfil.addEventListener("click", () => {
         editProfil.style.display = "";
         affProfil.style.display = "none";
     });
+
+    btnAnnuler.addEventListener("click", () => {
+        editProfil.style.display = "none";
+        affProfil.style.display = "";
+    });
+
+
 
     // charger l'image
 

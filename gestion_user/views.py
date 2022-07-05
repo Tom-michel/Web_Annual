@@ -109,7 +109,7 @@ def profil_membre(request, id_u):
             #         logout(request)
             #     login(request, user_log)
             # le renvoyer vers la page d'accueil 2
-            return HttpResponseRedirect('profil_membre/'+id_u)
+            return HttpResponseRedirect('../profil_membre/'+id_u)
         else:
             err1 = user_form.errors
             err2 = member_form.errors

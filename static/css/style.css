@@ -489,6 +489,7 @@ label{
 
 /* =================== PAGE PROFIL MEMBRE ============= */
 
+
 #profil .header{
     background: #F4F5F7;
     /* border-bottom: #C1C7D0 solid 1px; */
@@ -537,10 +538,17 @@ label{
     gap: 1rem;
     padding: 3rem 0 2rem;
 }
-#profil .header .user-profile img{
+
+#profil .user-pic{
     width: 5rem;
     height: 5rem;
+    border-radius: 50%;
+    overflow: hidden;
 }
+#profil .user-pic img{
+    width: 100%;
+}
+
 #profil .header .user-profile p:first-child{
     font-size: 1.5rem;
     font-weight: 500;

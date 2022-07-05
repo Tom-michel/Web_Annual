@@ -5,6 +5,11 @@ Application web de gestion d'annuaire, pour l'entreprise UBORA.
 ![alt text](https://github.com/Tom-michel/Web_Annual/blob/master/static/img/img_readme.png?raw=true)
 
 
+# ÉQUIPE DE DEVELOPPEMENT
+-------------------------
+
+Individuel : Tom-michel
+
 
 # GESTION DES UTILSATEURS :
 ---------------------------
