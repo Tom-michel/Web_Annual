@@ -171,9 +171,9 @@ body {
     color: #fff !important;
 }
 
-.main-nav.bg-primary .navbar-brand {
+/* .main-nav.bg-primary .navbar-brand {
     font-weight: 600;
-}
+} */
 .main-nav.bg-primary .text-secondary{
     font-weight: 400;
 }
