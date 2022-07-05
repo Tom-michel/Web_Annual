@@ -533,13 +533,39 @@ label{
 
 #profil .header .user-profile{
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
-    padding: 3rem 0 2rem;
+    /* gap: 1rem; */
+    /* padding: 3rem 2rem; */
 }
 
-#profil .user-pic{
+#profil .header .user-profile img{
+    width: 5rem;
+    height: 5rem;
+}
+
+.profile-photo{
+    width: 5rem;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    overflow: hidden;
+    border: var(--color-bleu) solid 1px;
+}
+.profile-photo.drop{
+    width: 2.7rem;
+}
+.profile-photo img{
+    display: block;
+    width: 100%;
+}
+
+#drop-compte a img{
+    width: 2.7rem;
+    height: 2.7rem;
+}
+
+/* #profil .user-pic{
     width: 5rem;
     height: 5rem;
     border-radius: 50%;
@@ -547,9 +573,14 @@ label{
 }
 #profil .user-pic img{
     width: 100%;
-}
+} */
 
-#profil .header .user-profile p:first-child{
+#profil .header .user-profile h6{
+    font-family: 'Handlee';
+    color: var(--color-rouge);
+    font-size: 2.5rem;
+}
+#profil .header .user-profile .noms{
     font-size: 1.5rem;
     font-weight: 500;
 }

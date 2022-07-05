@@ -123,12 +123,14 @@
 
     <section id="profil" class="my-5">
         <div class="header">
-            <div class="user-profile">
-                <div class="user-pic">
-                    <img src="{{request.user.membre.photo.url}}" class="border border-danger" alt=""/>
-                </div>
+            <div class="user-profile py-5 px-2">
+                <!-- <div class="profile-photo" style="cursor: pointer;">
+                    <img src="{{use.membre.photo.url}}">
+                </div> -->
+                <!-- <img src="{{request.user.membre.photo.url}}" class="user-picture rounded-circle border border-danger" alt=""/> -->
                 <span>
-                    <p>{{request.user.last_name}}</p>
+                    <h6>Profil</h6>
+                    <p class="noms">{{request.user.last_name}}</p>
                     <p class="text-muted">@{{request.user.username}}</p>
                 </span>
             </div>
@@ -180,9 +182,9 @@
                         <div id="affiche-profil" class="mon-profil row">
                             {% if request.user.id == use.id or request.user.membre.role == "admin" %}
                             <div class="my-5 text-center">
-                                <a id="btn-edit-profil" href="#" class="btn-bleu">Mettre à jour le profil</a>
+                                <a id="btn-edit-profil" href="#" class="btn-bleu mb-2">Update profile</a>
                                 &emsp;
-                                <a href="{% url 'supprimer_compte' use.id %}" class="btn-rouge" onclick="return confirmSupp();">Supprimer profil</a>
+                                <a href="{% url 'supprimer_compte' use.id %}" class="btn-rouge" onclick="return confirmSupp();">Delete profil</a>
                             </div>
                             {% endif %}
                             <div class="col-lg-5">

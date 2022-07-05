@@ -93,7 +93,6 @@
                                     <img
                                         src="{{request.user.membre.photo.url}}"
                                         class="rounded-circle border border-primary"
-                                        height="40"
                                         alt=""
                                     />
                                 </a>
@@ -101,10 +100,9 @@
                                     <li class="text-center">Compte</li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li class="user">
-                                        <img src="{{request.user.membre.photo.url}}"
-                                        class="rounded-circle border border-primary"
-                                        height="35"
-                                        alt=""/>
+                                        <div class="profile-photo drop" style="cursor: pointer;">
+                                            <img src="{{request.user.membre.photo.url}}">
+                                        </div>
                                         <span>
                                             <p>{{request.user.last_name}}</p>
                                             <p class="text-muted">{{request.user.username}}</p>
