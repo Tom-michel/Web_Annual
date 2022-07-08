@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Liste des membres | Jerry {% endblock %}
+
+
+{% block content %} 
+    <div class="container my-5 pt-3">
+        <section id="member_list" class="mt-4">
+            <div class="header">
+                <h6>Liste des membres</h6>
+                <h6>{{member_list.count}} résultat{{member_list.count|pluralize}}</h6>
+            </div>
+            <hr>
+            {% for member in member_list %}
+                <div class="members">
+                    <div class="box">
+                        <div class="card h-100">
+                            <a href="{% url 'profil_membre' member.user.id %}" data-mdb-toggle="tooltip" title="Clique pour consulter le profil">
+                                <div class="card-img-top">
+                                    <img src="{{member.photo.url}}" alt="Photo profil"/>
+                                </div>
+                            </a>
+                            <div class="card-body">
+                                <h6 class="pref bg-white rounded-pill px-2 py-1">Développeur fullstack django</h6>
+                                <h5 class="card-title">{{member.user.last_name}}</h5>
+                                <p class="card-text py-2">{{member.description}}</p>
+                                <div class="coord">
+                                    <p data-mdb-toggle="popover" title="Quartier, Ville" data-mdb-content="{{member.quartier}}, {{member.ville}}">
+                                        <span class="px-4 py-1 rounded-pill"><i class="fa-solid fa-location-dot"></i> </span>
+                                    </p>
+                                    <p data-mdb-toggle="popover" title="Téléphone" data-mdb-content="{{member.telephone}}">
+                                        <span class="px-4 py-1 rounded-pill"><i class="fa-solid fa-mobile-screen-button"></i></span>
+                                    </p>
+                                    <p data-mdb-toggle="popover" title="Adresse email" data-mdb-content="{{member.user.username}}">
+                                        <span class="px-4 py-1 rounded-pill"><i class="fa-solid fa-envelope"></i></span>
+                                    </p>
+                                </div>
+                                
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">Last updated 3 mins ago</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </section>
+    </div>
+{% endblock %}

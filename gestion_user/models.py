@@ -15,6 +15,7 @@ class Membre(models.Model):
     telephone = models.CharField(max_length=100)
     fonction = models.CharField(max_length=100, blank=True, default='fonction')
     description = models.TextField(max_length=500, blank=True, default='description')
+    date_created = models.DateTimeField('date_post',auto_now_add=True, blank=True)
     ROLES = (
         ('admin', 'admin'), ('membre', 'membre')
     )

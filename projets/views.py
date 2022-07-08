@@ -17,3 +17,13 @@ def accueil(request):
             return render(request, 'projets/accueil.html')
     else:
         return render(request, 'gestion_user/index.html')
+
+
+# liste des tâches
+
+def task_list(request):
+    context = {
+
+    }
+    return render(request, 'projets/task_list.html')
+

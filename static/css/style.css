@@ -143,6 +143,13 @@ body {
     padding: 1rem;
     box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.295);
 }
+
+@media screen and (max-width: 767px) {
+    .profile-drop{
+        width: 330px !important;
+    }
+}
+
 .profile-drop li{
     font-weight: 500;
     font-size: 1rem;
@@ -612,5 +619,81 @@ label{
 }
 
 
+
+
+/* ======================== LISTE DES MEMBRES ======================== */
+
+#member_list .header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#member_list hr{
+    margin-top: 0.5rem;
+}
+
+#member_list .members {
+    display: flex;
+    justify-content: center !important;
+    flex-wrap: wrap;
+}
+#member_list .members .box{
+    width: 350px !important;
+    margin: 1.5rem 0 0;
+}
+
+.box .card{
+    text-decoration: none !important;
+    color: #242424;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.288);
+    transition: 0.3s;
+}
+.box .card .card-img-top:hover{
+    transition: 0.3s;
+    /* transform: scale(1.05); */
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.425);
+}
+
+.box .card .card-img-top{
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+}
+.box .card .card-img-top img{
+    width: 100%;
+    /* height: 100%; */
+}
+
+.box .card .card-body{
+    position: relative;
+}
+.box .card .card-body .pref{
+    position: absolute;
+    top: -2rem;
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+.card-body .card-title{
+    font-size: 1.1rem;
+}
+.card-body .coord {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card-body .coord p{
+    margin: 0.7rem 0.3rem 0;
+    font-size: 1rem;
+    color: #3b3b3b;
+    cursor: pointer;
+}
+.card-body .coord p span{
+    background: #ECEFF1;
+}
+.card-body .coord p span:hover{
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.425);
+    background: #ECEFF1;
+}
 
 

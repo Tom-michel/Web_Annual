@@ -143,3 +143,14 @@ def supprimer_compte(request, id_u):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/')
+
+
+
+# liste des membres
+
+def member_list(request):
+    member_list = Membre.objects.all
+    context = {
+        'member_list':member_list,
+    }
+    return render(request, 'gestion_user/member_list.html', context)
