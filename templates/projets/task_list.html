@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Liste des tâches | Jerry {% endblock %}
+
+
+{% block content %} 
+    <div class="container-md my-5 pt-3">
+        <section id="task_list" class="mt-4">
+            <div class="header">
+                <h6>Liste des tâches</h6>
+                <h6>{{task_list.count}} résultat{{task_list.count|pluralize}}</h6>
+            </div>
+            <hr>
+            <div class="liste">
+                <div class="etat">
+                    <div class="head px-2">
+                        <h6>Non entamées</h6>
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </div>
+                    <div class="task bg-white mt-2 px-2 pt-2 pb-1 border-bottom">
+                        <div class="intitule">
+                            <h6>Intitulé de la tâche</h6>
+                            <i class="fa-solid fa-pen"></i>
+                        </div>
+                        
+                        <div class="info mt-2">
+                            <div class="progress">
+                                <i class="fa-solid fa-minus"></i>
+                                <span>jskjsd 10%</span>
+                            </div>
+                            <div class="membres">
+                                <img src="/static/img/pp.jpeg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

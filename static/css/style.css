@@ -652,13 +652,13 @@ label{
 
 /* ======================== LISTE DES MEMBRES ======================== */
 
-#member_list .header{
+section .header{
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-#member_list hr{
+section hr{
     margin-top: 0.5rem;
 }
 
@@ -723,6 +723,59 @@ label{
 .card-body .coord p span:hover{
     box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.425);
     background: #ECEFF1;
+}
+
+
+/* ====================== PAGE DE TÂCHES ================== */
+
+
+#task_list .liste {
+
+}
+#task_list .liste .etat {
+    background: #ebecf0;
+    padding: 10px;
+    width: 280px;
+    border-radius: 5px;
+}
+.etat .head, 
+.etat .task .info,
+.etat .task .intitule{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.etat .task .info .progress span{
+    /* font-size: 0.7rem; */
+}
+.etat .task .info .membres{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+.etat .task .info .membres img{
+    width: 100%;
+}
+
+.etat .task{
+    border-radius: 5px;
+    font-weight: 400;
+}
+.etat .task .intitule h6 {
+    font-size: 0.85rem;
+    font-weight: 400;
+}
+.etat .head i{
+    color: #3b3b3b;
+    cursor: pointer;
+}
+.etat .task .intitule i{
+    font-size: 0.85rem;
+    color: #3b3b3b;
+    cursor: pointer;
 }
 
 
