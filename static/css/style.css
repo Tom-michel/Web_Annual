@@ -138,6 +138,17 @@ body {
     }
 }
 
+.dropstart .profile-drop[data-bs-popper] {
+    top: 100%;
+    right: 0;
+    left: auto;
+}
+.dropend .profile-drop[data-bs-popper] {
+    /* top: -100%;
+    right: auto;
+    left: 100%; */
+}
+
 .profile-drop{
     width: max-content !important;
     padding: 1rem;
@@ -582,11 +593,6 @@ label{
     width: 100%;
 } */
 
-#profil .header .user-profile h6{
-    font-family: 'Handlee';
-    color: var(--color-rouge);
-    font-size: 2.5rem;
-}
 #profil .header .user-profile .noms{
     font-size: 1.5rem;
     font-weight: 500;
@@ -618,6 +624,29 @@ label{
     }
 }
 
+/* -------------- titre de la page 'mon compte' --------- */
+
+
+#profil .header .user-profile #compte{
+    font-family: 'Handlee';
+    color: var(--color-rouge);
+    font-size: 2.5rem;
+    line-height: 2.5rem;
+}
+
+#profil .header .user-profile span p:first-child{
+    display: flex;
+    align-items: center;
+}
+#profil .header .user-profile span p:first-child span:last-child{
+    font-size: 0.8rem;
+    border-radius: 50rem;
+    padding: 5px 10px !important;
+    background: #fff;
+    font-weight: 500 !important;
+    box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.705);
+}
+
 
 
 
@@ -639,7 +668,7 @@ label{
     flex-wrap: wrap;
 }
 #member_list .members .box{
-    width: 350px !important;
+    width: 348px !important;
     margin: 1.5rem 0 0;
 }
 

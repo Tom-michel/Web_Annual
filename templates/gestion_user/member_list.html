@@ -5,15 +5,16 @@
 
 
 {% block content %} 
-    <div class="container my-5 pt-3">
+    <div class="container-lg container-md my-5 pt-3">
         <section id="member_list" class="mt-4">
             <div class="header">
                 <h6>Liste des membres</h6>
                 <h6>{{member_list.count}} résultat{{member_list.count|pluralize}}</h6>
             </div>
             <hr>
-            {% for member in member_list %}
-                <div class="members">
+            
+            <div class="members">
+                {% for member in member_list %}
                     <div class="box">
                         <div class="card h-100">
                             <a href="{% url 'profil_membre' member.user.id %}" data-mdb-toggle="tooltip" title="Clique pour consulter le profil">
@@ -22,9 +23,9 @@
                                 </div>
                             </a>
                             <div class="card-body">
-                                <h6 class="pref bg-white rounded-pill px-2 py-1">Développeur fullstack django</h6>
+                                <h6 class="pref bg-white rounded-pill px-2 py-1">{{member.fonction}}</h6>
                                 <h5 class="card-title">{{member.user.last_name}}</h5>
-                                <p class="card-text py-2">{{member.description}}</p>
+                                <p class="card-text py-2">{{member.description|truncatechars:110}}</p>
                                 <div class="coord">
                                     <p data-mdb-toggle="popover" title="Quartier, Ville" data-mdb-content="{{member.quartier}}, {{member.ville}}">
                                         <span class="px-4 py-1 rounded-pill"><i class="fa-solid fa-location-dot"></i> </span>
@@ -39,12 +40,13 @@
                                 
                             </div>
                             <div class="card-footer">
-                                <small class="text-muted">Last updated 3 mins ago</small>
+                                <small class="text-muted">Créé le {{member.date_created}}</small>
                             </div>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
+            
         </section>
     </div>
 {% endblock %}

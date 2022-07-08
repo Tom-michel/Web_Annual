@@ -129,7 +129,10 @@
                 </div> -->
                 <!-- <img src="{{request.user.membre.photo.url}}" class="user-picture rounded-circle border border-danger" alt=""/> -->
                 <span>
-                    <h6>Mon compte</h6>
+                    <p>
+                        <span id="compte">Mon compte</span>
+                        <span class="ms-4">admin</span>
+                    </p>
                     <p class="noms">{{request.user.last_name}}</p>
                     <p class="text-muted">@{{request.user.username}}</p>
                 </span>
@@ -187,7 +190,7 @@
                                 <a href="{% url 'supprimer_compte' use.id %}" class="btn-rouge" onclick="return confirmSupp();">Delete profile</a>
                             </div>
                             {% endif %}
-                            <div class="col-lg-5">
+                            <div class="col-lg-4 ms-auto col-md-5">
                                 <div class="card mb-4 mb-xl-0">
                                     <div class="card-header">Informations perso</div>
                                     <div class="card-body text-center">
@@ -201,7 +204,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-7">
+                            <div class="col-lg-6 me-auto col-md-7">
                                 <div class="card mb-4">
                                     <div class="card-header">Profil développeur</div>
                                     <div class="card-body">
@@ -235,7 +238,7 @@
                         <form name="formUpdateEtu" onsubmit="return validateFormUpdateEtu()" action="" method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div id="edit-profil" class="mon-profil mt-5 row">
-                                <div class="col-lg-5">
+                                <div class="col-lg-4 ms-auto col-md-5">
                                     <div class="card mb-4 mb-xl-0">
                                         <div class="card-header">Informations perso</div>
                                         <div class="card-body text-center">
@@ -264,7 +267,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-7">
+                                <div class="col-lg-6 me-auto col-md-7">
                                     <div class="card mb-4">
                                         <div class="card-header">Profil développeur</div>
                                         <div class="card-body">
