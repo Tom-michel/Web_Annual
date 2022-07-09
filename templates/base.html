@@ -89,7 +89,7 @@
                         <div class="d-flex align-items-center">
                             <!-- Avatar -->
                             <div class="dropstart" id="drop-compte">
-                                <a class="dropdown-toggle hidden-arrow" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                     <img
                                         src="{{request.user.membre.photo.url}}"
                                         class="rounded-circle border border-white"
@@ -148,7 +148,7 @@
         {% endblock %}
 
         {% block footer %}
-        <footer id="footer" class="bg-dark text-white text-center text-lg-start">
+        {% comment %} <footer id="footer" class="bg-dark text-white text-center text-lg-start">
             <div class="container p-4">
                 <div class="row">
                     <div class="col-lg-6 col-md-12 mb-4 ">
@@ -236,7 +236,7 @@
                 &copy; 2022 Copyright:
                 <a style="font-family: 'Pacifico' !important;" class="text-white" href="https://www.codeur.com/-tom-michel">Tom-michel</a>
             </div>
-        </footer>
+        </footer> {% endcomment %}
         {% endblock %}
         
         <!-- MDB -->

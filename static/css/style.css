@@ -730,14 +730,53 @@ section hr{
 
 
 #task_list .liste {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    overflow: scroll;
 
+    /* bottom: 0;
+    left: 0;
+    margin-bottom: 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 8px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    -webkit-user-select: none;
+    user-select: none;
+    white-space: nowrap; */
+
+    /* left: 0;
+    right: 0;
+    -webkit-user-select: none;
+    user-select: none;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: absolute; */
 }
 #task_list .liste .etat {
     background: #ebecf0;
     padding: 10px;
-    width: 280px;
     border-radius: 5px;
+    margin: 0 .5rem;
+
+    /* box-sizing: border-box;
+    display: inline-block;
+    height: 100%;
+    vertical-align: top;
+    white-space: nowrap; */
+    width: 280px;
+    min-width: 280px;
 }
+
+.liste .etat .task:hover{
+    cursor: pointer;
+    background: #dedfe2 !important;
+}
+
 .etat .head, 
 .etat .task .info,
 .etat .task .intitule{
@@ -746,17 +785,33 @@ section hr{
     align-items: center;
 }
 
-.etat .task .info .progress span{
-    /* font-size: 0.7rem; */
+.etat .task .info .progres{
+    font-size: 0.7rem;
+    background: #ebecf0;
 }
+
 .etat .task .info .membres{
-    width: 2rem;
-    height: 2rem;
+    display: flex;
+    gap: 0.1rem;
+}
+
+.membre{
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     overflow: hidden;
     cursor: pointer;
+    /* border: #5c5c5c solid 1px; */
 }
-.etat .task .info .membres img{
+.info .membres .membre.plus{
+    border: #5c5c5c solid 1px;
+    text-align: center;
+    color: #5c5c5c;
+}
+.info .membres .membre:hover{
+    opacity: 0.8;
+}
+.membre img{
     width: 100%;
 }
 
@@ -773,9 +828,48 @@ section hr{
     cursor: pointer;
 }
 .etat .task .intitule i{
-    font-size: 0.85rem;
-    color: #3b3b3b;
+    font-size: 0.75rem;
+    color: #5c5c5c;
     cursor: pointer;
+    padding: 5px;
+    visibility: hidden;
+}
+.etat .task:hover .intitule i{
+    visibility: visible;
 }
 
+.etat .task .intitule i:hover{
+    background: #ebecf0;
+    border-radius: 5px;
+}
+
+
+.dropdown .dropdown-menu .head-membre{
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    position: relative;
+    height: 80px;
+    padding: 1rem;
+    gap: 0.3rem;
+    background: var(--color-bleu);
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 2.2rem;
+}
+.head-membre div:last-child{
+    position: relative;
+    bottom: -10px;
+}
+.membre.drop{
+    width: 88px;
+    height: 88px;
+    position: relative;
+    bottom: 0px;
+}
+
+.membres .dropdown-menu {
+    width: max-content !important;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.295);
+}
 

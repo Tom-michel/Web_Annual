@@ -19,23 +19,276 @@
                         <i class="fa-solid fa-ellipsis"></i>
                     </div>
                     <div class="task bg-white mt-2 px-2 pt-2 pb-1 border-bottom">
-                        <div class="intitule">
+                        <div class="intitule mb-2">
                             <h6>Intitulé de la tâche</h6>
-                            <i class="fa-solid fa-pen"></i>
+                            <div class="dropdown">
+                                <i class="fa-solid fa-pen" 
+                                id="drop_eta1_task_edit1" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                <ul class="dropdown-menu" aria-labelledby="drop_eta1_task1">
+                                    <li><a class="dropdown-item" href="#">Mettre à jour</a></li>
+                                    <li><a class="dropdown-item" href="#">Supprimer</a></li>
+                                </ul>
+                            </div>
                         </div>
                         
                         <div class="info mt-2">
-                            <div class="progress">
-                                <i class="fa-solid fa-minus"></i>
-                                <span>jskjsd 10%</span>
+                            <div class="progres rounded-pill py-1 px-2">
+                                <span>10%</span>
                             </div>
-                            <div class="membres">
-                                <img src="/static/img/pp.jpeg" alt="">
+                            <div class="membres dropdown">
+                                <div class="membre" id="drop_eta1_task_member1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="/static/img/pp.jpeg" alt="">
+                                </div>
+                                <ul class="dropdown-menu" aria-labelledby="drop_eta1_task_member1">
+                                    <li class="head-membre">
+                                        <div class="membre drop">
+                                            <a href="/static/img/pp.jpeg"><img src="/static/img/pp.jpeg" alt=""></a>
+                                        </div>
+                                        <div>
+                                            <p>{{request.user.last_name|truncatechars:25}}</p>
+                                            <p style="font-size: 12px;">@{{request.user.username|truncatechars:31}}</p>
+                                        </div>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Afficher le profil</a></li>
+                                    <li><a class="dropdown-item" href="#">Retirer la tâche</a></li>
+                                </ul>
+                                <div class="membre plus">
+                                    <img src="" alt="+">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="etat">
+                    <div class="head px-2">
+                        <h6>En cours</h6>
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </div>
+                    <div class="task bg-white mt-2 px-2 pt-2 pb-1 border-bottom">
+                        <div class="intitule mb-2">
+                            <h6>Intitulé de la tâche</h6>
+                            <div class="dropdown">
+                                <i class="fa-solid fa-pen" 
+                                id="drop_eta2_task_edit1" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                <ul class="dropdown-menu" aria-labelledby="drop_eta2_task1">
+                                    <li><a class="dropdown-item" href="#">Mettre à jour</a></li>
+                                    <li><a class="dropdown-item" href="#">Supprimer</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="info mt-2">
+                            <div class="progres rounded-pill py-1 px-2">
+                                <span>10%</span>
+                            </div>
+                            <div class="membres dropdown">
+                                <div class="membre" id="drop_eta2_task_member1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="/static/img/pp.jpeg" alt="">
+                                </div>
+                                <ul class="dropdown-menu" aria-labelledby="drop_eta2_task_member1">
+                                    <li class="head-membre">
+                                        <div class="membre drop">
+                                            <a href="/static/img/pp.jpeg"><img src="/static/img/pp.jpeg" alt=""></a>
+                                        </div>
+                                        <div>
+                                            <p>{{request.user.last_name|truncatechars:25}}</p>
+                                            <p style="font-size: 12px;">@{{request.user.username|truncatechars:31}}</p>
+                                        </div>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Afficher le profil</a></li>
+                                    <li><a class="dropdown-item" href="#">Retirer la tâche</a></li>
+                                </ul>
+                                <div class="membre plus">
+                                    <img src="" alt="+">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="etat">
+                    <div class="head px-2">
+                        <h6>Non entamées</h6>
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </div>
+                    <div class="task bg-white mt-2 px-2 pt-2 pb-1 border-bottom">
+                        <div class="intitule mb-2">
+                            <h6>Intitulé de la tâche</h6>
+                            <div class="dropdown">
+                                <i class="fa-solid fa-pen" 
+                                id="drop_eta3_task_edit1" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                <ul class="dropdown-menu" aria-labelledby="drop_eta3_task1">
+                                    <li><a class="dropdown-item" href="#">Mettre à jour</a></li>
+                                    <li><a class="dropdown-item" href="#">Supprimer</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="info mt-2">
+                            <div class="progres rounded-pill py-1 px-2">
+                                <span>10%</span>
+                            </div>
+                            <div class="membres dropdown">
+                                <div class="membre" id="drop_eta3_task_member1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="/static/img/pp.jpeg" alt="">
+                                </div>
+                                <ul class="dropdown-menu" aria-labelledby="drop_eta3_task_member1">
+                                    <li class="head-membre">
+                                        <div class="membre drop">
+                                            <a href="/static/img/pp.jpeg"><img src="/static/img/pp.jpeg" alt=""></a>
+                                        </div>
+                                        <div>
+                                            <p>{{request.user.last_name|truncatechars:25}}</p>
+                                            <p style="font-size: 12px;">@{{request.user.username|truncatechars:31}}</p>
+                                        </div>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Afficher le profil</a></li>
+                                    <li><a class="dropdown-item" href="#">Retirer la tâche</a></li>
+                                </ul>
+                                <div class="membre plus">
+                                    <img src="" alt="+">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="task bg-white mt-2 px-2 pt-2 pb-1 border-bottom">
+                        <div class="intitule mb-2">
+                            <h6>Intitulé de la tâche</h6>
+                            <div class="dropdown">
+                                <i class="fa-solid fa-pen" 
+                                id="drop_eta3_task_edit1" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                <ul class="dropdown-menu" aria-labelledby="drop_eta3_task1">
+                                    <li><a class="dropdown-item" href="#">Mettre à jour</a></li>
+                                    <li><a class="dropdown-item" href="#">Supprimer</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="info mt-2">
+                            <div class="progres rounded-pill py-1 px-2">
+                                <span>10%</span>
+                            </div>
+                            <div class="membres dropdown">
+                                <div class="membre" id="drop_eta3_task_member1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="/static/img/pp.jpeg" alt="">
+                                </div>
+                                <ul class="dropdown-menu" aria-labelledby="drop_eta3_task_member1">
+                                    <li class="head-membre">
+                                        <div class="membre drop">
+                                            <a href="/static/img/pp.jpeg"><img src="/static/img/pp.jpeg" alt=""></a>
+                                        </div>
+                                        <div>
+                                            <p>{{request.user.last_name|truncatechars:25}}</p>
+                                            <p style="font-size: 12px;">@{{request.user.username|truncatechars:31}}</p>
+                                        </div>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Afficher le profil</a></li>
+                                    <li><a class="dropdown-item" href="#">Retirer la tâche</a></li>
+                                </ul>
+                                <div class="membre plus">
+                                    <img src="" alt="+">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="task bg-white mt-2 px-2 pt-2 pb-1 border-bottom">
+                        <div class="intitule mb-2">
+                            <h6>Intitulé de la tâche</h6>
+                            <div class="dropdown">
+                                <i class="fa-solid fa-pen" 
+                                id="drop_eta3_task_edit1" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                <ul class="dropdown-menu" aria-labelledby="drop_eta3_task1">
+                                    <li><a class="dropdown-item" href="#">Mettre à jour</a></li>
+                                    <li><a class="dropdown-item" href="#">Supprimer</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="info mt-2">
+                            <div class="progres rounded-pill py-1 px-2">
+                                <span>10%</span>
+                            </div>
+                            <div class="membres dropdown">
+                                <div class="membre" id="drop_eta3_task_member1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="/static/img/pp.jpeg" alt="">
+                                </div>
+                                <ul class="dropdown-menu" aria-labelledby="drop_eta3_task_member1">
+                                    <li class="head-membre">
+                                        <div class="membre drop">
+                                            <a href="/static/img/pp.jpeg"><img src="/static/img/pp.jpeg" alt=""></a>
+                                        </div>
+                                        <div>
+                                            <p>{{request.user.last_name|truncatechars:25}}</p>
+                                            <p style="font-size: 12px;">@{{request.user.username|truncatechars:31}}</p>
+                                        </div>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Afficher le profil</a></li>
+                                    <li><a class="dropdown-item" href="#">Retirer la tâche</a></li>
+                                </ul>
+                                <div class="membre plus">
+                                    <img src="" alt="+">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="task bg-white mt-2 px-2 pt-2 pb-1 border-bottom">
+                        <div class="intitule mb-2">
+                            <h6>Intitulé de la tâche</h6>
+                            <div class="dropdown">
+                                <i class="fa-solid fa-pen" 
+                                id="drop_eta3_task_edit1" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                <ul class="dropdown-menu" aria-labelledby="drop_eta3_task1">
+                                    <li><a class="dropdown-item" href="#">Mettre à jour</a></li>
+                                    <li><a class="dropdown-item" href="#">Supprimer</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="info mt-2">
+                            <div class="progres rounded-pill py-1 px-2">
+                                <span>10%</span>
+                            </div>
+                            <div class="membres dropdown">
+                                <div class="membre" id="drop_eta3_task_member1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="/static/img/pp.jpeg" alt="">
+                                </div>
+                                <ul class="dropdown-menu" aria-labelledby="drop_eta3_task_member1">
+                                    <li class="head-membre">
+                                        <div class="membre drop">
+                                            <a href="/static/img/pp.jpeg"><img src="/static/img/pp.jpeg" alt=""></a>
+                                        </div>
+                                        <div>
+                                            <p>{{request.user.last_name|truncatechars:25}}</p>
+                                            <p style="font-size: 12px;">@{{request.user.username|truncatechars:31}}</p>
+                                        </div>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Afficher le profil</a></li>
+                                    <li><a class="dropdown-item" href="#">Retirer la tâche</a></li>
+                                </ul>
+                                <div class="membre plus">
+                                    <img src="" alt="+">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- <div class="table-responsive">
+                <table class="">
+                    <tr>
+                        <th>hqhshjqs 1</th>
+                        <th>hljshjhsjdhjk 2</th>
+                        <th>nsljlksjdlkdl 3</th>
+                        <th>kjlksjksjd 4</th>
+                    </tr>
+                    <tr>
+                        <td>jjkjdskdjskdjksjdksjdksjduieuiueiruirueiru</td>
+                        <td>kjkejkdjiejjkfjkjkdjfkdjfd fdfjidjkjfkjdf</td>
+                        <td>jkejdieurieurieuireur eurieuriueireur</td>
+                        <td>ieuirerieure rieijreir ieurieurieuri</td>
+                    </tr>
+                </table>
+            </div> -->
         </section>
     </div>
 {% endblock %}
