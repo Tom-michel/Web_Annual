@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
@@ -100,5 +101,30 @@ def delete_task(request, id_t):
     task = Tache.objects.get(id=id_t)
     task.delete()
     return HttpResponseRedirect('../task_list')
+
+
+
+# attribuer une tâche à un membre
+
+def attrib_task(request, id_t):
+    task = Tache.objects.get(id=id_t)
+    task_list1 = Tache.objects.filter(etat='etat 1')
+    task_list2 = Tache.objects.filter(etat='etat 2')
+    task_list3 = Tache.objects.filter(etat='etat 3')
+    attrib = True
+    err_task = ""
+    edit = False
+    attib_form = CreateTaskForm()
+    context = {
+        'task_list1':task_list1,
+        'task_list2':task_list2,
+        'task_list3':task_list3,
+        'attrib':attrib,
+        'err_task':err_task,
+        'edit':edit,
+        'attib_form':attib_form,
+    }
+    return render(request, 'projets/task_list.html', context)
+    # return HttpResponseRedirect('../task_list')
 
 

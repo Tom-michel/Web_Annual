@@ -7,7 +7,7 @@
 {% block content %}
 
     <!-- ------------ formulaire de création d'une nouvelle tâche ----------- -->
-    {% if err_task != "" or edit %}
+    {% if err_task != "" or edit  %}
     <div class="modal top fade show" id="createTaskModal" tabindex="-1" aria-labelledby="createTaskModalLabel" data-mdb-backdrop="true" data-mdb-keyboard="true" aria-modal="true" role="dialog" style="background: rgba(0, 0, 0, 0.7) !important; display: block; padding-left: 0px;">
     {% else %}
     <div class="modal fade" id="createTaskModal" tabindex="-1" aria-labelledby="createTaskModalLabel" aria-hidden="true">
@@ -17,7 +17,7 @@
                 <form action="" method="post">
                     {% csrf_token %}
                     <div class="modal-header">
-                        <h5 class="modal-title" id="createTaskModalLabel">Créer une tâches</h5>
+                        <h5 class="modal-title" id="createTaskModalLabel">Créer une tâche</h5>
                         <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
                         <span class="btn-close" data-mdb-dismiss="modal" aria-label="Close" onclick="history.back();"><i class="fa-solid fa-xmark"></i></span>
                     </div>
@@ -55,6 +55,33 @@
             </div>
         </div>
     </div>
+
+    <!-- ----------- formulaire d'attribution d'une tactâche à un membre ------------ -->
+    {% if attrib %}
+    <div class="modal top fade show" id="attribTaskModal" tabindex="-1" aria-labelledby="attribTaskModalLabel" data-mdb-backdrop="true" data-mdb-keyboard="true" aria-modal="true" role="dialog" style="background: rgba(0, 0, 0, 0.7) !important; display: block; padding-left: 0px;">
+    {% else %}
+    <div class="modal fade" id="attribTaskModal" tabindex="-1" aria-labelledby="attribTaskModalLabel" aria-hidden="true">
+    {% endif %}
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="attribTaskModalLabel">Attribuer une tâche</h5>
+                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                    <span class="btn-close" data-mdb-dismiss="modal" aria-label="Close" onclick="history.back();"><i class="fa-solid fa-xmark"></i></span>
+                </div>
+                <div class="modal-body">
+                    <div class="container loginForm">
+                        <p></p><p></p>
+                        
+                        
+
+                        <!-- <input type="submit" class="btn-bleu mb-4" value="Valider" style="width: 100%;"> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <section id="task_list" class="my-5 pt-3 pb-5">
         <div class="container mt-4">
@@ -172,9 +199,11 @@
                                     <li><a class="dropdown-item" href="#">Retirer la tâche</a></li>
                                 </ul>
                                 {% endfor %}
-                                <div class="membre plus" data-mdb-toggle="tooltip" title="Attribuer à un nouveau membre">
-                                    <span>+</span>
-                                </div>
+                                <a href="{% url 'attrib_task' task.id %}">
+                                    <div class="membre plus" data-mdb-toggle="tooltip" title="Attribuer à un nouveau membre">
+                                        <span>+</span>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>

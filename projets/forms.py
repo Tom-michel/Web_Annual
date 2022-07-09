@@ -10,4 +10,5 @@ class CreateTaskForm(forms.ModelForm):
         fields = [
             'intitule',
             'progression',
+            'membres',
         ]
