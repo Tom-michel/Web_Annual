@@ -93,22 +93,12 @@ def profil_membre(request, id_u):
     if request.method == 'POST':
         user_form = UserUpadateForm(data=request.POST, instance=use)
         member_form = MembreForm(request.POST, request.FILES, instance=use.membre)
-        # username = request.POST.get('username')
-        # password = request.POST.get('password1')
         if user_form.is_valid() and member_form.is_valid():
             user = user_form.save()
             user.save()
             membre = member_form.save(commit=False)
             membre.user = user
             membre.save()
-
-            # connecter le user
-            # user_log = authenticate(username=username, password=password)
-            # if user_log:
-            #     if user.is_authenticated:
-            #         logout(request)
-            #     login(request, user_log)
-            # le renvoyer vers la page d'accueil 2
             return HttpResponseRedirect('../profil_membre/'+id_u)
         else:
             err1 = user_form.errors
@@ -146,7 +136,7 @@ def user_logout(request):
 
 
 
-# liste des membres
+# consulter la liste des membres
 
 def member_list(request):
     member_list = Membre.objects.all

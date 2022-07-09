@@ -10,7 +10,7 @@ class Tache(models.Model):
     ETATS = (
         ('etat 1','etat1'),('etat 2','etat2'),('etat 3','etat3')
     )
-    etat = models.CharField(max_length=20, choices=ETATS)
+    etat = models.CharField(max_length=20, choices=ETATS, default='etat 1')
     intitule = models.CharField(max_length=100)
     progression = models.IntegerField()
     membres = models.ManyToManyField(Membre)

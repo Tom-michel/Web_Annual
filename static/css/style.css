@@ -725,6 +725,20 @@ section hr{
     justify-content: space-between;
 }
 
+#task_list .header p span{
+    font-size: 0.8rem;
+    margin: 0 0.2rem;
+}
+#task_list .header p .attente{
+    background: #a0a1a5;
+}
+#task_list .header p .encours{
+    background: #ffd8ac;
+}
+#task_list .header p .livree{
+    background: #95f59d;
+}
+
 #task_list .content{
     display: flex;
     justify-content: center;
@@ -750,6 +764,12 @@ section hr{
     margin: 0 .5rem;
     width: 280px;
     min-width: 280px;
+}
+#task_list .liste .etat.encours{
+    background: #ffe8cd;
+}
+#task_list .liste .etat.livree{
+    background: #cdffd1;
 }
 
 .liste .etat .task:hover{
