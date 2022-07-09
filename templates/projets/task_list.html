@@ -4,7 +4,58 @@
 {% block title %} Liste des tâches | Jerry {% endblock %}
 
 
-{% block content %} 
+{% block content %}
+
+    <!-- ------------ formulaire de création d'une nouvelle tâche ----------- -->
+    {% if err_task != "" or edit %}
+    <div class="modal top fade show" id="createTaskModal" tabindex="-1" aria-labelledby="createTaskModalLabel" data-mdb-backdrop="true" data-mdb-keyboard="true" aria-modal="true" role="dialog" style="background: rgba(0, 0, 0, 0.7) !important; display: block; padding-left: 0px;">
+    {% else %}
+    <div class="modal fade" id="createTaskModal" tabindex="-1" aria-labelledby="createTaskModalLabel" aria-hidden="true">
+    {% endif %}
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="createTaskModalLabel">Créer une tâches</h5>
+                        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                        <span class="btn-close" data-mdb-dismiss="modal" aria-label="Close" onclick="history.back();"><i class="fa-solid fa-xmark"></i></span>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container loginForm">
+                            <p></p><p></p>
+                            <div class="mb-4">
+                                {% for err in err_task %}
+                                <p class="errornotes">{{err}}</p>
+                                {% endfor %}
+                            </div>
+
+                            <!-- intitule -->
+                            <div class="form-outline mb-4">
+                                <!-- <input type="text" id="id_intitule" name="intitule" class="form-control" required> -->
+                                {{create_form.intitule}}
+                                <label class="form-label" for="id_intitule" style="margin-left: 0px;">Intitulé de la tâche</label>
+                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 107.2px;"></div><div class="form-notch-trailing"></div></div></div>
+                            
+                            <!-- progression -->
+                            <div class="form-outline mb-4">
+                                <!-- <input type="text" id="id_progression" name="progression" class="form-control" required> -->
+                                {{create_form.progression}}
+                                <label class="form-label" for="id_progression" style="margin-left: 0px;">Niveau de progression</label>
+                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 107.2px;"></div><div class="form-notch-trailing"></div></div></div>
+                            
+                            <!-- {{create_form.as_p}} -->
+
+                            <input type="text" name="type_form" id="type_form" value="createTaskForm" hidden>
+
+                            <input type="submit" class="btn-bleu mb-4" value="Valider" style="width: 100%;">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <section id="task_list" class="my-5 pt-3 pb-5">
         <div class="container mt-4">
             <div class="header">
@@ -40,15 +91,15 @@
                                 <i class="fa-solid fa-pen" 
                                 id="drop_eta1_task_edit{{task.id}}" data-bs-toggle="dropdown" aria-expanded="false"></i>
                                 <ul class="dropdown-menu" aria-labelledby="drop_eta1_task_edit{{task.id}}">
-                                    <li><a class="dropdown-item" href="#">Mettre à jour</a></li>
-                                    <li><a class="dropdown-item" href="#">Supprimer</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'edit_task' task.id %}">Mettre à jour</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'delete_task' task.id %}" onclick="return confirmSupp();">Supprimer</a></li>
                                 </ul>
                             </div>
                         </div>
                         
                         <div class="info mt-2">
-                            <div class="progres rounded-pill py-1 px-2">
-                                <span>{{task.progession}}%</span>
+                            <div class="progres rounded-pill bg-danger text-white py-1 px-2">
+                                <span>{{task.progression}}%</span>
                             </div>
                             <div class="membres dropdown">
                                 {% for membre in task.membres.all %}
@@ -69,7 +120,7 @@
                                     <li><a class="dropdown-item" href="#">Retirer la tâche</a></li>
                                 </ul>
                                 {% endfor %}
-                                <div class="membre plus">
+                                <div class="membre plus" data-mdb-toggle="tooltip" title="Attribuer à un nouveau membre">
                                     <span>+</span>
                                 </div>
                             </div>
@@ -92,18 +143,18 @@
                                 <i class="fa-solid fa-pen" 
                                 id="drop_eta1_task_edit{{task.id}}" data-bs-toggle="dropdown" aria-expanded="false"></i>
                                 <ul class="dropdown-menu" aria-labelledby="drop_eta1_task_edit{{task.id}}">
-                                    <li><a class="dropdown-item" href="#">Mettre à jour</a></li>
-                                    <li><a class="dropdown-item" href="#">Supprimer</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'edit_task' task.id %}">Mettre à jour</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'delete_task' task.id %}" onclick="return confirmSupp();">Supprimer</a></li>
                                 </ul>
                             </div>
                         </div>
                         
                         <div class="info mt-2">
-                            <div class="progres rounded-pill py-1 px-2">
-                                <span>{{task.progession}}%</span>
+                            <div class="progres rounded-pill bg-warning text-white py-1 px-2">
+                                <span>{{task.progression}}%</span>
                             </div>
                             <div class="membres dropdown">
-                                {% for membre in task.membres %}
+                                {% for membre in task.membres.all %}
                                 <div class="membre" id="drop_eta1_task_member{{membre.id}}" data-bs-toggle="dropdown" aria-expanded="false">
                                     <img src="{{membre.photo.url}}" alt="">
                                 </div>
@@ -121,7 +172,7 @@
                                     <li><a class="dropdown-item" href="#">Retirer la tâche</a></li>
                                 </ul>
                                 {% endfor %}
-                                <div class="membre plus">
+                                <div class="membre plus" data-mdb-toggle="tooltip" title="Attribuer à un nouveau membre">
                                     <span>+</span>
                                 </div>
                             </div>
@@ -144,18 +195,18 @@
                                 <i class="fa-solid fa-pen" 
                                 id="drop_eta1_task_edit{{task.id}}" data-bs-toggle="dropdown" aria-expanded="false"></i>
                                 <ul class="dropdown-menu" aria-labelledby="drop_eta1_task_edit{{task.id}}">
-                                    <li><a class="dropdown-item" href="#">Mettre à jour</a></li>
-                                    <li><a class="dropdown-item" href="#">Supprimer</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'edit_task' task.id %}">Mettre à jour</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'delete_task' task.id %}" onclick="return confirmSupp();">Supprimer</a></li>
                                 </ul>
                             </div>
                         </div>
                         
                         <div class="info mt-2">
-                            <div class="progres rounded-pill py-1 px-2">
-                                <span>{{task.progession}}%</span>
+                            <div class="progres rounded-pill bg-success text-white py-1 px-2">
+                                <span>{{task.progression}}%</span>
                             </div>
                             <div class="membres dropdown">
-                                {% for membre in task.membres %}
+                                {% for membre in task.membres.all %}
                                 <div class="membre" id="drop_eta1_task_member{{membre.id}}" data-bs-toggle="dropdown" aria-expanded="false">
                                     <img src="{{membre.photo.url}}" alt="">
                                 </div>
@@ -173,7 +224,7 @@
                                     <li><a class="dropdown-item" href="#">Retirer la tâche</a></li>
                                 </ul>
                                 {% endfor %}
-                                <div class="membre plus">
+                                <div class="membre plus" data-mdb-toggle="tooltip" title="Attribuer à un nouveau membre">
                                     <span>+</span>
                                 </div>
                             </div>
@@ -184,4 +235,12 @@
             </div>
         </div>
     </section>
+
+    <script>
+        inputs = document.getElementsByTagName('input');
+        for (let i = 0; i < inputs.length; i++) {
+            inputs[i].classList.add("form-control");
+        }
+    </script>
+
 {% endblock %}

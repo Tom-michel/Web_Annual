@@ -125,6 +125,11 @@ def supprimer_compte(request, id_u):
     user.delete()
     return HttpResponseRedirect('/')
 
+def supprimer_compte_2(request, id_u):
+    user = User.objects.get(id=id_u)
+    user.delete()
+    return HttpResponseRedirect('../member_list')
+
 
 
 # se déconnecter

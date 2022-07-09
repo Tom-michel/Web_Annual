@@ -12,7 +12,7 @@ class Tache(models.Model):
     )
     etat = models.CharField(max_length=20, choices=ETATS, default='etat 1')
     intitule = models.CharField(max_length=100)
-    progression = models.IntegerField()
+    progression = models.IntegerField(default=0)
     membres = models.ManyToManyField(Membre)
     created = models.DateTimeField(auto_now_add=True, blank=True)
     updated = models.DateTimeField(auto_now_add=True, blank=True, null=True)

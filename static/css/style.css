@@ -702,13 +702,15 @@ section hr{
     justify-content: center;
     align-items: center;
 }
-.card-body .coord p{
+.card-body .coord p,
+.card-body .coord div{
     margin: 0.7rem 0.3rem 0;
     font-size: 1rem;
     color: #3b3b3b;
     cursor: pointer;
 }
-.card-body .coord p span{
+.card-body .coord p span,
+.card-body .coord div span{
     background: #ECEFF1;
 }
 .card-body .coord p span:hover{
@@ -748,14 +750,17 @@ section hr{
     display: flex;
     align-items: start;
     overflow-x: scroll;
+    /* display: none; */
+    height: max-content;
+    padding: 0 0 30px;
 }
 
-#task_list .wrapper{
+/* #task_list .wrapper{
     display: flex;
     align-items: start;
     justify-content: center;
     overflow-x: scroll;
-}
+} */
 
 #task_list .liste .etat {
     background: #ebecf0;
