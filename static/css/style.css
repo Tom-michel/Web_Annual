@@ -729,52 +729,38 @@ section hr{
 /* ====================== PAGE DE TÂCHES ================== */
 
 
+#task_list .content{
+    display: flex;
+    justify-content: center;
+}
+
 #task_list .liste {
     display: flex;
     align-items: start;
-    justify-content: center;
-    overflow: scroll;
-
-    /* bottom: 0;
-    left: 0;
-    margin-bottom: 8px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding-bottom: 8px;
-    position: absolute;
-    right: 0;
-    top: 0;
-    -webkit-user-select: none;
-    user-select: none;
-    white-space: nowrap; */
-
-    /* left: 0;
-    right: 0;
-    -webkit-user-select: none;
-    user-select: none;
-    white-space: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-    position: absolute; */
+    /* justify-content: center; */
+    overflow-x: scroll;
 }
+
+#task_list .wrapper{
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    overflow-x: scroll;
+}
+
 #task_list .liste .etat {
     background: #ebecf0;
     padding: 10px;
     border-radius: 5px;
     margin: 0 .5rem;
-
-    /* box-sizing: border-box;
-    display: inline-block;
-    height: 100%;
-    vertical-align: top;
-    white-space: nowrap; */
     width: 280px;
     min-width: 280px;
 }
 
 .liste .etat .task:hover{
     cursor: pointer;
-    background: #dedfe2 !important;
+    background: rgba(255, 255, 255, 0.452) !important;
+    /* background: #dedfe2 !important; */
 }
 
 .etat .head, 

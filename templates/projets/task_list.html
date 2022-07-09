@@ -5,13 +5,15 @@
 
 
 {% block content %} 
-    <div class="container-md my-5 pt-3">
-        <section id="task_list" class="mt-4">
+    <section id="task_list" class="my-5 pt-3">
+        <div class="container mt-4">
             <div class="header">
                 <h6>Liste des tâches</h6>
                 <h6>{{task_list.count}} résultat{{task_list.count|pluralize}}</h6>
             </div>
             <hr>
+        </div>
+        <div class="content">
             <div class="liste">
                 <div class="etat">
                     <div class="head px-2">
@@ -272,23 +274,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- <div class="table-responsive">
-                <table class="">
-                    <tr>
-                        <th>hqhshjqs 1</th>
-                        <th>hljshjhsjdhjk 2</th>
-                        <th>nsljlksjdlkdl 3</th>
-                        <th>kjlksjksjd 4</th>
-                    </tr>
-                    <tr>
-                        <td>jjkjdskdjskdjksjdksjdksjduieuiueiruirueiru</td>
-                        <td>kjkejkdjiejjkfjkjkdjfkdjfd fdfjidjkjfkjdf</td>
-                        <td>jkejdieurieurieuireur eurieuriueireur</td>
-                        <td>ieuirerieure rieijreir ieurieurieuri</td>
-                    </tr>
-                </table>
-            </div> -->
-        </section>
-    </div>
+        </div>
+    </section>
 {% endblock %}
