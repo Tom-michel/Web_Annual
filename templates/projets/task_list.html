@@ -19,7 +19,7 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="createTaskModalLabel">Créer une tâche</h5>
                         <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-                        <span class="btn-close" data-mdb-dismiss="modal" aria-label="Close" onclick="history.back();"><i class="fa-solid fa-xmark"></i></span>
+                        <span class="btn-close" data-mdb-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></span>
                     </div>
                     <div class="modal-body">
                         <div class="container loginForm">
@@ -56,7 +56,7 @@
         </div>
     </div>
 
-    <!-- ----------- formulaire d'attribution d'une tactâche à un membre ------------ -->
+    <!-- ----------- formulaire d'attribution d'une tâche à un membre ------------ -->
     {% if attrib %}
     <div class="modal top fade show" id="attribTaskModal" tabindex="-1" aria-labelledby="attribTaskModalLabel" data-mdb-backdrop="true" data-mdb-keyboard="true" aria-modal="true" role="dialog" style="background: rgba(0, 0, 0, 0.7) !important; display: block; padding-left: 0px;">
     {% else %}
@@ -64,20 +64,84 @@
     {% endif %}
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="attribTaskModalLabel">Attribuer une tâche</h5>
-                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-                    <span class="btn-close" data-mdb-dismiss="modal" aria-label="Close" onclick="history.back();"><i class="fa-solid fa-xmark"></i></span>
-                </div>
-                <div class="modal-body">
-                    <div class="container loginForm">
-                        <p></p><p></p>
-                        
-                        
-
-                        <!-- <input type="submit" class="btn-bleu mb-4" value="Valider" style="width: 100%;"> -->
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="attribTaskModalLabel">Attribuer une tâche</h5>
+                        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                        <span class="btn-close" data-mdb-dismiss="modal" aria-label="Close" onclick="history.back();"><i class="fa-solid fa-xmark"></i></span>
                     </div>
-                </div>
+
+                    <style>
+                        .modal-body table tr .td{
+                            min-width: max-content;
+                        }
+                    </style>
+                    <div class="modal-body">
+                        <!-- <div class="container loginForm"> -->
+                            <p></p><p></p>
+                            
+                            <div class="table-responsive mb-4">
+                                <div class="header">
+                                    <div class="search-bar" id="search-bar-id">
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                        <input class="search-bar-input" type="search" name="" id="search-bar-input" placeholder="Rechercher...">
+                                    </div>
+                                </div>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Add</th>
+                                            <th scope="">Noms et prénoms</th>
+                                            <th scope="col">Adresse</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for member in member_list %}
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input add-attrib" type="checkbox" value="{{member.id}}" onclick="addAttrib('{{member.id}}');"/>
+                                                </div>
+                                            </td>
+                                            <td scope="row">
+                                                <div class="td">
+                                                    <div class="membres dropright">
+                                                        <p style="cursor: pointer;" id="profile_member{{member.id}}" data-bs-toggle="dropdown" aria-expanded="false" class="fw-bold mb-0">{{member.user.last_name|truncatechars:28}}</p>
+                                                        <ul class="dropdown-menu" aria-labelledby=""profile_member{{member.id}}" >
+                                                            <li class="head-membre">
+                                                                <div class="membre drop">
+                                                                    <a href="{{member.photo.url}}"><img src="{{member.photo.url}}" alt=""></a>
+                                                                </div>
+                                                                <div>
+                                                                    <p>{{member.user.last_name|truncatechars:25}}</p>
+                                                                    <p style="font-size: 12px;">@{{member.user.username|truncatechars:31}}</p>
+                                                                </div>
+                                                            </li>
+                                                            <li class="dropdown-item"><h6>{{member.fonction}}</h6></li>
+                                                            <li><a class="dropdown-item" href="{% url 'profil_membre' member.user.id %}">Afficher le profil</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td scope="row">
+                                                <div class="td">
+                                                    {{member.quartier}}, {{member.ville}}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                               
+                            </div>
+                            
+                            <input type="text" name="valAttrib" id="valAttrib" hidden>
+
+                            <input type="submit" class="btn-bleu mb-4" value="Valider" style="width: 100%;">
+                        <!-- </div> -->
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -128,7 +192,7 @@
                             <div class="progres rounded-pill bg-danger text-white py-1 px-2">
                                 <span>{{task.progression}}%</span>
                             </div>
-                            <div class="membres dropdown">
+                            <div class="membres dropright">
                                 {% for membre in task.membres.all %}
                                 <div class="membre" id="drop_eta1_task_member{{membre.id}}" data-bs-toggle="dropdown" aria-expanded="false">
                                     <img src="{{membre.photo.url}}" alt="">
@@ -144,12 +208,14 @@
                                         </div>
                                     </li>
                                     <li><a class="dropdown-item" href="{% url 'profil_membre' membre.user.id %}">Afficher le profil</a></li>
-                                    <li><a class="dropdown-item" href="#">Retirer la tâche</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'remove_task' task.id membre.id %}">Retirer la tâche</a></li>
                                 </ul>
                                 {% endfor %}
-                                <div class="membre plus" data-mdb-toggle="tooltip" title="Attribuer à un nouveau membre">
-                                    <span>+</span>
-                                </div>
+                                <a href="{% url 'attrib_task' task.id %}">
+                                    <div class="membre plus" data-mdb-toggle="tooltip" title="Attribuer à un nouveau membre">
+                                        <span>+</span>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -180,7 +246,7 @@
                             <div class="progres rounded-pill bg-warning text-white py-1 px-2">
                                 <span>{{task.progression}}%</span>
                             </div>
-                            <div class="membres dropdown">
+                            <div class="membres dropright">
                                 {% for membre in task.membres.all %}
                                 <div class="membre" id="drop_eta1_task_member{{membre.id}}" data-bs-toggle="dropdown" aria-expanded="false">
                                     <img src="{{membre.photo.url}}" alt="">
@@ -196,7 +262,7 @@
                                         </div>
                                     </li>
                                     <li><a class="dropdown-item" href="{% url 'profil_membre' membre.user.id %}">Afficher le profil</a></li>
-                                    <li><a class="dropdown-item" href="#">Retirer la tâche</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'remove_task' task.id membre.id %}">Retirer la tâche</a></li>
                                 </ul>
                                 {% endfor %}
                                 <a href="{% url 'attrib_task' task.id %}">
@@ -234,7 +300,7 @@
                             <div class="progres rounded-pill bg-success text-white py-1 px-2">
                                 <span>{{task.progression}}%</span>
                             </div>
-                            <div class="membres dropdown">
+                            <div class="membres dropright">
                                 {% for membre in task.membres.all %}
                                 <div class="membre" id="drop_eta1_task_member{{membre.id}}" data-bs-toggle="dropdown" aria-expanded="false">
                                     <img src="{{membre.photo.url}}" alt="">
@@ -250,12 +316,14 @@
                                         </div>
                                     </li>
                                     <li><a class="dropdown-item" href="{% url 'profil_membre' membre.user.id %}">Afficher le profil</a></li>
-                                    <li><a class="dropdown-item" href="#">Retirer la tâche</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'remove_task' task.id membre.id %}">Retirer la tâche</a></li>
                                 </ul>
                                 {% endfor %}
-                                <div class="membre plus" data-mdb-toggle="tooltip" title="Attribuer à un nouveau membre">
-                                    <span>+</span>
-                                </div>
+                                <a href="{% url 'attrib_task' task.id %}">
+                                    <div class="membre plus" data-mdb-toggle="tooltip" title="Attribuer à un nouveau membre">
+                                        <span>+</span>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -269,6 +337,27 @@
         inputs = document.getElementsByTagName('input');
         for (let i = 0; i < inputs.length; i++) {
             inputs[i].classList.add("form-control");
+        }
+
+        var checks = document.querySelectorAll('.add-attrib');
+        checks.forEach(item =>{
+            item.classList.remove("form-control");
+            // item.addEventListener("click", ()=>{
+            //     alert(item.value);
+            // })
+        })
+        
+        let attribs = [];
+        function addAttrib(val){
+            if(attribs.indexOf(val) === -1){
+                attribs.push(val)
+            }
+            else{
+                let pos = attribs.indexOf(val);
+                attribs.splice(pos, 1);
+            }
+            // alert(attribs);
+            document.getElementById('valAttrib').value = attribs;
         }
     </script>
 

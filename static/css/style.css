@@ -10,12 +10,6 @@
     src: url(../fonts/Handlee-Regular.ttf);
 }
 
-body{
-    color: var(--color-dark) !important;
-    background: var(--color-light);
-    overflow-x: hidden;
-}
-
 h1, h2, h3,
 h4, h5, h6, a, p{
     /* color: var(--color-dark); */
@@ -29,6 +23,10 @@ h4, h5, h6, a, p{
     --color-bleu: #0b5ed7;
     --color-rouge: #ff0037;
     --color-dark: #241e38;
+    --color-light: hsl(252, 30%, 95%);
+    --color-gray: hsl(252, 15%, 65%);
+    --search-padding: 0.3rem 1rem;
+    --border-radius: 2rem;
 }
 
 .text-secondary {
@@ -38,7 +36,9 @@ h4, h5, h6, a, p{
 
 body {
     font-family: 'Poppins', sans-serif !important;
-    color: var(--color-dark);
+    color: var(--color-dark) !important;
+    /* background: var(--color-light); */
+    overflow-x: hidden;
 }
 
 
@@ -848,7 +848,7 @@ section hr{
 }
 
 
-.dropdown .dropdown-menu .head-membre{
+.dropdown-menu .head-membre{
     display: flex;
     justify-content: center;
     align-items: start;
@@ -875,5 +875,45 @@ section hr{
 .membres .dropdown-menu {
     width: max-content !important;
     box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.295);
+}
+
+
+/* --------- search bar --------------- */
+
+.searchNav .result .search-bar{
+    display: none;
+}
+
+.search-bar{
+    background: var(--color-light);
+    border-radius: var(--border-radius);
+    padding: var(--search-padding);
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input[type="search"]{
+    background: transparent;
+    width: 90%;
+    margin-left: 0.9rem;
+    color: var(--color-dark);
+    border: none !important;
+}
+.search-bar input[type="search"]:focus{
+    border: none !important;
+}
+.search-bar input[type="search"]::placeholder{
+    color: var(--color-gray);
+}
+
+
+
+.modal-body .header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }
 

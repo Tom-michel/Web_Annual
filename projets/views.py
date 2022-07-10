@@ -5,9 +5,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
+
+from gestion_user.models import Membre
 from .models import Tache
 from .forms import CreateTaskForm
-from gestion_user.views import connexion
+from gestion_user.views import connexion, member_list
 
 # Create your views here.
 
@@ -68,7 +70,8 @@ def edit_task(request, id_t):
                 task.etat = 'etat 2'
             elif progression == 100:
                 task.etat =  'etat 3'
-
+            else:
+                task.etat =  'etat 1'
             task.save()
         else:
             err_task = create_form.errors
@@ -108,23 +111,49 @@ def delete_task(request, id_t):
 
 def attrib_task(request, id_t):
     task = Tache.objects.get(id=id_t)
-    task_list1 = Tache.objects.filter(etat='etat 1')
-    task_list2 = Tache.objects.filter(etat='etat 2')
-    task_list3 = Tache.objects.filter(etat='etat 3')
-    attrib = True
-    err_task = ""
-    edit = False
-    attib_form = CreateTaskForm()
-    context = {
-        'task_list1':task_list1,
-        'task_list2':task_list2,
-        'task_list3':task_list3,
-        'attrib':attrib,
-        'err_task':err_task,
-        'edit':edit,
-        'attib_form':attib_form,
-    }
-    return render(request, 'projets/task_list.html', context)
-    # return HttpResponseRedirect('../task_list')
+    if request.method == 'POST':
+        listAttrib = request.POST.get('valAttrib')
+        valAttrib = listAttrib.split(',')
+        for m_id in valAttrib:
+            member = Membre.objects.get(id=m_id)
+            task.membres.add(member)
+        return HttpResponseRedirect('../task_list')
+        # context = {'valAttrib':valAttrib}
+        # return render(request, 'projets/task_list.html', context)
+    else:
+        task_list1 = Tache.objects.filter(etat='etat 1')
+        task_list2 = Tache.objects.filter(etat='etat 2')
+        task_list3 = Tache.objects.filter(etat='etat 3')
+        attrib = True
+        err_task = ""
+        edit = False
+
+        member_list = []
+        for member in Membre.objects.all():
+            if not member in task.membres.all():
+                member_list.append(member)
+        context = {
+            'task_list1':task_list1,
+            'task_list2':task_list2,
+            'task_list3':task_list3,
+            'attrib':attrib,
+            'err_task':err_task,
+            'edit':edit,
+        
+            'member_list':member_list,
+            'task':task,
+        }
+        return render(request, 'projets/task_list.html', context)
+        # return HttpResponseRedirect('../task_list')
+
+
+
+# desattribuer une tâche
+
+def remove_task(request, id_t, m_id):
+    task = Tache.objects.get(id=id_t)
+    member = Membre.objects.get(id=m_id)
+    task.membres.remove(member)
+    return HttpResponseRedirect('../../task_list')
 
 
