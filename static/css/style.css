@@ -10,12 +10,6 @@
     src: url(../fonts/Handlee-Regular.ttf);
 }
 
-body{
-    color: var(--color-dark) !important;
-    background: var(--color-light);
-    overflow-x: hidden;
-}
-
 h1, h2, h3,
 h4, h5, h6, a, p{
     /* color: var(--color-dark); */
@@ -29,6 +23,10 @@ h4, h5, h6, a, p{
     --color-bleu: #0b5ed7;
     --color-rouge: #ff0037;
     --color-dark: #241e38;
+    --color-light: hsl(252, 30%, 95%);
+    --color-gray: hsl(252, 15%, 65%);
+    --search-padding: 0.3rem 1rem;
+    --border-radius: 2rem;
 }
 
 .text-secondary {
@@ -38,7 +36,9 @@ h4, h5, h6, a, p{
 
 body {
     font-family: 'Poppins', sans-serif !important;
-    color: var(--color-dark);
+    color: var(--color-dark) !important;
+    /* background: var(--color-light); */
+    overflow-x: hidden;
 }
 
 
@@ -138,11 +138,29 @@ body {
     }
 }
 
+.dropstart .profile-drop[data-bs-popper] {
+    top: 100%;
+    right: 0;
+    left: auto;
+}
+.dropend .profile-drop[data-bs-popper] {
+    /* top: -100%;
+    right: auto;
+    left: 100%; */
+}
+
 .profile-drop{
     width: max-content !important;
     padding: 1rem;
     box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.295);
 }
+
+@media screen and (max-width: 767px) {
+    .profile-drop{
+        width: 330px !important;
+    }
+}
+
 .profile-drop li{
     font-weight: 500;
     font-size: 1rem;
@@ -565,21 +583,7 @@ label{
     height: 2.7rem;
 }
 
-/* #profil .user-pic{
-    width: 5rem;
-    height: 5rem;
-    border-radius: 50%;
-    overflow: hidden;
-}
-#profil .user-pic img{
-    width: 100%;
-} */
 
-#profil .header .user-profile h6{
-    font-family: 'Handlee';
-    color: var(--color-rouge);
-    font-size: 2.5rem;
-}
 #profil .header .user-profile .noms{
     font-size: 1.5rem;
     font-weight: 500;
@@ -611,6 +615,305 @@ label{
     }
 }
 
+/* -------------- titre de la page 'mon compte' --------- */
 
 
+#profil .header .user-profile #compte{
+    font-family: 'Handlee';
+    color: var(--color-rouge);
+    font-size: 2.5rem;
+    line-height: 2.5rem;
+}
+
+#profil .header .user-profile span p:first-child{
+    display: flex;
+    align-items: center;
+}
+#profil .header .user-profile #admin{
+    font-size: 0.8rem;
+    border-radius: 50rem;
+    padding: 5px 10px !important;
+    background: #fff;
+    font-weight: 500 !important;
+    box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.705);
+}
+
+
+
+
+/* ======================== LISTE DES MEMBRES ======================== */
+
+#member_list .header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+section hr{
+    margin-top: 0.5rem;
+}
+
+#member_list .members {
+    display: flex;
+    justify-content: center !important;
+    flex-wrap: wrap;
+}
+#member_list .members .box{
+    width: 348px !important;
+    margin: 1.5rem 0 0;
+}
+
+.box .card{
+    text-decoration: none !important;
+    color: #242424;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.288);
+    transition: 0.3s;
+}
+.box .card .card-img-top:hover{
+    transition: 0.3s;
+    /* transform: scale(1.05); */
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.425);
+}
+
+.box .card .card-img-top{
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+}
+.box .card .card-img-top img{
+    width: 100%;
+    /* height: 100%; */
+}
+
+.box .card .card-body{
+    position: relative;
+}
+.box .card .card-body .pref{
+    position: absolute;
+    top: -2rem;
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+.card-body .card-title{
+    font-size: 1.1rem;
+}
+.card-body .coord {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card-body .coord p,
+.card-body .coord div{
+    margin: 0.7rem 0.3rem 0;
+    font-size: 1rem;
+    color: #3b3b3b;
+    cursor: pointer;
+}
+.card-body .coord p span,
+.card-body .coord div span{
+    background: #ECEFF1;
+}
+.card-body .coord p span:hover{
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.425);
+    background: #ECEFF1;
+}
+
+
+/* ====================== PAGE DE TÂCHES ================== */
+
+#task_list .header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#task_list .header p span{
+    font-size: 0.8rem;
+    margin: 0 0.2rem;
+}
+#task_list .header p .attente{
+    background: #a0a1a5;
+}
+#task_list .header p .encours{
+    background: #ffd8ac;
+}
+#task_list .header p .livree{
+    background: #95f59d;
+}
+
+#task_list .content{
+    display: flex;
+    justify-content: center;
+}
+
+#task_list .liste {
+    display: flex;
+    align-items: start;
+    overflow-x: scroll;
+    /* display: none; */
+    height: max-content;
+    padding: 0 0 30px;
+}
+
+/* #task_list .wrapper{
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    overflow-x: scroll;
+} */
+
+#task_list .liste .etat {
+    background: #ebecf0;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 0 .5rem;
+    width: 280px;
+    min-width: 280px;
+}
+#task_list .liste .etat.encours{
+    background: #ffe8cd;
+}
+#task_list .liste .etat.livree{
+    background: #cdffd1;
+}
+
+.liste .etat .task:hover{
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.452) !important;
+}
+
+.etat .head, 
+.etat .task .info,
+.etat .task .intitule{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.etat .task .info .progres{
+    font-size: 0.7rem;
+    background: #ebecf0;
+}
+
+.etat .task .info .membres{
+    display: flex;
+    gap: 0.4rem;
+}
+
+.membre{
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+.info .membres .membre.plus{
+    border: #5c5c5c solid 1px;
+    text-align: center;
+    color: #5c5c5c;
+}
+.info .membres .membre:hover{
+    opacity: 0.8;
+}
+.membre img{
+    width: 100%;
+}
+
+.etat .task{
+    border-radius: 5px;
+    font-weight: 400;
+}
+.etat .task .intitule h6 {
+    font-size: 0.85rem;
+    font-weight: 400;
+}
+.etat .head i{
+    color: #3b3b3b;
+    cursor: pointer;
+}
+.etat .task .intitule i{
+    font-size: 0.75rem;
+    color: #5c5c5c;
+    cursor: pointer;
+    padding: 5px;
+    visibility: hidden;
+}
+.etat .task:hover .intitule i{
+    visibility: visible;
+}
+
+.etat .task .intitule i:hover{
+    background: #ebecf0;
+    border-radius: 5px;
+}
+
+
+.dropdown-menu .head-membre{
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    position: relative;
+    height: 80px;
+    padding: 1rem;
+    gap: 0.3rem;
+    background: var(--color-bleu);
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 2.2rem;
+}
+.head-membre div:last-child{
+    position: relative;
+    bottom: -10px;
+}
+.membre.drop{
+    width: 88px;
+    height: 88px;
+    position: relative;
+    bottom: 0px;
+}
+
+.membres .dropdown-menu {
+    width: max-content !important;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.295);
+}
+
+
+/* --------- search bar --------------- */
+
+.searchNav .result .search-bar{
+    display: none;
+}
+
+.search-bar{
+    background: var(--color-light);
+    border-radius: var(--border-radius);
+    padding: var(--search-padding);
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input[type="search"]{
+    background: transparent;
+    width: 90%;
+    margin-left: 0.9rem;
+    color: var(--color-dark);
+    border: none !important;
+}
+.search-bar input[type="search"]:focus{
+    border: none !important;
+}
+.search-bar input[type="search"]::placeholder{
+    color: var(--color-gray);
+}
+
+
+
+.modal-body .header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
 

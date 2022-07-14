@@ -5,5 +5,7 @@
 
 
 {% block content %} 
-
+    <section class="my-5 pt-3">
+        <h1>page</h1>
+    </section>
 {% endblock %}

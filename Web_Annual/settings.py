@@ -95,10 +95,12 @@ elif DEBUG and (DATABASE == 2):
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'ubora_jerry',
-            'HOST': 'db',
+            # 'HOST': 'db',
+            'HOST': '127.0.0.1',
             'USER': 'root',
-            'PASSWORD': 'passs',
-            'PORT': 3306
+            # 'PASSWORD': 'passs',
+            'PASSWORD': '',
+            'PORT': 3307
         }
     }
 else:

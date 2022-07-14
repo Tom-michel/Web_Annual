@@ -58,24 +58,24 @@
                     </a>
                     <div class="navbar-collapse collapse" id="mainMenu">
                         <ul class="navbar-nav ms-auto">
-                            <li class="nav-item">
-                                <a href="#footer" class="nav-link active mx-1 text-secondary">A propos</a>
-                            </li>
                             {% if not user.is_authenticated %}
                             <li class="nav-item">
                                 <a href="#use" class="nav-link active mx-1 text-secondary">Fontionnalités</a>
                             </li>
                             {% else %}
                                 <li class="nav-item">
-                                    <a href="/" class="nav-link mx-1 text-secondary">Projets</a>
+                                    <a href="/" class="nav-link mx-1 text-secondary">Acceuil</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/" class="nav-link mx-1 text-secondary">Mes tâches</a>
+                                    <a href="{% url 'member_list' %}" class="nav-link mx-1 text-secondary">Membres</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/" class="nav-link mx-1 text-secondary">Les membres</a>
+                                    <a href="{% url 'task_list' %}" class="nav-link mx-1 text-secondary">Tâches</a>
                                 </li>
                             {% endif %}
+                            <li class="nav-item">
+                                <a href="#footer" class="nav-link active mx-1 text-secondary">A propos</a>
+                            </li>
                         </ul>
                         {% if not user.is_authenticated %}
                             <div class="linkBtn me-5 my-2">   
@@ -89,10 +89,10 @@
                         <div class="d-flex align-items-center">
                             <!-- Avatar -->
                             <div class="dropstart" id="drop-compte">
-                                <a class="dropdown-toggle hidden-arrow" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                     <img
                                         src="{{request.user.membre.photo.url}}"
-                                        class="rounded-circle border border-primary"
+                                        class="rounded-circle border border-white"
                                         alt=""
                                     />
                                 </a>
@@ -116,7 +116,7 @@
                                     </a></li>
                                     <li><a class="dropdown-item text-danger" href="{% url 'supprimer_compte' request.user.id %}" onclick="return confirmSupp();"><i class="fa-solid fa-user-xmark"></i>&emsp;Supprimer ce compte</a></li>
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="{% url 'profil_membre' request.user.id %}"><i class="fa-solid fa-user-tie"></i>&emsp;Profil</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'profil_membre' request.user.id %}"><i class="fa-solid fa-user-tie"></i>&emsp;Mon compte</a></li>
                                     <li><a class="dropdown-item" href="{% url 'user_logout' %}"><i class="fa-solid fa-arrow-right-from-bracket"></i>&emsp;Se déconnecter</a></li>
                                 </ul>
                             </div>
@@ -299,14 +299,14 @@
 
             // confirmer la suppression d'un compte
             function confirmSupp(){
-                resp = confirm("Voulez-vous vraimement supprimer ce profil ?");
+                resp = confirm("Voulez-vous vraimement supprimer cet élément ?");
                 if (resp) {
                     return true;
                 } else{
                     return false;
                 }
             }
-
+            
         </script>
     </body>
 </html>
