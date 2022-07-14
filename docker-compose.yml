@@ -2,7 +2,7 @@ version: "3.9"
    
 services:
   db:
-    image: mariadb
+    image: mariadb:10.8.2
     restart: always
     volumes:
       - ./data/db:/var/lib/mariadb/data
@@ -19,11 +19,11 @@ services:
       - 8080:8080
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8085
     volumes:
       - .:/code
     ports:
-      - "8000:8000"
+      - "8085:8085"
     environment:
       - MARIADB_ROOT_PASSWORD=passs
     depends_on:
