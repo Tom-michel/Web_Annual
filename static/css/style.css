@@ -508,7 +508,7 @@ label{
 /* =================== PAGE PROFIL MEMBRE ============= */
 
 
-#profil .header{
+#profil .header.prof{
     background: #F4F5F7;
     /* border-bottom: #C1C7D0 solid 1px; */
     /* display: flex; */
@@ -916,4 +916,10 @@ section hr{
     align-items: center;
     justify-content: center;
 }
+
+
+
+
+/* ===================== PAGE PROFIL, TAB 2 ====================== */
+
 

@@ -306,6 +306,16 @@
                     return false;
                 }
             }
+
+            // confirmer la dés-attribution d'une tâche à un membre
+            function confirmRomove(){
+                resp = confirm("Voulez-vous vraimement désattibuer cette tâche à ce membre ?");
+                if (resp) {
+                    return true;
+                } else{
+                    return false;
+                }
+            }
             
         </script>
     </body>

@@ -122,7 +122,7 @@
 </style>
 
     <section id="profil" class="my-5">
-        <div class="header">
+        <div class="header prof">
             <div class="user-profile py-5 px-2">
                 <!-- <div class="profile-photo" style="cursor: pointer;">
                     <img src="{{use.membre.photo.url}}">
@@ -179,10 +179,12 @@
             <!-- Tabs navs -->
         </div>
         <!-- Tabs content -->
-        <div class="container">
-            <div class="row ">
+        <!-- <div class="container">
+            <div class="row "> -->
                 <div class="tab-content" id="ex1-content">
                     <div class="tab-pane fade show active" id="ex1-tabs-1" role="tabpanel" aria-labelledby="ex1-tab-1">
+                        <div class="container">
+                            <div class="row ">
                         <!-- ------------ profil --------- -->
                         <div id="affiche-profil" class="mon-profil row">
                             {% if request.user.id == use.id or request.user.membre.role == "admin" %}
@@ -318,15 +320,241 @@
                             </div>
                         </form>
                     </div>
+                </div>
+                    </div>
                     <div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
-                        Tab 2 content
+                        <section id="task_list" class="mb-3 pb-5">
+                            <div class="container mt-4">
+                                <div class="header">
+                                    <h6>Liste de mes tâches</h6>
+                                    <p>
+                                        <span class="attente rounded-pill px-2 py-1">{{nbre1}}</span>
+                                        <span class="encours rounded-pill px-2 py-1">{{nbre2}}</span>
+                                        <span class="livree rounded-pill px-2 py-1">{{nbre3}}</span>
+                                    </p>
+                                    <h6>{{nbre}} résultat{{nbre|pluralize}}</h6>
+                                </div>
+                                <hr>
+                            </div>
+                            {% if task_list.count < 2 %}
+                            <div class="content my-5">
+                            {% else %}
+                            <div class="content mt-5">
+                            {% endif %}
+                                <div class="liste">
+                                    <div class="etat">
+                                        <div class="head px-2">
+                                            <h6>Non entamées</h6>
+                                            <i class="fa-solid fa-ellipsis"></i>
+                                        </div>
+
+                                        <!---------------------- list 1 ------------- -->
+                                        {% for task in task_list1 %}
+                                        <div class="task bg-white mt-2 px-2 pt-2 pb-1 border-bottom">
+                                            <div class="intitule mb-2">
+                                                <h6>{{task.intitule}}</h6>
+                                                <div class="dropdown">
+                                                    <i class="fa-solid fa-pen" 
+                                                    id="drop_eta1_task_edit{{task.id}}" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                                    <ul class="dropdown-menu" aria-labelledby="drop_eta1_task_edit{{task.id}}">
+                                                        <li><a class="dropdown-item" href="{% url 'edit_task_profile' use.id task.id %}">Mettre à jour</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'delete_task' task.id %}" onclick="return confirmSupp();">Supprimer</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="info mt-2">
+                                                <div class="progres rounded-pill bg-danger text-white py-1 px-2">
+                                                    <span>{{task.progression}}%</span>
+                                                </div>
+                                                <div class="membres dropright">
+                                                    {% for membre in task.membres.all %}
+                                                    <div class="membre" id="drop_eta1_task_member{{membre.id}}" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <img src="{{membre.photo.url}}" alt="">
+                                                    </div>
+                                                    <ul class="dropdown-menu" aria-labelledby="drop_eta1_task_member{{membre.id}}">
+                                                        <li class="head-membre">
+                                                            <div class="membre drop">
+                                                                <a href="{{membre.photo.url}}"><img src="{{membre.photo.url}}" alt=""></a>
+                                                            </div>
+                                                            <div>
+                                                                <p>{{membre.user.last_name|truncatechars:25}}</p>
+                                                                <p style="font-size: 12px;">@{{membre.user.username|truncatechars:31}}</p>
+                                                            </div>
+                                                        </li>
+                                                        <li><a class="dropdown-item" href="{% url 'profil_membre' membre.user.id %}">Afficher le profil</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'remove_task' task.id membre.id %}" onclick="return confirmRomove();">Retirer la tâche</a></li>
+                                                    </ul>
+                                                    {% endfor %}
+                                                    <a href="{% url 'attrib_task' task.id %}">
+                                                        <div class="membre plus" data-mdb-toggle="tooltip" title="Attribuer à un nouveau membre">
+                                                            <span>+</span>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+
+                                    <!-- --------------- list 2 ------------------ -->
+                                    <div class="etat encours">
+                                        <div class="head px-2">
+                                            <h6>En cours</h6>
+                                            <i class="fa-solid fa-ellipsis"></i>
+                                        </div>
+                                        {% for task in task_list2 %}
+                                        <div class="task bg-white mt-2 px-2 pt-2 pb-1 border-bottom">
+                                            <div class="intitule mb-2">
+                                                <h6>{{task.intitule}}</h6>
+                                                <div class="dropdown">
+                                                    <i class="fa-solid fa-pen" 
+                                                    id="drop_eta1_task_edit{{task.id}}" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                                    <ul class="dropdown-menu" aria-labelledby="drop_eta1_task_edit{{task.id}}">
+                                                        <li><a class="dropdown-item" href="{% url 'edit_task_profile' use.id task.id %}">Mettre à jour</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'delete_task' task.id %}" onclick="return confirmSupp();">Supprimer</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="info mt-2">
+                                                <div class="progres rounded-pill bg-warning text-white py-1 px-2">
+                                                    <span>{{task.progression}}%</span>
+                                                </div>
+                                                <div class="membres dropright">
+                                                    {% for membre in task.membres.all %}
+                                                    <div class="membre" id="drop_eta1_task_member{{membre.id}}" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <img src="{{membre.photo.url}}" alt="">
+                                                    </div>
+                                                    <ul class="dropdown-menu" aria-labelledby="drop_eta1_task_member{{membre.id}}">
+                                                        <li class="head-membre">
+                                                            <div class="membre drop">
+                                                                <a href="{{membre.photo.url}}"><img src="{{membre.photo.url}}" alt=""></a>
+                                                            </div>
+                                                            <div>
+                                                                <p>{{membre.user.last_name|truncatechars:25}}</p>
+                                                                <p style="font-size: 12px;">@{{membre.user.username|truncatechars:31}}</p>
+                                                            </div>
+                                                        </li>
+                                                        <li><a class="dropdown-item" href="{% url 'profil_membre' membre.user.id %}">Afficher le profil</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'remove_task' task.id membre.id %}" onclick="return confirmRomove();">Retirer la tâche</a></li>
+                                                    </ul>
+                                                    {% endfor %}
+                                                    <a href="{% url 'attrib_task' task.id %}">
+                                                        <div class="membre plus" data-mdb-toggle="tooltip" title="Attribuer à un nouveau membre">
+                                                            <span>+</span>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+
+                                    <!-- ----------------- list 3 -------------------- -->
+                                    <div class="etat livree">
+                                        <div class="head px-2">
+                                            <h6>Livrées</h6>
+                                            <i class="fa-solid fa-ellipsis"></i>
+                                        </div>
+                                        {% for task in task_list3 %}
+                                        <div class="task bg-white mt-2 px-2 pt-2 pb-1 border-bottom">
+                                            <div class="intitule mb-2">
+                                                <h6>{{task.intitule}}</h6>
+                                                <div class="dropdown">
+                                                    <i class="fa-solid fa-pen" 
+                                                    id="drop_eta1_task_edit{{task.id}}" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                                    <ul class="dropdown-menu" aria-labelledby="drop_eta1_task_edit{{task.id}}">
+                                                        <li><a class="dropdown-item" href="{% url 'edit_task_profile' use.id task.id %}">Mettre à jour</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'delete_task' task.id %}" onclick="return confirmSupp();">Supprimer</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="info mt-2">
+                                                <div class="progres rounded-pill bg-success text-white py-1 px-2">
+                                                    <span>{{task.progression}}%</span>
+                                                </div>
+                                                <div class="membres dropright">
+                                                    {% for membre in task.membres.all %}
+                                                    <div class="membre" id="drop_eta1_task_member{{membre.id}}" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <img src="{{membre.photo.url}}" alt="">
+                                                    </div>
+                                                    <ul class="dropdown-menu" aria-labelledby="drop_eta1_task_member{{membre.id}}">
+                                                        <li class="head-membre">
+                                                            <div class="membre drop">
+                                                                <a href="{{membre.photo.url}}"><img src="{{membre.photo.url}}" alt=""></a>
+                                                            </div>
+                                                            <div>
+                                                                <p>{{membre.user.last_name|truncatechars:25}}</p>
+                                                                <p style="font-size: 12px;">@{{membre.user.username|truncatechars:31}}</p>
+                                                            </div>
+                                                        </li>
+                                                        <li><a class="dropdown-item" href="{% url 'profil_membre' membre.user.id %}">Afficher le profil</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'remove_task' task.id membre.id %}" onclick="return confirmRomove();">Retirer la tâche</a></li>
+                                                    </ul>
+                                                    {% endfor %}
+                                                    <a href="{% url 'attrib_task' task.id %}">
+                                                        <div class="membre plus" data-mdb-toggle="tooltip" title="Attribuer à un nouveau membre">
+                                                            <span>+</span>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <script>
+                            inputs = document.getElementsByTagName('input');
+                            for (let i = 0; i < inputs.length; i++) {
+                                inputs[i].classList.add("form-control");
+                            }
+
+                            var checks = document.querySelectorAll('.add-attrib');
+                            checks.forEach(item =>{
+                                item.classList.remove("form-control");
+                                // item.addEventListener("click", ()=>{
+                                //     alert(item.value);
+                                // })
+                            })
+                            
+                            let attribs = [];
+                            function addAttrib(val){
+                                if(attribs.indexOf(val) === -1){
+                                    attribs.push(val)
+                                }
+                                else{
+                                    let pos = attribs.indexOf(val);
+                                    attribs.splice(pos, 1);
+                                }
+                                // alert(attribs);
+                                document.getElementById('valAttrib').value = attribs;
+                            }
+
+                            function subAtt(){
+                                if(document.getElementById('valAttrib').value == ''){
+                                    alert("Aucun profil n'a été sélectionné !");
+                                    // history.back();
+                                    return false;
+                                }else{
+                                    return true;
+                                }
+                                // alert();
+                                // return false;
+                            }
+                        </script>
+
                     </div>
                     <div class="tab-pane fade" id="ex1-tabs-3" role="tabpanel" aria-labelledby="ex1-tab-3">
                         Tab 3 content
                     </div>
                 </div>
-            </div>
-        </div>
+            <!-- </div>
+        </div> -->
         
         <!-- Tabs content -->
     </section>

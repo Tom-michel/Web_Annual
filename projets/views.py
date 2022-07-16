@@ -97,6 +97,49 @@ def edit_task(request, id_t):
         return render(request, 'projets/task_list.html', context)
 
 
+def edit_task_profile(request, id_u, id_t):
+    use = User.objects.get(id=id_u)
+    task = Tache.objects.get(id=id_t)
+    if request.method == 'POST':
+        create_form = CreateTaskForm(data=request.POST, instance=task)
+        if create_form.is_valid():
+            
+            task = create_form.save(commit=False)
+            
+            progression = int(request.POST.get('progression'))
+            if progression > 0 and progression < 100:
+                task.etat = 'etat 2'
+            elif progression == 100:
+                task.etat =  'etat 3'
+            else:
+                task.etat =  'etat 1'
+            task.save()
+        else:
+            err_task = create_form.errors
+        return HttpResponseRedirect('../task_list')
+    else:
+        task_list = Tache.objects.all()
+        task_list1 = Tache.objects.filter(etat='etat 1')
+        task_list2 = Tache.objects.filter(etat='etat 2')
+        task_list3 = Tache.objects.filter(etat='etat 3')
+
+        create_form = CreateTaskForm(instance=task)
+        err_task = ""
+        edit = True
+        context = {
+            'use':use,
+            'task_list':task_list,
+            'task_list1':task_list1,
+            'task_list2':task_list2,
+            'task_list3':task_list3,
+            'create_form':create_form,
+            'err_task':err_task,
+            'edit':edit,
+        }
+        return render(request, 'gestion_user/profil_membre.html', context)
+
+
+
 
 # supprimer une tache
 
