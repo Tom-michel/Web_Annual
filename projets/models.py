@@ -25,6 +25,8 @@ class Projet(models.Model):
     membres = models.ManyToManyField(Membre)
     taches = models.ManyToManyField(Tache)
     progression = models.IntegerField(default=0)
+    VIS = (('public','public'), ('private','private'))
+    visibilite = models.CharField(max_length=200, choices=VIS, default='public')
     created = models.DateTimeField(auto_now_add=True, blank=True)
     updated = models.DateTimeField(default=timezone.now, blank=True)
 

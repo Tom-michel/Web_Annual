@@ -6,8 +6,13 @@
 
 {% block content %} 
     <section id="accueil" class="my-5 pt-3">
-        <!-- <div class="container"> -->
-            <div class="page">
+        <div class="container mt-3">
+            <div class="header">
+                <h6>Liste des projets</h6>
+                <h6>{{projets.count}} résultat{{projets.count|pluralize}}</h6>
+            </div>
+            <hr>
+            <div class="page my-2">
                 <div class="sidebar">
                     <div class="side shadow">
                         <div class="side-head rounded-top">
@@ -21,6 +26,52 @@
                             </p>
                         </div>
                     </div>
+                </div>
+                <div class="page-content">
+                    <h5>Projets Publiques</h5>
+                    <div class="projet">
+                        <a href="">
+                            <div class="projet-card">
+                                <div class="proj-img">
+                                    <div class="proj-img">
+                                        <img src="{% static 'img/pp.jpeg' %}" alt="">
+                                    </div>
+                                </div>
+                                <div class="proj-title">
+                                    Titre du projet
+                                </div>
+                                <div class="proj-foot">
+                                    <span>date création</span>
+                                    <span class="bg-primary rounded-pill px-2" style="color: #fff;">
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="">
+                            <div class="projet-card">
+                                <div class="proj-img">
+                                    <div class="proj-img">
+                                        <img src="{% static 'img/pp.jpeg' %}" alt="">
+                                    </div>
+                                </div>
+                                <div class="proj-title">
+                                    Titre du projet
+                                </div>
+                                <div class="proj-foot">
+                                    <span>date création</span>
+                                    <span class="bg-primary rounded-pill px-2" style="color: #fff;">
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page mt-5">
+                <div class="sidebar">
                     <div class="side shadow">
                         <div class="side-head rounded-top">
                             <h5>Projets Privés</h5>
@@ -35,22 +86,47 @@
                     </div>
                 </div>
                 <div class="page-content">
+                    <h5>Projets Privés</h5>
                     <div class="projet">
-                        <h5>Publiques</h5>
-                        <div class="projet-card">
-                            <!-- <img src="{% static 'img/pp.jpeg' %}" alt=""> -->
-                            <div class="proj-title">
-                                Titre du projet
+                        <a href="">
+                            <div class="projet-card">
+                                <div class="proj-img">
+                                    <div class="proj-img">
+                                        <img src="{% static 'img/pp.jpeg' %}" alt="">
+                                    </div>
+                                </div>
+                                <div class="proj-title">
+                                    Titre du projet
+                                </div>
+                                <div class="proj-foot">
+                                    <span>date création</span>
+                                    <span class="bg-primary rounded-pill px-2" style="color: #fff;">
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                    </span>
+                                </div>
                             </div>
-                            <div class="proj-foot">
-                                <span>date création</span>
-                                <span>bouton</span>
-                                <!-- <span><i class="fa-solid fa-eye"></i></span> -->
+                        </a>
+                        <a href="">
+                            <div class="projet-card">
+                                <div class="proj-img">
+                                    <div class="proj-img">
+                                        <img src="{% static 'img/pp.jpeg' %}" alt="">
+                                    </div>
+                                </div>
+                                <div class="proj-title">
+                                    Titre du projet
+                                </div>
+                                <div class="proj-foot">
+                                    <span>date création</span>
+                                    <span class="bg-primary rounded-pill px-2" style="color: #fff;">
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                    </span>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
-        <!-- </div> -->
+        </div>
     </section>
 {% endblock %}

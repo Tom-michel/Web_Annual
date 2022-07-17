@@ -926,66 +926,189 @@ section hr{
 
 /* ====================== ACCUEIL ================== */
 
-#accueil .page {
+#accueil .container{
     display: flex;
-    /* flex-wrap: wrap; */
-    justify-content: start;
-    margin: 2rem;
-    gap: 2rem;
-    position: relative;
+    flex-direction: column;
 }
 
-#accueil .page .sidebar{
-    min-width: 300px;
-    max-width: 300px;
-    position: relative;
-}
-#accueil .page .sidebar .side {
-    border-radius: 10px;
-    position: relative;
-    margin-bottom: 1.5rem;
-    background: #fff;
-}
-#accueil .page .sidebar .side .side-head {
-    background: var(--color-bleu);
-    width: 100%;
-    padding: 10px;
-    color: #fff;
-}
-.side-head h5{
-    font-size: 1rem;
+#accueil .header {
+    display: flex;
+    justify-content: space-between;
 }
 
-#accueil .page .sidebar .side .side-content {
-    position: relative;
-    padding: 10px;
-}
-.side-content p{
-    font-size: 0.85rem;
-    /* text-align: justify; */
-}
-.side-content img{
-    width: 100%;
+@media screen and (min-width: 768px) {
+    #accueil .page {
+        display: flex;
+        /* flex-wrap: wrap; */
+        justify-content: center;
+        /* margin: 2rem; */
+        gap: 2rem;
+        position: relative;
+    }
+
+    #accueil .page .sidebar{
+        min-width: 300px;
+        max-width: 300px;
+        position: relative;
+    }
+    #accueil .page .sidebar .side {
+        border-radius: 10px;
+        position: relative;
+        margin-bottom: 1.5rem;
+        background: #fff;
+    }
+    #accueil .page .sidebar .side .side-head {
+        background: var(--color-bleu);
+        width: 100%;
+        padding: 10px;
+        color: #fff;
+    }
+    .side-head h5{
+        font-size: 1rem;
+    }
+
+    #accueil .page .sidebar .side .side-content {
+        position: relative;
+        padding: 10px;
+    }
+    .side-content p{
+        font-size: 0.85rem;
+        /* text-align: justify; */
+    }
+    .side-content img{
+        width: 100%;
+    }
+
+    #accueil .page .page-content .projet {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .page-content .projet .projet-card{
+        border-radius: 10px;
+        width: 250px;
+        height: 150px;
+        position: relative;
+        overflow: hidden;
+        color: #fff;
+    }
+
+    .page-content .projet .projet-card img{
+        position: absolute;
+        width: 100%;
+        z-index: -1;
+    }
+    .projet-card .proj-title{
+        position: absolute;
+        top: 0;
+        padding: 10px;
+        font-size: 1rem;
+    }
+    .projet-card .proj-foot{
+        font-size: 0.8rem;
+        padding: 10px;
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        position: relative;
+        margin-bottom: 0;
+        margin-top: 45%;
+    }
+
 }
 
-#accueil .page .page-content {
-
-}
-
-.page-content .projet{
-    background: #fff;
-    border-radius: 10px;
-    padding: 10px;
-    min-width: 200px;
-    max-width: 200px;
-}
-
-
-@media screen and (min-width: 1200px) {
+/* @media screen and (min-width: 1200px) {
     #accueil .page {
         margin: 0 7rem;
     }
-}
+} */
 
+@media screen and (max-width: 767px) {
+    #accueil a{
+        color: var(--color-dark);
+    }
+    #accueil .page .sidebar{
+        display: none;
+    }
+    .page-content .projet{
+        margin-top: 1rem;
+    }
+
+    .page-content h5{
+        background: var(--color-bleu);
+        color: #fff;
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    .page-content .projet .projet-card {
+        position: relative;
+        display: flex;
+        align-items: start;
+        gap: 0.6rem;
+        margin-top: 1rem;
+    }
+
+    /* .page-content .projet .projet-card .proj-title{
+        border-bottom: #333 solid 1px;
+    } */
+
+    .page-content .projet .projet-card .proj-img{
+        width: 50px;
+        height: 50px;
+        overflow: hidden;
+        border-radius: 5px;
+    }
+    .proj-img img{
+        width: 100%;
+    }
+    .projet-card .proj-title{
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+    .projet-card .proj-foot{
+        position: absolute;
+        bottom: 0;
+        left: 3.8rem;
+    }
+    .projet-card .proj-foot span:last-child{
+        display: none;
+    }
+    .projet-card .proj-foot span:first-child{
+        font-size: 0.8rem;
+    }
+
+
+    /* #accueil .page .page-content .projet {
+        justify-content: center;
+    }
+
+    .page-content .projet .projet-card{
+        border-radius: 10px;
+        width: 200px;
+        height: 100px;
+        position: relative;
+        overflow: hidden;
+        color: #fff;
+    }
+    
+    .page-content .projet .projet-card img{
+        position: absolute;
+        width: 100%;
+        z-index: -1;
+    }
+    .projet-card .proj-foot{
+        font-size: 0.8rem;
+        padding: 10px;
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        position: relative;
+        margin-bottom: 0;
+        margin-top: 33%;
+    } */
+}
 
 
