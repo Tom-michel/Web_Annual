@@ -5,7 +5,52 @@
 
 
 {% block content %} 
-    <section class="my-5 pt-3">
-        <h1>Accueil</h1>
+    <section id="accueil" class="my-5 pt-3">
+        <!-- <div class="container"> -->
+            <div class="page">
+                <div class="sidebar">
+                    <div class="side shadow">
+                        <div class="side-head rounded-top">
+                            <h5>Projets Publiques</h5>
+                        </div>
+                        <div class="side-content">
+                            <img src="{% static 'img/team-work.jpg' %}" alt="">
+                            <p>
+                                Les <b>projets publiques</b> sont visibles pour tous les utilisateurs inscrits sur la plateforme. 
+                                Ceux-ci peuvent consulter l'activité du dit projet.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="side shadow">
+                        <div class="side-head rounded-top">
+                            <h5>Projets Privés</h5>
+                        </div>
+                        <div class="side-content">
+                            <img src="{% static 'img/team-work.jpg' %}" alt="">
+                            <p>
+                                Les <b>projets Privés</b> sont visibles pour tous les utilisateurs inscrits sur la plateforme. 
+                                Mais seuls les membre ajoutés comme collaborateur peuvent consulter l'activité du dit projet.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-content">
+                    <div class="projet">
+                        <h5>Publiques</h5>
+                        <div class="projet-card">
+                            <!-- <img src="{% static 'img/pp.jpeg' %}" alt=""> -->
+                            <div class="proj-title">
+                                Titre du projet
+                            </div>
+                            <div class="proj-foot">
+                                <span>date création</span>
+                                <span>bouton</span>
+                                <!-- <span><i class="fa-solid fa-eye"></i></span> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- </div> -->
     </section>
 {% endblock %}

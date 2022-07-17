@@ -23,7 +23,7 @@ h4, h5, h6, a, p{
     --color-bleu: #0b5ed7;
     --color-rouge: #ff0037;
     --color-dark: #241e38;
-    --color-light: hsl(252, 30%, 95%);
+    --color-light: hsl(252, 30%, 96%);
     --color-gray: hsl(252, 15%, 65%);
     --search-padding: 0.3rem 1rem;
     --border-radius: 2rem;
@@ -37,7 +37,7 @@ h4, h5, h6, a, p{
 body {
     font-family: 'Poppins', sans-serif !important;
     color: var(--color-dark) !important;
-    /* background: var(--color-light); */
+    background: var(--color-light);
     overflow-x: hidden;
 }
 
@@ -921,5 +921,71 @@ section hr{
 
 
 /* ===================== PAGE PROFIL, TAB 2 ====================== */
+
+
+
+/* ====================== ACCUEIL ================== */
+
+#accueil .page {
+    display: flex;
+    /* flex-wrap: wrap; */
+    justify-content: start;
+    margin: 2rem;
+    gap: 2rem;
+    position: relative;
+}
+
+#accueil .page .sidebar{
+    min-width: 300px;
+    max-width: 300px;
+    position: relative;
+}
+#accueil .page .sidebar .side {
+    border-radius: 10px;
+    position: relative;
+    margin-bottom: 1.5rem;
+    background: #fff;
+}
+#accueil .page .sidebar .side .side-head {
+    background: var(--color-bleu);
+    width: 100%;
+    padding: 10px;
+    color: #fff;
+}
+.side-head h5{
+    font-size: 1rem;
+}
+
+#accueil .page .sidebar .side .side-content {
+    position: relative;
+    padding: 10px;
+}
+.side-content p{
+    font-size: 0.85rem;
+    /* text-align: justify; */
+}
+.side-content img{
+    width: 100%;
+}
+
+#accueil .page .page-content {
+
+}
+
+.page-content .projet{
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    min-width: 200px;
+    max-width: 200px;
+}
+
+
+@media screen and (min-width: 1200px) {
+    #accueil .page {
+        margin: 0 7rem;
+    }
+}
+
 
 
