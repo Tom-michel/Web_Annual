@@ -25,7 +25,7 @@ def accueil(request):
         for p in projets:
             if p.visibilite == 'public':
                 public_proj.append(p)
-            if p.visibilite == 'private':
+            elif p.visibilite == 'private':
                 private_proj.append(p)
 
         context = {

@@ -9,13 +9,20 @@
         <div class="container mt-3">
             <div class="header">
                 <h6>Liste des projets</h6>
+
+                {% if request.user.membre.role == "admin" %}
+                <a href="" class="btn-bleu">Créer +</a>
+                {% endif %}
+
                 <h6>{{projets.count}} résultat{{projets.count|pluralize}}</h6>
             </div>
             <hr>
         </div>
+        {% if projets %}
+        
         <div class="container cont mt-3">
             <div class="page my-2">
-                <div class="sidebar">
+                <div class="sidebar md">
                     <div class="side shadow">
                         <div class="side-head rounded-top">
                             <h5>Projets Publiques</h5>
@@ -30,10 +37,29 @@
                     </div>
                 </div>
                 <div class="page-content">
-                    <h5 class="mb-2">
-                        Liste des projets publiques 
-                        <i class="fa-solid fa-circle-question"></i></h5>
+                    <div class="h5 mb-2 dropdown">
+                        <span>Liste des projets publiques</span>
+                        <i class="fa-solid fa-circle-question" 
+                        id="pub-proj" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                        <ul class="dropdown-menu" aria-labelledby="pub-proj">
+                            <div class="sidebar drop">
+                                <div class="side shadow">
+                                    <div class="side-head rounded-top">
+                                        <h5>Projets Publiques</h5>
+                                    </div>
+                                    <div class="side-content">
+                                        <img src="{% static 'img/team-work.jpg' %}" alt="">
+                                        <p>
+                                            Les <b>projets publiques</b> sont visibles pour tous les utilisateurs inscrits sur la plateforme. 
+                                            Ceux-ci peuvent consulter l'activité du dit projet.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
                     <div class="projet">
+                        {% for projet in public_proj %}
                         <a class="p-box" href="">
                             <div class="projet-card">
                                 <div class="proj-img">
@@ -42,10 +68,10 @@
                                     </div>
                                 </div>
                                 <div class="proj-title">
-                                    Titre du projet
+                                    {{projet.titre}}
                                 </div>
                                 <div class="proj-foot">
-                                    <span>date création</span>
+                                    <span>{{projet.created}}</span>
                                     <span class="bg-primary rounded-pill px-2" style="color: #fff;">
                                         <i class="fa-solid fa-ellipsis"></i>
                                     </span>
@@ -70,12 +96,13 @@
                                 </div>
                             </div>
                         </a>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
 
             <div class="page mt-5">
-                <div class="sidebar">
+                <div class="sidebar md">
                     <div class="side shadow">
                         <div class="side-head rounded-top">
                             <h5>Projets Privés</h5>
@@ -90,10 +117,29 @@
                     </div>
                 </div>
                 <div class="page-content">
-                    <h5 class="mb-2">
-                        Liste de projets privés 
-                        <i class="fa-solid fa-circle-question"></i></h5>
+                    <div class="h5 mb-2 dropdown">
+                        <span>Liste de projets privés</span> 
+                        <i class="fa-solid fa-circle-question" 
+                        id="pub-proj" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                        <ul class="dropdown-menu" aria-labelledby="pub-proj">
+                            <div class="sidebar drop">
+                                <div class="side shadow">
+                                    <div class="side-head rounded-top">
+                                        <h5>Projets Privés</h5>
+                                    </div>
+                                    <div class="side-content">
+                                        <img src="{% static 'img/private_proj.jpg' %}" alt="">
+                                        <p>
+                                            Les <b>projets Privés</b> sont visibles pour tous les utilisateurs inscrits sur la plateforme. 
+                                            Mais seuls les membre ajoutés comme collaborateur peuvent consulter l'activité du dit projet.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
                     <div class="projet">
+                        {% for projet in private_proj %}
                         <a class="p-box" href="">
                             <div class="projet-card">
                                 <div class="proj-img">
@@ -102,10 +148,10 @@
                                     </div>
                                 </div>
                                 <div class="proj-title">
-                                    Titre du projet
+                                    {{projet.titre}}
                                 </div>
                                 <div class="proj-foot">
-                                    <span>date création</span>
+                                    <span>{{projet.created}}</span>
                                     <span class="bg-primary rounded-pill px-2" style="color: #fff;">
                                         <i class="fa-solid fa-ellipsis"></i>
                                     </span>
@@ -130,9 +176,14 @@
                                 </div>
                             </div>
                         </a>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
         </div>
+
+        {% else %}
+        
+        {% endif %}
     </section>
 {% endblock %}
