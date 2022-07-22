@@ -8,9 +8,9 @@
     <section id="accueil" class="my-5 pt-3">
         <div class="container mt-3">
             <div class="header">
-                <h6>Liste des projets</h6>
+                <h6>Projets</h6>
 
-                {% if request.user.membre.role == "admin" %}
+                {% if projets and request.user.membre.role == "admin" %}
                 <a href="" class="btn-bleu">Créer +</a>
                 {% endif %}
 
@@ -18,9 +18,11 @@
             </div>
             <hr>
         </div>
-        {% if projets %}
-        
+
+
         <div class="container cont mt-3">
+        {% if projets %}
+
             <div class="page my-2">
                 <div class="sidebar md">
                     <div class="side shadow">
@@ -100,7 +102,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="page mt-5">
                 <div class="sidebar md">
                     <div class="side shadow">
@@ -180,10 +181,27 @@
                     </div>
                 </div>
             </div>
-        </div>
 
         {% else %}
-        
+            <style>
+                body{
+                    background: #fff !important;
+                }
+            </style>
+            <div class="empty">
+                <div class="content">
+                    <img src="{% static 'img/lack1.jpeg' %}" alt="">
+                    <h6>Aucun projet pour le moment</h6>
+                    {% if request.user.membre.role == "admin" %}
+                    <a href="" class="btn-bleu">Ajouter un projet +</a>
+                    {% endif %}
+                </div>
+            </div>
+
         {% endif %}
+        </div>
+
+
+
     </section>
 {% endblock %}
