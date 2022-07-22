@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 
 from gestion_user.models import Membre
-from .models import Tache
+from .models import Tache, Projet
 from .forms import CreateTaskForm
 from gestion_user.views import connexion, member_list
 
@@ -19,7 +19,21 @@ from gestion_user.views import connexion, member_list
 # @login_required(login_url='index')
 def accueil(request):
     if request.user.is_authenticated:
-            return render(request, 'projets/accueil.html')
+        projets = Projet.objects.all()
+        private_proj = []
+        public_proj = []
+        for p in projets:
+            if p.visibilite == 'public':
+                public_proj.append(p)
+            elif p.visibilite == 'private':
+                private_proj.append(p)
+
+        context = {
+            'projets':projets,
+            'private_proj':private_proj,
+            'public_proj':public_proj,
+        }
+        return render(request, 'projets/accueil.html', context)
     else:
         return render(request, 'gestion_user/index.html')
 
@@ -95,7 +109,6 @@ def edit_task(request, id_t):
             'edit':edit,
         }
         return render(request, 'projets/task_list.html', context)
-
 
 
 # supprimer une tache

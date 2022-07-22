@@ -7,6 +7,9 @@ from django.contrib.auth.models import User
 from .models import Membre
 from .forms import UserForm, MembreForm, UserUpadateForm
 
+from projets.models import Tache
+from projets.forms import CreateTaskForm
+
 # Create your views here.
 
 
@@ -109,10 +112,45 @@ def profil_membre(request, id_u):
             }
             return render(request, 'gestion_user/inscription.html', context)
     else:
+
+        # trouver les taches confiées au membre
+        membre = Membre.objects.get(id=use.membre.id)
+        task_list = []
+        task_list1 = []
+        task_list2 = []
+        task_list3 = []
+        for task in Tache.objects.all():
+            if membre in task.membres.all():
+                task_list.append(task)
+                if task.etat == 'etat 1':
+                    task_list1.append(task)
+                if task.etat == 'etat 2':
+                    task_list2.append(task)
+                if task.etat == 'etat 3':
+                    task_list3.append(task)
+        nbre = len(task_list)
+        nbre1 = len(task_list1)
+        nbre2 = len(task_list2)
+        nbre3 = len(task_list3)
+        # task_list1 = Tache.objects.filter(etat='etat 1')
+        # task_list2 = Tache.objects.filter(etat='etat 2')
+        # task_list3 = Tache.objects.filter(etat='etat 3')
+        create_form = CreateTaskForm()
+        err_task = ""
+
         context = {
             'use':use,
             'err1':err1, 'err2':err2,
-            'user_form':user_form, 'member_form':member_form
+            'user_form':user_form, 'member_form':member_form,
+
+            # taches du membre
+            'task_list':task_list,
+            'task_list1':task_list1,
+            'task_list2':task_list2,
+            'task_list3':task_list3,
+            'create_form':create_form,
+            'err_task':err_task,
+            'nbre':nbre, 'nbre1':nbre1, 'nbre2':nbre2, 'nbre3':nbre3,
         }
         return render(request, 'gestion_user/profil_membre.html', context)
 

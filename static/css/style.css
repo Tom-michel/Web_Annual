@@ -23,7 +23,7 @@ h4, h5, h6, a, p{
     --color-bleu: #0b5ed7;
     --color-rouge: #ff0037;
     --color-dark: #241e38;
-    --color-light: hsl(252, 30%, 95%);
+    --color-light: hsl(252, 30%, 96%);
     --color-gray: hsl(252, 15%, 65%);
     --search-padding: 0.3rem 1rem;
     --border-radius: 2rem;
@@ -37,7 +37,7 @@ h4, h5, h6, a, p{
 body {
     font-family: 'Poppins', sans-serif !important;
     color: var(--color-dark) !important;
-    /* background: var(--color-light); */
+    background: var(--color-light);
     overflow-x: hidden;
 }
 
@@ -508,7 +508,7 @@ label{
 /* =================== PAGE PROFIL MEMBRE ============= */
 
 
-#profil .header{
+#profil .header.prof{
     background: #F4F5F7;
     /* border-bottom: #C1C7D0 solid 1px; */
     /* display: flex; */
@@ -916,4 +916,218 @@ section hr{
     align-items: center;
     justify-content: center;
 }
+
+
+
+
+/* ===================== PAGE PROFIL, TAB 2 ====================== */
+
+
+
+/* ====================== ACCUEIL ================== */
+
+#accueil .container{
+    display: flex;
+    flex-direction: column;
+}
+
+#accueil .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media screen and (min-width: 768px) {
+    #accueil .page {
+        display: flex;
+        /* flex-wrap: wrap; */
+        justify-content: center;
+        /* margin: 2rem; */
+        gap: 2rem;
+        position: relative;
+    }
+
+    #accueil .page .page-content .h5{
+        font-size: 1rem;
+    }
+    .page-content .h5 i{
+        display: none;
+    }
+
+    #accueil .page .page-content .projet {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .page-content .projet .projet-card{
+        border-radius: 10px;
+        width: 190px;
+        height: 100px;
+        position: relative;
+        overflow: hidden;
+        color: #fff;
+    }
+
+    .page-content .projet .projet-card img{
+        position: absolute;
+        width: 100%;
+        z-index: -1;
+    }
+    .projet-card .proj-title{
+        position: absolute;
+        top: 0;
+        padding: 5px 10px;
+        font-size: 0.9rem;
+        font-weight: 700;
+    }
+    .projet-card .proj-foot{
+        font-size: 0.7rem;
+        font-weight: 600;
+        padding: 5px 10px;
+        position: absolute;
+        bottom: 0;
+    }
+
+    .page-content .projet .p-box .proj-foot{
+        visibility: hidden;
+        transition: 0.1s;
+        bottom: -20px;
+    }
+    .page-content .projet .p-box:hover .proj-foot {
+        visibility: visible;
+        transition: 0.3s;
+        bottom: 0;
+    }
+
+}
+
+#accueil .page .sidebar{
+    min-width: 300px;
+    max-width: 300px;
+    position: relative;
+}
+#accueil .page .sidebar .side {
+    border-radius: 10px;
+    position: relative;
+    /* margin-bottom: 1.5rem; */
+    background: #fff;
+}
+#accueil .page .sidebar .side .side-head {
+    background: var(--color-bleu);
+    width: 100%;
+    padding: 10px;
+    color: #fff;
+}
+.side-head h5{
+    font-size: 1rem;
+}
+
+#accueil .page .sidebar .side .side-content {
+    position: relative;
+    padding: 10px;
+}
+.side-content p{
+    font-size: 0.85rem;
+}
+.side-content img{
+    width: 100%;
+}
+
+.page-content .projet .p-box {
+    opacity: 0.95;
+    transition: 0.3s;
+}
+.page-content .projet .p-box:hover {
+    opacity: 2;
+}
+
+
+@media screen and (max-width: 767px) {
+    #accueil a{
+        color: var(--color-dark);
+    }
+
+    #accueil .page .sidebar.md{
+        display: none;
+    }
+    #accueil .page .sidebar.drop .side-head{
+        background: var(--color-rouge);
+    }
+
+    .page-content .projet{
+        margin-top: 1rem;
+    }
+
+    .page-content .h5{
+        background: var(--color-bleu);
+        color: #fff;
+        font-size: 1rem;
+        padding: 10px;
+    }
+    .page-content .h5 i{
+        cursor: pointer;
+        font-size: 1.1rem;
+    }
+    .page-content .h5 .side-content p{
+        font-size: 0.85rem;
+        font-weight: 400;
+    }
+
+    .page-content .projet .projet-card {
+        position: relative;
+        display: flex;
+        align-items: start;
+        gap: 0.6rem;
+        margin-top: 1rem;
+    }
+
+    /* .page-content .projet .projet-card .proj-title{
+        border-bottom: #333 solid 1px;
+    } */
+
+
+    .page-content .projet .projet-card .proj-img{
+        width: 50px;
+        height: 50px;
+        overflow: hidden;
+        border-radius: 5px;
+    }
+    .proj-img img{
+        width: 100%;
+    }
+    .projet-card .proj-title{
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+    .projet-card .proj-foot{
+        position: absolute;
+        bottom: 0;
+        left: 3.8rem;
+    }
+    .projet-card .proj-foot span:last-child{
+        display: none;
+    }
+    .projet-card .proj-foot span:first-child{
+        font-size: 0.8rem;
+    }
+}
+
+#accueil .empty{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 0;
+}
+.empty .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.empty .content img{
+    width: 300px;
+}
+
 

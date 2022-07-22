@@ -122,7 +122,7 @@
 </style>
 
     <section id="profil" class="my-5">
-        <div class="header">
+        <div class="header prof">
             <div class="user-profile py-5 px-2">
                 <!-- <div class="profile-photo" style="cursor: pointer;">
                     <img src="{{use.membre.photo.url}}">
@@ -179,154 +179,368 @@
             <!-- Tabs navs -->
         </div>
         <!-- Tabs content -->
-        <div class="container">
-            <div class="row ">
+        <!-- <div class="container">
+            <div class="row "> -->
                 <div class="tab-content" id="ex1-content">
                     <div class="tab-pane fade show active" id="ex1-tabs-1" role="tabpanel" aria-labelledby="ex1-tab-1">
-                        <!-- ------------ profil --------- -->
-                        <div id="affiche-profil" class="mon-profil row">
-                            {% if request.user.id == use.id or request.user.membre.role == "admin" %}
-                            <div class="my-5 text-center">
-                                <a id="btn-edit-profil" href="#" class="btn-bleu mb-2">Update profile</a>
-                                &emsp;
-                                <a href="{% url 'supprimer_compte' use.id %}" class="btn-rouge" onclick="return confirmSupp();">Delete profile</a>
-                            </div>
-                            {% endif %}
-                            <div class="col-lg-4 ms-auto col-md-5">
-                                <div class="card mb-4 mb-xl-0">
-                                    <div class="card-header">Informations perso</div>
-                                    <div class="card-body text-center">
-                                        <div class="pp">
-                                            <div class="profile_pp">
-                                                <img src="{{use.membre.photo.url}}" alt="">
-                                            </div>
-                                        </div>
-                                        <p class="last_name">{{use.last_name}}</p>
-                                        <p class="username small text-muted mb-4">@{{use.username}}</p>
+                        <div class="container">
+                            <div class="row ">
+                                <!-- ------------ profil --------- -->
+                                <div>
+                                <div id="affiche-profil" class="mon-profil row">
+                                    {% if request.user.id == use.id or request.user.membre.role == "admin" %}
+                                    <div class="my-5 text-center">
+                                        <a id="btn-edit-profil" href="#" class="btn-bleu mb-2">Update profile</a>
+                                        &emsp;
+                                        <a href="{% url 'supprimer_compte' use.id %}" class="btn-rouge" onclick="return confirmSupp();">Delete profile</a>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 me-auto col-md-7">
-                                <div class="card mb-4">
-                                    <div class="card-header">Profil développeur</div>
-                                    <div class="card-body">
-                                        <div class="row gx-3">
-                                            <p class="fonction">{{use.membre.fonction}}</p>
-                                            <p class="description my-4">
-                                                <span>Bio :</span><br>
-                                                {{use.membre.description}}
-                                            </p>
-                                            <div class="coordonees">
-                                                <p>
-                                                    <i class="fa-solid fa-location-dot"></i> 
-                                                    <a href=""><span class="border border-danger px-2 py-1 rounded-pill">{{use.membre.quartier}}, {{use.membre.ville}}</span></a>
-                                                </p>
-                                                <p>
-                                                    <i class="fa-solid fa-mobile-screen-button"></i>
-                                                    <a href="tel:{{use.membre.telephone}}"><span class="border border-danger px-2 py-1 rounded-pill">{{use.membre.telephone}}</span></a>
-                                                </p>
-                                                <p>
-                                                    <i class="fa-solid fa-envelope"></i> 
-                                                    <a href="mailto:{{use.username}}"><span class="border border-danger px-2 py-1 rounded-pill">{{use.username}}</span></a>
-                                                </p>
+                                    {% endif %}
+                                    <div class="col-lg-4 ms-auto col-md-5">
+                                        <div class="card mb-4 mb-xl-0">
+                                            <div class="card-header">Informations perso</div>
+                                            <div class="card-body text-center">
+                                                <div class="pp">
+                                                    <div class="profile_pp">
+                                                        <img src="{{use.membre.photo.url}}" alt="">
+                                                    </div>
+                                                </div>
+                                                <p class="last_name">{{use.last_name}}</p>
+                                                <p class="username small text-muted mb-4">@{{use.username}}</p>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- -------- editer profil ---------- -->
-                        <form action="" method="POST" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <div id="edit-profil" class="mon-profil mt-5 row">
-                                <div class="col-lg-4 ms-auto col-md-5">
-                                    <div class="card mb-4 mb-xl-0">
-                                        <div class="card-header">Informations perso</div>
-                                        <div class="card-body text-center">
-                                            <div class="pp">
-                                                <label id="up_pp" for="id_photo"><i class="fa-solid fa-pen"></i></label>
-                                                <div class="profile_pp">
-                                                    <img id="choosen-image" class="" src="{{use.membre.photo.url}}" alt="">
+                                    <div class="col-lg-6 me-auto col-md-7">
+                                        <div class="card mb-4">
+                                            <div class="card-header">Profil développeur</div>
+                                            <div class="card-body">
+                                                <div class="row gx-3">
+                                                    <p class="fonction">{{use.membre.fonction}}</p>
+                                                    <p class="description my-4">
+                                                        <span>Bio :</span><br>
+                                                        {{use.membre.description}}
+                                                    </p>
+                                                    <div class="coordonees">
+                                                        <p>
+                                                            <i class="fa-solid fa-location-dot"></i> 
+                                                            <a href=""><span class="border border-danger px-2 py-1 rounded-pill">{{use.membre.quartier}}, {{use.membre.ville}}</span></a>
+                                                        </p>
+                                                        <p>
+                                                            <i class="fa-solid fa-mobile-screen-button"></i>
+                                                            <a href="tel:{{use.membre.telephone}}"><span class="border border-danger px-2 py-1 rounded-pill">{{use.membre.telephone}}</span></a>
+                                                        </p>
+                                                        <p>
+                                                            <i class="fa-solid fa-envelope"></i> 
+                                                            <a href="mailto:{{use.username}}"><span class="border border-danger px-2 py-1 rounded-pill">{{use.username}}</span></a>
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <!-- noms et prénoms -->
-                                            <div class="form-outline mb-4">
-                                                {{user_form.last_name}}
-                                                <label class="form-label" for="id_last_name" style="margin-left: 0px;">Noms et prénoms</label>
-                                                <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 122.4px;"></div><div class="form-notch-trailing"></div></div>
+                                        </div>
+                                    </div>
+                                </div></div>
+
+                                <!-- -------- editer profil ---------- -->
+                                <form action="" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div id="edit-profil" class="mon-profil mt-5 row">
+                                        <div class="col-lg-4 ms-auto col-md-5">
+                                            <div class="card mb-4 mb-xl-0">
+                                                <div class="card-header">Informations perso</div>
+                                                <div class="card-body text-center">
+                                                    <div class="pp">
+                                                        <label id="up_pp" for="id_photo"><i class="fa-solid fa-pen"></i></label>
+                                                        <div class="profile_pp">
+                                                            <img id="choosen-image" class="" src="{{use.membre.photo.url}}" alt="">
+                                                        </div>
+                                                    </div>
+                                                    <!-- noms et prénoms -->
+                                                    <div class="form-outline mb-4">
+                                                        {{user_form.last_name}}
+                                                        <label class="form-label" for="id_last_name" style="margin-left: 0px;">Noms et prénoms</label>
+                                                        <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 122.4px;"></div><div class="form-notch-trailing"></div></div>
+                                                    </div>
+
+                                                    <!-- Email input -->
+                                                    <div class="form-outline mb-4">
+                                                        {{user_form.username}}
+                                                        <label class="form-label" for="id_username" style="margin-left: 0px;">Email address</label>
+                                                    <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 98.4px;"></div><div class="form-notch-trailing"></div></div></div>
+                                                    
+                                                    {% if request.user.membre.role == "admin" %}
+                                                        <!-- role -->
+                                                        <div class="form-outline mb-4">
+                                                            {{member_form.role}}
+                                                            <label class="form-label" for="id_role" style="margin-left: 0px;">Role</label>
+                                                        <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 98.4px;"></div><div class="form-notch-trailing"></div></div></div>
+                                                    {% endif %}
+                                                    
+                                                    <div>
+                                                        <input type="file" name="photo" accept="image/*" id="id_photo" class="form-control" hidden>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 me-auto col-md-7">
+                                            <div class="card mb-4">
+                                                <div class="card-header">Profil développeur</div>
+                                                <div class="card-body">
+                                                    <div class="row gx-3">
+                                                        <!-- Fonction input -->
+                                                        <div class="form-outline mb-4">
+                                                            {{member_form.fonction}}
+                                                            <label class="form-label" for="id_fonction" style="margin-left: 0px;">Votre préférence</label>
+                                                        <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 98.4px;"></div><div class="form-notch-trailing"></div></div></div>
+                                                        
+                                                        <!-- Description input -->
+                                                        <div class="form-outline mb-4">
+                                                            {{member_form.description}}
+                                                            <label class="form-label" for="id_description" style="margin-left: 0px;">Biographie</label>
+                                                        <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 98.4px;"></div><div class="form-notch-trailing"></div></div></div>
+                                                        
+                                                        <!-- Ville input -->
+                                                        <div class="form-outline mb-4">
+                                                            {{member_form.ville}}
+                                                            <label class="form-label" for="id_ville" style="margin-left: 0px;">Ville</label>
+                                                        <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 98.4px;"></div><div class="form-notch-trailing"></div></div></div>
+                                                        
+                                                        <!-- Quartier input -->
+                                                        <div class="form-outline mb-4">
+                                                            {{member_form.quartier}}
+                                                            <label class="form-label" for="id_quartier" style="margin-left: 0px;">Quartier</label>
+                                                        <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 98.4px;"></div><div class="form-notch-trailing"></div></div></div>
+                                                        
+                                                        <!-- Telaphone input -->
+                                                        <div class="form-outline mb-4">
+                                                            {{member_form.telephone}}
+                                                            <label class="form-label" for="id_telephone" style="margin-left: 0px;">Téléphone</label>
+                                                        <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 98.4px;"></div><div class="form-notch-trailing"></div></div></div>
+                                                        
+                                                        
+                                                    </div>
+                                                </div>
                                             </div>
 
-                                            <!-- Email input -->
-                                            <div class="form-outline mb-4">
-                                                {{user_form.username}}
-                                                <label class="form-label" for="id_username" style="margin-left: 0px;">Email address</label>
-                                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 98.4px;"></div><div class="form-notch-trailing"></div></div></div>
-                                            
-                                            <div>
-                                                <input type="file" name="photo" accept="image/*" id="id_photo" class="form-control" hidden>
+                                            <div class="my-5 text-center">
+                                                <a id="btn-annuler-edit" href="#" class="btn-rouge"">Annuler</a>
+                                                &emsp;
+                                                <button type="submit" class="btn-bleu ">Enregistrer</button>
                                             </div>
                                         </div>
                                     </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
+                        <section id="task_list" class="mb-3 pb-5">
+                            <div class="container mt-4">
+                                <div class="header">
+                                    <h6>Liste de mes tâches</h6>
+                                    <p>
+                                        <span class="attente rounded-pill px-2 py-1">{{nbre1}}</span>
+                                        <span class="encours rounded-pill px-2 py-1">{{nbre2}}</span>
+                                        <span class="livree rounded-pill px-2 py-1">{{nbre3}}</span>
+                                    </p>
+                                    <h6>{{nbre}} résultat{{nbre|pluralize}}</h6>
                                 </div>
-                                <div class="col-lg-6 me-auto col-md-7">
-                                    <div class="card mb-4">
-                                        <div class="card-header">Profil développeur</div>
-                                        <div class="card-body">
-                                            <div class="row gx-3">
-                                                <!-- Fonction input -->
-                                                <div class="form-outline mb-4">
-                                                    {{member_form.fonction}}
-                                                    <label class="form-label" for="id_fonction" style="margin-left: 0px;">Votre préférence</label>
-                                                <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 98.4px;"></div><div class="form-notch-trailing"></div></div></div>
-                                                
-                                                <!-- Description input -->
-                                                <div class="form-outline mb-4">
-                                                    {{member_form.description}}
-                                                    <label class="form-label" for="id_description" style="margin-left: 0px;">Biographie</label>
-                                                <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 98.4px;"></div><div class="form-notch-trailing"></div></div></div>
-                                                
-                                                <!-- Ville input -->
-                                                <div class="form-outline mb-4">
-                                                    {{member_form.ville}}
-                                                    <label class="form-label" for="id_ville" style="margin-left: 0px;">Ville</label>
-                                                <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 98.4px;"></div><div class="form-notch-trailing"></div></div></div>
-                                                
-                                                <!-- Quartier input -->
-                                                <div class="form-outline mb-4">
-                                                    {{member_form.quartier}}
-                                                    <label class="form-label" for="id_quartier" style="margin-left: 0px;">Quartier</label>
-                                                <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 98.4px;"></div><div class="form-notch-trailing"></div></div></div>
-                                                
-                                                <!-- Telaphone input -->
-                                                <div class="form-outline mb-4">
-                                                    {{member_form.telephone}}
-                                                    <label class="form-label" for="id_telephone" style="margin-left: 0px;">Téléphone</label>
-                                                <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 98.4px;"></div><div class="form-notch-trailing"></div></div></div>
-                                                
-                                                
+                                <hr>
+                            </div>
+                            {% if task_list.count < 2 %}
+                            <div class="content my-5">
+                            {% else %}
+                            <div class="content mt-5">
+                            {% endif %}
+                                <div class="liste">
+                                    <div class="etat">
+                                        <div class="head px-2">
+                                            <h6>Non entamées</h6>
+                                            <i class="fa-solid fa-ellipsis"></i>
+                                        </div>
+
+                                        <!---------------------- list 1 ------------- -->
+                                        {% for task in task_list1 %}
+                                        <div class="task bg-white mt-2 px-2 pt-2 pb-1 border-bottom">
+                                            <div class="intitule mb-2">
+                                                <h6>{{task.intitule}}</h6>
+                                                <div class="dropdown">
+                                                    <i class="fa-solid fa-pen" 
+                                                    id="drop_eta1_task_edit{{task.id}}" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                                    <ul class="dropdown-menu" aria-labelledby="drop_eta1_task_edit{{task.id}}" data-mdb-toggle="tooltip" title="Accéder à la page des tâches afin d'effectuer ces actions">
+                                                        <li><a class="dropdown-item">Mettre à jour</a></li>
+                                                        <li><a class="dropdown-item">Supprimer</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="info mt-2">
+                                                <div class="progres rounded-pill bg-danger text-white py-1 px-2">
+                                                    <span>{{task.progression}}%</span>
+                                                </div>
+                                                <div class="membres dropright">
+                                                    {% for membre in task.membres.all %}
+                                                    <div class="membre" id="drop_eta1_task_member{{membre.id}}" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <img src="{{membre.photo.url}}" alt="">
+                                                    </div>
+                                                    <ul class="dropdown-menu" aria-labelledby="drop_eta1_task_member{{membre.id}}">
+                                                        <li class="head-membre">
+                                                            <div class="membre drop">
+                                                                <a href="{{membre.photo.url}}"><img src="{{membre.photo.url}}" alt=""></a>
+                                                            </div>
+                                                            <div>
+                                                                <p>{{membre.user.last_name|truncatechars:25}}</p>
+                                                                <p style="font-size: 12px;">@{{membre.user.username|truncatechars:31}}</p>
+                                                            </div>
+                                                        </li>
+                                                        <li><a class="dropdown-item" href="{% url 'profil_membre' membre.user.id %}">Afficher le profil</a></li>
+                                                        <li><a class="dropdown-item" data-mdb-toggle="tooltip" title="Accéder à la page des tâches afin d'effectuer cette action">Retirer la tâche</a></li>
+                                                    </ul>
+                                                    {% endfor %}
+                                                    <a>
+                                                        <div class="membre plus" data-mdb-toggle="tooltip" title="Attribuer à un nouveau membre">
+                                                            <span>+</span>
+                                                        </div>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
+                                        {% endfor %}
                                     </div>
 
-                                    <div class="my-5 text-center">
-                                        <a id="btn-annuler-edit" href="#" class="btn-rouge"">Annuler</a>
-                                        &emsp;
-                                        <button type="submit" class="btn-bleu ">Enregistrer</button>
+                                    <!-- --------------- list 2 ------------------ -->
+                                    <div class="etat encours">
+                                        <div class="head px-2">
+                                            <h6>En cours</h6>
+                                            <i class="fa-solid fa-ellipsis"></i>
+                                        </div>
+                                        {% for task in task_list2 %}
+                                        <div class="task bg-white mt-2 px-2 pt-2 pb-1 border-bottom">
+                                            <div class="intitule mb-2">
+                                                <h6>{{task.intitule}}</h6>
+                                                <div class="dropdown">
+                                                    <i class="fa-solid fa-pen" 
+                                                    id="drop_eta1_task_edit{{task.id}}" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                                    <ul class="dropdown-menu" aria-labelledby="drop_eta1_task_edit{{task.id}}" data-mdb-toggle="tooltip" title="Accéder à la page des tâches afin d'effectuer ces actions">
+                                                        <li><a class="dropdown-item">Mettre à jour</a></li>
+                                                        <li><a class="dropdown-item">Supprimer</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="info mt-2">
+                                                <div class="progres rounded-pill bg-warning text-white py-1 px-2">
+                                                    <span>{{task.progression}}%</span>
+                                                </div>
+                                                <div class="membres dropright">
+                                                    {% for membre in task.membres.all %}
+                                                    <div class="membre" id="drop_eta1_task_member{{membre.id}}" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <img src="{{membre.photo.url}}" alt="">
+                                                    </div>
+                                                    <ul class="dropdown-menu" aria-labelledby="drop_eta1_task_member{{membre.id}}">
+                                                        <li class="head-membre">
+                                                            <div class="membre drop">
+                                                                <a href="{{membre.photo.url}}"><img src="{{membre.photo.url}}" alt=""></a>
+                                                            </div>
+                                                            <div>
+                                                                <p>{{membre.user.last_name|truncatechars:25}}</p>
+                                                                <p style="font-size: 12px;">@{{membre.user.username|truncatechars:31}}</p>
+                                                            </div>
+                                                        </li>
+                                                        <li><a class="dropdown-item" href="{% url 'profil_membre' membre.user.id %}">Afficher le profil</a></li>
+                                                        <li><a class="dropdown-item" data-mdb-toggle="tooltip" title="Accéder à la page des tâches afin d'effectuer cette action">Retirer la tâche</a></li>
+                                                    </ul>
+                                                    {% endfor %}
+                                                    <a>
+                                                        <div class="membre plus" data-mdb-toggle="tooltip" title="Attribuer à un nouveau membre">
+                                                            <span>+</span>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+
+                                    <!-- ----------------- list 3 -------------------- -->
+                                    <div class="etat livree">
+                                        <div class="head px-2">
+                                            <h6>Livrées</h6>
+                                            <i class="fa-solid fa-ellipsis"></i>
+                                        </div>
+                                        {% for task in task_list3 %}
+                                        <div class="task bg-white mt-2 px-2 pt-2 pb-1 border-bottom">
+                                            <div class="intitule mb-2">
+                                                <h6>{{task.intitule}}</h6>
+                                                <div class="dropdown">
+                                                    <i class="fa-solid fa-pen" 
+                                                    id="drop_eta1_task_edit{{task.id}}" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                                    <ul class="dropdown-menu" aria-labelledby="drop_eta1_task_edit{{task.id}}" data-mdb-toggle="tooltip" title="Accéder à la page des tâches afin d'effectuer ces actions">
+                                                        <li><a class="dropdown-item">Mettre à jour</a></li>
+                                                        <li><a class="dropdown-item">Supprimer</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="info mt-2">
+                                                <div class="progres rounded-pill bg-success text-white py-1 px-2">
+                                                    <span>{{task.progression}}%</span>
+                                                </div>
+                                                <div class="membres dropright">
+                                                    {% for membre in task.membres.all %}
+                                                    <div class="membre" id="drop_eta1_task_member{{membre.id}}" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <img src="{{membre.photo.url}}" alt="">
+                                                    </div>
+                                                    <ul class="dropdown-menu" aria-labelledby="drop_eta1_task_member{{membre.id}}">
+                                                        <li class="head-membre">
+                                                            <div class="membre drop">
+                                                                <a href="{{membre.photo.url}}"><img src="{{membre.photo.url}}" alt=""></a>
+                                                            </div>
+                                                            <div>
+                                                                <p>{{membre.user.last_name|truncatechars:25}}</p>
+                                                                <p style="font-size: 12px;">@{{membre.user.username|truncatechars:31}}</p>
+                                                            </div>
+                                                        </li>
+                                                        <li><a class="dropdown-item" href="{% url 'profil_membre' membre.user.id %}">Afficher le profil</a></li>
+                                                        <li><a class="dropdown-item" data-mdb-toggle="tooltip" title="Accéder à la page des tâches afin d'effectuer cette action">Retirer la tâche</a></li>
+                                                    </ul>
+                                                    {% endfor %}
+                                                    <a>
+                                                        <div class="membre plus" data-mdb-toggle="tooltip" title="Attribuer à un nouveau membre">
+                                                            <span>+</span>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                    <div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
-                        Tab 2 content
+                        </section>
+
+                        <script>
+                            inputs = document.getElementsByTagName('input');
+                            for (let i = 0; i < inputs.length; i++) {
+                                inputs[i].classList.add("form-control");
+                            }
+
+                            var checks = document.querySelectorAll('.add-attrib');
+                            checks.forEach(item =>{
+                                item.classList.remove("form-control");
+                            })
+                            
+                        </script>
+
                     </div>
                     <div class="tab-pane fade" id="ex1-tabs-3" role="tabpanel" aria-labelledby="ex1-tab-3">
-                        Tab 3 content
+                        <div class="container">
+                            <div class="row ">        
+                                Tab 3 content
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            <!-- </div>
+        </div> -->
         
         <!-- Tabs content -->
     </section>
@@ -379,6 +593,7 @@
     for (let i = 0; i < inputs.length; i++) {
         inputs[i].classList.add("form-control");
     }
+    document.getElementById('id_role').classList.add("form-control");
     document.getElementById('id_description').classList.add("form-control");
 
     document.getElementById('id_last_name').required = true;
