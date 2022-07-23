@@ -1,4 +1,5 @@
 from multiprocessing import context
+from re import A
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
@@ -8,7 +9,7 @@ from django.contrib.auth.models import User
 
 from gestion_user.models import Membre
 from .models import Tache, Projet
-from .forms import CreateTaskForm
+from .forms import CreateTaskForm, CreateProjectForm, EditProjectForm
 from gestion_user.views import connexion, member_list
 
 # Create your views here.
@@ -19,23 +20,49 @@ from gestion_user.views import connexion, member_list
 # @login_required(login_url='index')
 def accueil(request):
     if request.user.is_authenticated:
-        projets = Projet.objects.all()
-        private_proj = []
-        public_proj = []
-        for p in projets:
-            if p.visibilite == 'public':
-                public_proj.append(p)
-            elif p.visibilite == 'private':
-                private_proj.append(p)
+        project_form = CreateProjectForm()
+        err_proj = ""
+        if request.method == "POST":
+            project_form = CreateProjectForm(data=request.POST)
+            if project_form.is_valid():
+                projet = project_form.save()
+                projet.save()
+                return projet(request, projet.id)
+            else:
+                err_proj = project_form.errors
+                return HttpResponseRedirect('accueil')
+        else:
+            projets = Projet.objects.all()
+            private_proj = []
+            public_proj = []
+            for p in projets:
+                if p.visibilite == 'public':
+                    public_proj.append(p)
+                elif p.visibilite == 'private':
+                    private_proj.append(p)
 
-        context = {
-            'projets':projets,
-            'private_proj':private_proj,
-            'public_proj':public_proj,
-        }
-        return render(request, 'projets/accueil.html', context)
+            context = {
+                'projets':projets,
+                'private_proj':private_proj,
+                'public_proj':public_proj,
+                'project_form':project_form,
+                'err_proj':err_proj,
+            }
+            return render(request, 'projets/accueil.html', context)
     else:
         return render(request, 'gestion_user/index.html')
+
+
+
+
+# page de gestion d'un projet
+
+def projet(request, id_p):
+    context = {
+        'id_p':id_p,
+    }
+    return render(request, 'projets/projet.html', context)
+
 
 
 

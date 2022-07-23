@@ -15,8 +15,8 @@ class Tache(models.Model):
     intitule = models.CharField(max_length=100)
     progression = models.IntegerField(default=0)
     membres = models.ManyToManyField(Membre)
-    created = models.DateTimeField(auto_now_add=True, blank=True)
-    updated = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True, null=True)
 
 
 class Projet(models.Model):
@@ -27,7 +27,20 @@ class Projet(models.Model):
     progression = models.IntegerField(default=0)
     VIS = (('public','public'), ('private','private'))
     visibilite = models.CharField(max_length=200, choices=VIS, default='public')
-    created = models.DateTimeField(auto_now_add=True, blank=True)
-    updated = models.DateTimeField(default=timezone.now, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True, null=True)
+
+    def save(self, *args, **kwargs):
+        if self.taches.all():
+            # n = self.taches.all().count
+            n = 0
+            s = 0
+            progress = int(self.progression)
+            for task in self.taches.all():
+                s += int(task.progression)
+                n += 1
+            progress = s/n
+            self.progression = str(progress)
+        super.save(*args, **kwargs)
 
 
