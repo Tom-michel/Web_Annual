@@ -25,9 +25,16 @@ def accueil(request):
         if request.method == "POST":
             project_form = CreateProjectForm(data=request.POST)
             if project_form.is_valid():
-                projet = project_form.save()
-                projet.save()
-                return projet(request, projet.id)
+                project = project_form.save()
+
+                if project.taches.all():
+                    n,s = 0,0
+                    for task in project.taches.all():
+                        s += task.progression
+                        n += 1
+                    project.progression = s/n
+                project.save()
+                return projet(request, project.id)
             else:
                 err_proj = project_form.errors
                 return HttpResponseRedirect('accueil')

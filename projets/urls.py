@@ -8,4 +8,6 @@ urlpatterns = [
     path('attrib_task/<str:id_t>', attrib_task, name="attrib_task"),
     path('remove_task/<str:id_t>/<str:m_id>', remove_task, name="remove_task"),
     path('delete_task/<str:id_t>', delete_task, name="delete_task"),
+
+    path('projet/<str:id_p>', projet, name="projet"),
 ]

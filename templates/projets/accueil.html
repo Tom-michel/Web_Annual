@@ -6,7 +6,55 @@
 
 {% block content %} 
 
-    
+    <!-- ------------ formulaire de création d'un projet ----------- -->
+    {% if err_proj != "" %}
+    <div class="modal top fade show" id="createProjectModal" tabindex="-1" aria-labelledby="createProjectModalLabel" data-mdb-backdrop="true" data-mdb-keyboard="true" aria-modal="true" role="dialog" style="background: rgba(0, 0, 0, 0.7) !important; display: block; padding-left: 0px;">
+    {% else %}
+    <div class="modal fade" id="createProjectModal" tabindex="-1" aria-labelledby="createProjectModalLabel" aria-hidden="true">
+    {% endif %}
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="createProjectModalLabel">Créer/Modifier un projet</h5>
+                        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                        {% if err_proj != "" %}
+                        <span class="btn-close" data-mdb-dismiss="modal" aria-label="Close" onclick="history.back();"><i class="fa-solid fa-xmark"></i></span>
+                        {% else %}
+                        <span class="btn-close" data-mdb-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></span>
+                        {% endif %}
+                    </div>
+                    <div class="modal-body">
+                        <div class="container loginForm">
+                            <p></p><p></p>
+                            <div class="mb-4">
+                                {% for err in err_proj %}
+                                <p class="errornotes">{{err}}</p>
+                                {% endfor %}
+                            </div>
+
+                            <!-- titre -->
+                            <div class="form-outline mb-4">
+                                {{project_form.titre}}
+                                <label class="form-label" for="id_intitule" style="margin-left: 0px;">Titre du projet *</label>
+                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 107.2px;"></div><div class="form-notch-trailing"></div></div></div>
+                            
+                            <!-- description -->
+                            <div class="form-outline mb-4">
+                                {{project_form.description}}
+                                <label class="form-label" for="id_progression" style="margin-left: 0px;">Description</label>
+                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 107.2px;"></div><div class="form-notch-trailing"></div></div></div>
+                            
+                            <!-- {{project_form.as_p}} -->
+
+                            <input type="submit" class="btn-bleu mb-4" value="Valider" style="width: 100%;">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -14,16 +62,13 @@
         <div class="container mt-3">
             <div class="header">
                 <h6>Projets</h6>
-
-                {% if projets and request.user.membre.role == "admin" %}
-                <a href="" class="btn-bleu">Créer +</a>
-                {% endif %}
-
+                {% comment %} {% if projets and request.user.membre.role == "admin" %} {% endcomment %}
+                <a href="" class="btn-bleu" data-mdb-toggle="modal" data-mdb-target="#createProjectModal">Créer +</a>
+                {% comment %} {% endif %} {% endcomment %}
                 <h6>{{projets.count}} résultat{{projets.count|pluralize}}</h6>
             </div>
             <hr>
         </div>
-
 
         <div class="container cont mt-3">
         {% if projets %}
@@ -67,7 +112,7 @@
                     </div>
                     <div class="projet">
                         {% for projet in public_proj %}
-                        <a class="p-box" href="">
+                        <a class="p-box" href="{% url 'projet' projet.id %}" data-mdb-toggle="tooltip" title="{{projet.description}}">
                             <div class="projet-card">
                                 <div class="proj-img">
                                     <div class="proj-img">
@@ -79,24 +124,6 @@
                                 </div>
                                 <div class="proj-foot">
                                     <span>{{projet.created}}</span>
-                                    <span class="bg-primary rounded-pill px-2" style="color: #fff;">
-                                        <i class="fa-solid fa-ellipsis"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </a>
-                        <a class="p-box" href="">
-                            <div class="projet-card">
-                                <div class="proj-img">
-                                    <div class="proj-img">
-                                        <img src="{% static 'img/pp.jpeg' %}" alt="">
-                                    </div>
-                                </div>
-                                <div class="proj-title">
-                                    Titre du projet
-                                </div>
-                                <div class="proj-foot">
-                                    <span>date création</span>
                                     <span class="bg-primary rounded-pill px-2" style="color: #fff;">
                                         <i class="fa-solid fa-ellipsis"></i>
                                     </span>
@@ -117,14 +144,14 @@
                             <img src="{% static 'img/private_proj.jpg' %}" alt="">
                             <p>
                                 Les <b>projets Privés</b> sont visibles pour tous les utilisateurs inscrits sur la plateforme. 
-                                Mais seuls les membre ajoutés comme collaborateur peuvent consulter l'activité du dit projet.
+                                Mais seuls les membres ajoutés comme collaborateurs peuvent consulter l'activité du dit projet.
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="page-content">
                     <div class="h5 mb-2 dropdown">
-                        <span>Liste de projets privés</span> 
+                        <span>Liste de projets privés &emsp;&emsp;</span> 
                         <i class="fa-solid fa-circle-question" 
                         id="pub-proj" data-bs-toggle="dropdown" aria-expanded="false"></i>
                         <ul class="dropdown-menu" aria-labelledby="pub-proj">
@@ -137,7 +164,7 @@
                                         <img src="{% static 'img/private_proj.jpg' %}" alt="">
                                         <p>
                                             Les <b>projets Privés</b> sont visibles pour tous les utilisateurs inscrits sur la plateforme. 
-                                            Mais seuls les membre ajoutés comme collaborateur peuvent consulter l'activité du dit projet.
+                                            Mais seuls les membres ajoutés comme collaborateurs peuvent consulter l'activité du dit projet.
                                         </p>
                                     </div>
                                 </div>
@@ -146,7 +173,7 @@
                     </div>
                     <div class="projet">
                         {% for projet in private_proj %}
-                        <a class="p-box" href="">
+                        <a class="p-box" href="{% url 'projet' projet.id %}" data-mdb-toggle="tooltip" title="{{projet.description}}">
                             <div class="projet-card">
                                 <div class="proj-img">
                                     <div class="proj-img">
@@ -158,24 +185,6 @@
                                 </div>
                                 <div class="proj-foot">
                                     <span>{{projet.created}}</span>
-                                    <span class="bg-primary rounded-pill px-2" style="color: #fff;">
-                                        <i class="fa-solid fa-ellipsis"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </a>
-                        <a class="p-box" href="">
-                            <div class="projet-card">
-                                <div class="proj-img">
-                                    <div class="proj-img">
-                                        <img src="{% static 'img/pp.jpeg' %}" alt="">
-                                    </div>
-                                </div>
-                                <div class="proj-title">
-                                    Titre du projet
-                                </div>
-                                <div class="proj-foot">
-                                    <span>date création</span>
                                     <span class="bg-primary rounded-pill px-2" style="color: #fff;">
                                         <i class="fa-solid fa-ellipsis"></i>
                                     </span>
@@ -197,16 +206,22 @@
                 <div class="content">
                     <img src="{% static 'img/lack1.jpeg' %}" alt="">
                     <h6>Aucun projet pour le moment</h6>
-                    {% if request.user.membre.role == "admin" %}
-                    <a href="" class="btn-bleu">Ajouter un projet +</a>
-                    {% endif %}
+                    {% comment %} {% if request.user.membre.role == "admin" %} {% endcomment %}
+                    <a class="btn-bleu"  data-mdb-toggle="modal" data-mdb-target="#createProjectModal">Ajouter un projet +</a>
+                    {% comment %} {% endif %} {% endcomment %}
                 </div>
             </div>
 
         {% endif %}
         </div>
-
-
-
     </section>
+
+    <script>
+        inputs = document.getElementsByTagName('input');
+        for (let i = 0; i < inputs.length; i++) {
+            inputs[i].classList.add("form-control");
+        }
+        document.getElementById('id_description').classList.add('form-control');
+        document.getElementById('id_description').style.height = "150px"
+    </script>
 {% endblock %}
