@@ -110,8 +110,7 @@
                                     </li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="{% url 'inscription' %}"><i class="fa-solid fa-user-plus"></i>&emsp;Ajouter un compte</a></li>
-                                    <li><a class="dropdown-item text-success" href="{% url 'connexion' %}"
-                                        onclick="confirm('Vouler-vous vraiment suppimer ce compte ?');">
+                                    <li><a class="dropdown-item text-success" href="{% url 'connexion' %}">
                                         <i class="fa-solid fa-arrows-rotate"></i>&emsp;Changer de compte
                                     </a></li>
                                     <li><a class="dropdown-item text-danger" href="{% url 'supprimer_compte' request.user.id %}" onclick="return confirmSupp();"><i class="fa-solid fa-user-xmark"></i>&emsp;Supprimer ce compte</a></li>
